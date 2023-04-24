@@ -5,10 +5,20 @@ project:
 website:
   title: "web"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+    # left:
+    #   - href: index.qmd
+    #     text: Home
+    right: 
+      - href: about.qmd
+        text: "Acerca de mí"
+      - href: projects.qmd
+        text: "Proyectos"
+      - href: blog.qmd
+        text: "Blog"
+      - href: "https://twitter.com/samucalse"
+        icon: "twitter"
+      - href: "https://github.com/calderonsamuel"
+        icon: "github"
 
 format:
   html:
