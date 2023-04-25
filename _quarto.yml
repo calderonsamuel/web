@@ -5,6 +5,8 @@ project:
 website:
   title: "web"
   navbar:
+    background: "#f6eee9"
+    foreground: "#0A0A0A"
     # left:
     #   - href: index.qmd
     #     text: Home
@@ -22,8 +24,9 @@ website:
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme: 
+      - sandstone
+      - styles.scss
     toc: true
 
 
