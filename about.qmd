@@ -1,9 +1,78 @@
 ---
-title: "About"
+title: "Samuel Calderon Serrano"
+subtitle: "Analista de Gestión de la Información en Ministerio del Interior"
+image: resources/profile.jpg
+about:
+  id: hero-heading
+  template: trestles
+  image-shape: round
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com
+    - icon: github
+      text: Github
+      href: https://github.com/calderonsamuel
+    - icon: linkedin
+      text: Linkedin
+      href: https://www.linkedin.com/in/samuelcalderon/
+format: 
+  html:
+    page-layout: full
 ---
 
-About this site
+:::{#hero-heading}
 
-```{r}
-1 + 1
-```
+# **Presentación**
+
+Politólogo de la Universidad Antonio Ruiz de Montoya. Actualmente trabaja en la Superintendencia Nacional de Educación Universitaria - SUNEDU como miembro del Equipo Técnico Normativo de la Dirección de Licenciamiento. Su desempeño profesional ha sido siempre en el sector público, participando en iniciativas de recojo, análisis y sistematización de información con miras a mejorar la calidad de los servicios brindados a la ciudadanía.
+
+Miembro de la organización DecideBien, colabora ocasionalmente en iniciativas de código abierto. Durante los últimos meses, ha dictado talleres de Elaboración de Productos de Datos a profesionales de las ciencias sociales. Proviene de Lima, Perú.
+
+Descarga mi [CV](resources/SamuelCalderonCV.pdf).
+
+::: {.grid}
+
+::: {.g-col-6}
+
+### **Intereses**
+
+- Datos abiertos
+- Educación superior
+- Enseñanza de herramientas de uso de datos
+
+:::
+
+::: {.g-col-6}
+
+### **Educación**
+
+- Bach. En Ciencia Política, 2016. Universidad Antonio Ruiz de Montoya.
+
+:::
+
+:::
+
+:::
+
+<!-- Experience grid -->
+
+# **Experiencia**
+
+::: {.grid}
+
+::: {.g-col-4}
+
+
+:::
+
+::: {.g-col-8}
+
+- Experiencia 1
+- Experiencia 2
+
+:::
+
+:::
+
+

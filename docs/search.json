@@ -2,9 +2,9 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Samuel Calderon Serrano",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "Twitter\n  \n  \n    \n     Github\n  \n  \n    \n     Linkedin\n  \n\n  \n  \n\nPresentación\nPolitólogo de la Universidad Antonio Ruiz de Montoya. Actualmente trabaja en la Superintendencia Nacional de Educación Universitaria - SUNEDU como miembro del Equipo Técnico Normativo de la Dirección de Licenciamiento. Su desempeño profesional ha sido siempre en el sector público, participando en iniciativas de recojo, análisis y sistematización de información con miras a mejorar la calidad de los servicios brindados a la ciudadanía.\nMiembro de la organización DecideBien, colabora ocasionalmente en iniciativas de código abierto. Durante los últimos meses, ha dictado talleres de Elaboración de Productos de Datos a profesionales de las ciencias sociales. Proviene de Lima, Perú.\nDescarga mi CV.\n\n\nIntereses\n\nDatos abiertos\nEducación superior\nEnseñanza de herramientas de uso de datos\n\n\n\nEducación\n\nBach. En Ciencia Política, 2016. Universidad Antonio Ruiz de Montoya.\n\n\n\n\n\n\n\n\n\nExperiencia\n\n\n\n\n\n\nExperiencia 1\nExperiencia 2"
   },
   {
     "objectID": "index.html",
@@ -12,5 +12,26 @@
     "title": "web",
     "section": "",
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "myblog",
+    "section": "",
+    "text": "My Post\n\n\n\n\n\nPost description\n\n\n\n\n\n\nApr 24, 2023\n\n\nFizz McPhee\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\nUniversity of California, San Diego | San Diego, CA PhD in Mathematics | Sept 2011 - June 2015\nMacalester College | St. Paul MA B.A in Economics | Sept 2007 - June 2011"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "Samuel Calderon Serrano",
+    "section": "Experience",
+    "text": "Experience\n\n\n\n\n\n\nWengo Analytics | Head Data Scientist | April 2018 - present\nGeoScynce | Chief Analyst | Spet 2012 - April 2018"
   }
 ]

@@ -13,7 +13,7 @@ website:
         text: "Acerca de mí"
       - href: projects.qmd
         text: "Proyectos"
-      - href: blog.qmd
+      - href: posts/index.qmd
         text: "Blog"
       - href: "https://twitter.com/samucalse"
         icon: "twitter"
