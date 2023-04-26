@@ -3,7 +3,7 @@ title: Inicios
 description: "Razones para la creación de este blog"
 author: 'Samuel Calderon'
 date: '2020-01-13'
-date-modified: "2023-04-26"
+# date-modified: "2023-04-26"
 ---
 
 ## ¿Para qué un blog?
