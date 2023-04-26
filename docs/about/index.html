@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -242,47 +242,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="g-col-8 shadow">
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="76" data-source-offset="-2"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 75;"><span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>card <span class="op">=</span> <span class="kw">function</span>(</span>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="76" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 75;"><span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>card <span class="op">=</span> <span class="kw">function</span>(</span>
 <span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>  title <span class="op">=</span> <span class="st">"Card title"</span><span class="op">,</span> </span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>  subtitle <span class="op">=</span> <span class="st">"Card subtitle"</span><span class="op">,</span> </span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>  details <span class="op">=</span> <span class="st">"body text"</span><span class="op">,</span></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>  start_date <span class="op">=</span> <span class="st">"Mar 2020"</span><span class="op">,</span></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>  end_date <span class="op">=</span> <span class="st">"Actualidad"</span><span class="op">,</span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>  city</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>) {</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> htl<span class="op">.</span><span class="fu">html</span><span class="vs">`</span></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class = "card"&gt;</span></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;!-- header - start --&gt;</span></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class = "d-flex p-3"&gt;</span></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;!-- image --&gt;</span></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class = "bg-primary me-2"&gt;</span></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;div style = "width: 60px; height: 60px"&gt;</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;/div&gt;</span></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;!-- title --&gt;</span></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class = "flex-grow-1"&gt;</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;h5 class="card-title fw-bold text-muted"&gt;</span><span class="sc">${</span>title<span class="sc">}</span><span class="vs">&lt;/h5&gt;</span></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;h6 class="card-subtitle mb-2"&gt;</span><span class="sc">${</span>subtitle<span class="sc">}</span><span class="vs">&lt;/h6&gt;</span></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;p class="text-muted"&gt;</span><span class="sc">${</span>start_date<span class="sc">}</span><span class="vs"> - </span><span class="sc">${</span>end_date<span class="sc">}</span><span class="vs">. </span><span class="sc">${</span>city<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;!-- header - end --&gt;</span></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class = "card-body pt-0"&gt;</span></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>details<span class="sc">}</span></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;  </span></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="vs">  `</span></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>viewof exp1 <span class="op">=</span> <span class="fu">card</span>(</span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Integrante del Equipo Técnico Normativo de la Dirección de Licenciamiento"</span><span class="op">,</span></span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Superintendencia Nacional de Educación Universitaria"</span><span class="op">,</span></span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Responsabilidades: Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional. Modelo de Renovación de Licencia Institucional (Modelo 2.0)"</span></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>  company <span class="op">=</span> <span class="st">"Card subtitle"</span><span class="op">,</span> </span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>  company_url <span class="op">=</span> <span class="st">"https://www.gob.pe/sunedu"</span><span class="op">,</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>  company_logo <span class="op">=</span> <span class="st">"logos/sunedu-svg.svg"</span><span class="op">,</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>  description <span class="op">=</span> <span class="st">"body text"</span><span class="op">,</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>  date_start <span class="op">=</span> <span class="st">"Mar 2020"</span><span class="op">,</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>  date_end <span class="op">=</span> <span class="st">"Actualidad"</span><span class="op">,</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>  location</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>) {</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> htl<span class="op">.</span><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;div class = "card"&gt;</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;!-- header - start --&gt;</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class = "d-flex p-3"&gt;</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;!-- image --&gt;</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class = "bg-primary me-2"&gt;</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;a href="</span><span class="sc">${</span>company_url<span class="sc">}</span><span class="vs">" target="_blank"&gt;</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="vs">            &lt;img src = "</span><span class="sc">${</span>company_logo<span class="sc">}</span><span class="vs">" alt = "</span><span class="sc">${</span>company<span class="sc">}</span><span class="vs">" width = "60px" height = "60px" style = "width: 60px; height: 60px"&gt;</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;/a&gt;</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;!-- title --&gt;</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class = "flex-grow-1"&gt;</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;h5 class="card-title fw-bold text-muted"&gt;</span><span class="sc">${</span>title<span class="sc">}</span><span class="vs">&lt;/h5&gt;</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;a href="</span><span class="sc">${</span>company_url<span class="sc">}</span><span class="vs">" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset"&gt;</span><span class="sc">${</span>company<span class="sc">}</span><span class="vs">&lt;/a&gt;</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;p class="text-muted"&gt;</span><span class="sc">${</span>date_start<span class="sc">}</span><span class="vs"> - </span><span class="sc">${</span>date_end<span class="sc">}</span><span class="vs">. </span><span class="sc">${</span>location<span class="sc">}</span><span class="vs">&lt;/p&gt;</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;!-- header - end --&gt;</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;div class = "card-body pt-0"&gt;</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>description<span class="sc">}</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/div&gt;  </span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="vs">  `</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>viewof exp1 <span class="op">=</span> <span class="fu">card</span>(</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Integrante del Equipo Técnico Normativo de la Dirección de Licenciamiento"</span><span class="op">,</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Superintendencia Nacional de Educación Universitaria"</span><span class="op">,</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://www.gob.pe/sunedu"</span><span class="op">,</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>    <span class="st">"/sunedu.png"</span><span class="op">,</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Responsabilidades: Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional. Modelo de Renovación de Licencia Institucional (Modelo 2.0)"</span><span class="op">,</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Aug 2020"</span><span class="op">,</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Actualidad"</span><span class="op">,</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Lima"</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -298,7 +306,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'htmltools' was built under R version 4.2.3</code></pre>
 </div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div class="card">
+<div class="d-flex p-3">
+<div class="me-2">
+<a href="https://www.gob.pe/sunedu" target="_blank">
+<img src="calderonsamuel.github.io/web//logos/sunedu-svg.svg" alt="Superintendencia Nacional de Educación Universitaria" width="60px" height="60px">
+</a>
+</div>
+<div class="flex-grow-1">
+<h5 class="card-title fw-bold text-muted" data-anchor-id="experiencia">Integrante del Equipo Técnico Normativo de la Dirección de Licenciamiento</h5>
+<a href="https://www.gob.pe/sunedu" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Superintendencia Nacional de Educación Universitaria</a>
+<p class="text-muted">Aug 2020 - Actualidad. Lima</p>
+</div>
+</div>
+<div class="card-body pt-0">Responsabilidades: Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional. Modelo de Renovación de Licencia Institucional (Modelo 2.0)</div>
+</div>
+</div>
+</div>
+</div>
+<p><img src="logos/sunedu.png" class="img-fluid"></p>
 </div>
 
 
@@ -307,7 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\r\ncard = function(\r\n  title = \"Card title\", \r\n  subtitle = \"Card subtitle\", \r\n  details = \"body text\",\r\n  start_date = \"Mar 2020\",\r\n  end_date = \"Actualidad\",\r\n  city\r\n) {\r\n  return htl.html`\r\n    <div class = \"card\">\r\n    \r\n      <!-- header - start -->\r\n      <div class = \"d-flex p-3\">\r\n      \r\n        <!-- image -->\r\n        <div class = \"bg-primary me-2\">\r\n          <div style = \"width: 60px; height: 60px\">\r\n          </div>\r\n        </div>\r\n        \r\n        <!-- title -->\r\n        <div class = \"flex-grow-1\">\r\n          <h5 class=\"card-title fw-bold text-muted\">${title}</h5>\r\n          <h6 class=\"card-subtitle mb-2\">${subtitle}</h6>\r\n          <p class=\"text-muted\">${start_date} - ${end_date}. ${city}</p>\r\n        </div>\r\n        \r\n      </div>\r\n      <!-- header - end -->\r\n      \r\n      <div class = \"card-body pt-0\">\r\n      ${details}\r\n      </div>  \r\n    </div>\r\n  `\r\n}\r\nviewof exp1 = card(\r\n    \"Integrante del Equipo Técnico Normativo de la Dirección de Licenciamiento\",\r\n    \"Superintendencia Nacional de Educación Universitaria\",\r\n    \"Responsabilidades: Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional. Modelo de Renovación de Licencia Institucional (Modelo 2.0)\"\r\n)\r\n"},{"methodName":"interpretQuiet","source":"shinyInput('exp1')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\ncard = function(\n  title = \"Card title\", \n  company = \"Card subtitle\", \n  company_url = \"https://www.gob.pe/sunedu\",\n  company_logo = \"logos/sunedu-svg.svg\",\n  description = \"body text\",\n  date_start = \"Mar 2020\",\n  date_end = \"Actualidad\",\n  location\n) {\n  return htl.html`\n    <div class = \"card\">\n    \n      <!-- header - start -->\n      <div class = \"d-flex p-3\">\n      \n        <!-- image -->\n        <div class = \"bg-primary me-2\">\n          <a href=\"${company_url}\" target=\"_blank\">\n            <img src = \"${company_logo}\" alt = \"${company}\" width = \"60px\" height = \"60px\" style = \"width: 60px; height: 60px\">\n          </a>\n        </div>\n        \n        <!-- title -->\n        <div class = \"flex-grow-1\">\n          <h5 class=\"card-title fw-bold text-muted\">${title}</h5>\n          <a href=\"${company_url}\" target=\"_blank\" class=\"card-subtitle mb-2 text-decoration-none text-reset\">${company}</a>\n          <p class=\"text-muted\">${date_start} - ${date_end}. ${location}</p>\n        </div>\n        \n      </div>\n      <!-- header - end -->\n      \n      <div class = \"card-body pt-0\">\n      ${description}\n      </div>  \n    </div>\n  `\n}\nviewof exp1 = card(\n    \"Integrante del Equipo Técnico Normativo de la Dirección de Licenciamiento\",\n    \"Superintendencia Nacional de Educación Universitaria\",\n    \"https://www.gob.pe/sunedu\",\n    \"/sunedu.png\",\n    \"Responsabilidades: Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional. Modelo de Renovación de Licencia Institucional (Modelo 2.0)\",\n    \"Aug 2020\",\n    \"Actualidad\",\n    \"Lima\"\n)\n"},{"methodName":"interpretQuiet","source":"shinyInput('exp1')"}]}
 </script>
 <script type="module">
 window._ojs.paths.runtimeToDoc = "../../about";
