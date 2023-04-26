@@ -74,60 +74,6 @@ Descarga mi [CV](SamuelCalderonCV.pdf){target="_blank"}.
 
 ::: {.g-col-8 .shadow}
 
-```{ojs}
-//| echo: false
-
-card = function(
-  title = "Card title", 
-  company = "Card subtitle", 
-  company_url = "https://www.gob.pe/sunedu",
-  company_logo = "logos/sunedu-svg.svg",
-  description = "body text",
-  date_start = "Mar 2020",
-  date_end = "Actualidad",
-  location
-) {
-  return htl.html`
-    <div class = "card">
-    
-      <!-- header - start -->
-      <div class = "d-flex p-3">
-      
-        <!-- image -->
-        <div class = "bg-primary me-2">
-          <a href="${company_url}" target="_blank">
-            <img src = "${company_logo}" alt = "${company}" width = "60px" height = "60px" style = "width: 60px; height: 60px">
-          </a>
-        </div>
-        
-        <!-- title -->
-        <div class = "flex-grow-1">
-          <h5 class="card-title fw-bold text-muted">${title}</h5>
-          <a href="${company_url}" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">${company}</a>
-          <p class="text-muted">${date_start} - ${date_end}. ${location}</p>
-        </div>
-        
-      </div>
-      <!-- header - end -->
-      
-      <div class = "card-body pt-0">
-      ${description}
-      </div>  
-    </div>
-  `
-}
-viewof exp1 = card(
-    "Integrante del Equipo Técnico Normativo de la Dirección de Licenciamiento",
-    "Superintendencia Nacional de Educación Universitaria",
-    "https://www.gob.pe/sunedu",
-    "/sunedu.png",
-    "Responsabilidades: Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional. Modelo de Renovación de Licencia Institucional (Modelo 2.0)",
-    "Aug 2020",
-    "Actualidad",
-    "Lima"
-)
-```
-
 ```{r}
 library(htmltools)
 
@@ -156,7 +102,7 @@ experience_card <- function(
           href = company_url,
           target = "_blank",
           img(
-            src = logo_path,
+            src = company_logo,
             alt = company,
             width = "60px",
             height = "60px"
