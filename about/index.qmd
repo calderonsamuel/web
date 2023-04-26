@@ -78,6 +78,9 @@ experience_card <- function(
   date_end = "Actualidad",
   location = "Lima"
   ) {
+  
+  date_start <- date_start |> as.Date() |> format("%b %Y")
+  date_end <- if (date_end == "") "Actualidad" else date_end |> as.Date() |> format("%b %Y")
     
   div(
     class = "card",
@@ -122,7 +125,7 @@ experience_card <- function(
 
 experience_row <- function(...) {
   div(
-    class = "grid p-2 mb-3",
+    class = "grid p-1 mb-1",
     div(
       class = "d-none d-md-block g-col-md-4"
     ),

@@ -16,7 +16,7 @@ experience:
   - title: Seguimiento al Plan Sectorial de Lucha contra la Corrupción
     company: Ministerio de Vivienda, Construcción y Saneamiento
     company_url: 'https://www.gob.pe/vivienda'
-    company_logo: vivienda-svg
+    company_logo: 'logos/vivienda-svg.svg'
     location: Lima
     date_start: '2019-04-25'
     date_end: '2020-08-11'
@@ -24,7 +24,7 @@ experience:
   - title: Asistente Académico de Capacitación
     company: Escuela Nacional de Administración Pública – ENAP
     company_url: 'https://www.enap.edu.pe/'
-    company_logo: 'enap-svg'
+    company_logo: 'logos/enap-svg.svg'
     location: Lima
     date_start: '2018-10-20'
     date_end: '2018-12-17'
@@ -32,23 +32,23 @@ experience:
   - title: Supervisor de encuestadores
     company: Ministerio de Salud
     company_url: 'https://www.gob.pe/minsa'
-    company_logo: 'minsa-svg'
+    company_logo: 'logos/minsa-svg.svg'
     location: Lima
     date_start: '2018-05-02'
-    date_end: '2018-02-27'
+    date_end: '2018-05-27'
     description: 'Supervisión a encuestadores, procesamiento y análisis de consistencia de la información recogida en el Proyecto Termómetro Salud de la DGOS'
   - title: Supervisor de encuestadores
     company: Ministerio de Salud
     company_url: 'https://www.gob.pe/minsa'
-    company_logo: 'minsa-svg'
+    company_logo: 'logos/minsa-svg.svg'
     location: Lima
-    date_start: '2018-05-02'
-    date_end: '2018-02-27'
+    date_start: '2017-11-22'
+    date_end: '2017-12-16'
     description: 'Supervisión a encuestadores, procesamiento y análisis de consistencia de la información recogida en el Proyecto piloto Semáforo Salud de la DGOS'
   - title: Operador de aplicación de Encuestas
     company: Instituto Nacional de Estadística e Informática
     company_url: 'https://www.inei.gob.pe/'
-    company_logo: 'inei-svg'
+    company_logo: 'logos/inei-svg.svg'
     location: Lima
     date_start: '2016-06-12'
     date_end: '2017-09-30'
