@@ -1,7 +1,7 @@
 ---
 title: "Samuel Calderon Serrano"
 subtitle: "Analista de Gestión de la Información en Ministerio del Interior"
-image: resources/profile.jpg
+image: profile.jpg
 
 about:
   id: hero-heading
@@ -31,7 +31,7 @@ Politólogo de la Universidad Antonio Ruiz de Montoya. Actualmente trabaja en la
 
 Miembro de la organización DecideBien, colabora ocasionalmente en iniciativas de código abierto. Durante los últimos meses, ha dictado talleres de Elaboración de Productos de Datos a profesionales de las ciencias sociales. Proviene de Lima, Perú.
 
-Descarga mi [CV](resources/SamuelCalderonCV.pdf){target="_blank"}.
+Descarga mi [CV](SamuelCalderonCV.pdf){target="_blank"}.
 
 ::: {.grid}
 
@@ -68,41 +68,51 @@ Descarga mi [CV](resources/SamuelCalderonCV.pdf){target="_blank"}.
 
 :::
 
-::: {.g-col-8}
+::: {.g-col-8 .shadow}
 
 ```{ojs}
 //| echo: false
 
-card = function(header, body) {
-  return htl.html`<div class = "card">${header}${body}</div>`
-}
-cardBody = function(inner) {
-  return htl.html`<div class = "card-body">${inner}</div>`
-}
-
-cardHeader = function(title = "Card title", subtitle = "Card subtitle") {
+card = function(
+  title = "Card title", 
+  subtitle = "Card subtitle", 
+  details = "body text",
+  start_date = "Mar 2020",
+  end_date = "Actualidad",
+  city
+) {
   return htl.html`
-  <div class = "d-flex p-3">
-    <div class = "bg-primary me-2">
-      <div style = "width: 60px;">
+    <div class = "card">
+    
+      <!-- header - start -->
+      <div class = "d-flex p-3">
+      
+        <!-- image -->
+        <div class = "bg-primary me-2">
+          <div style = "width: 60px; height: 60px">
+          </div>
+        </div>
+        
+        <!-- title -->
+        <div class = "flex-grow-1">
+          <h5 class="card-title fw-bold text-muted">${title}</h5>
+          <h6 class="card-subtitle mb-2">${subtitle}</h6>
+          <p class="text-muted">${start_date} - ${end_date}. ${city}</p>
+        </div>
+        
       </div>
+      <!-- header - end -->
+      
+      <div class = "card-body pt-0">
+      ${details}
+      </div>  
     </div>
-    <div class = "flex-grow-1">
-      <h5 class="card-title fw-bold text-muted">${title}</h5>
-      <h6 class="card-subtitle mb-2">${subtitle}</h6>
-      <p class="text-muted">Aug 2020 - Actualidad. Lima</p>
-    </div>
-  </div>
   `
 }
 viewof exp1 = card(
-  cardHeader(
     "Integrante del Equipo Técnico Normativo de la Dirección de Licenciamiento",
-    "Superintendencia Nacional de Educación Universitaria"
-  ),
-  cardBody(
+    "Superintendencia Nacional de Educación Universitaria",
     "Responsabilidades: Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional. Modelo de Renovación de Licencia Institucional (Modelo 2.0)"
-  )
 )
 ```
 
