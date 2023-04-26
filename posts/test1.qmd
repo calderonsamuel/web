@@ -1,7 +1,0 @@
----
-title: "My Post"
-description: "Post description"
-author: "Fizz McPhee"
-date: "4/24/2023"
-draft: FALSE
----

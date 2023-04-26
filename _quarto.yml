@@ -4,6 +4,8 @@ project:
 
 website:
   title: "web"
+  site-url: https://calderonsamuel.github.io/web
+  description: "Web de Samuel Calderon"
   navbar:
     background: "#f6eee9"
     foreground: "#0A0A0A"

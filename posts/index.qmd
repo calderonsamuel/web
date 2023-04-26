@@ -1,8 +1,9 @@
 ---
-title: "myblog"
+title: "Blog"
 listing:
   contents: "."
   sort: "date desc"
   type: default
   categories: true
+  feed: true
 ---
