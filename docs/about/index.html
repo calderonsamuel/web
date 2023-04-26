@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -72,35 +72,37 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">web</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../about/index.html" aria-current="page">
+    <a class="nav-link active" href="../about/index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Acerca de mí</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../projects.html">
+    <a class="nav-link" href="../projects.html" rel="" target="">
  <span class="menu-text">Proyectos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../posts/index.html">
+    <a class="nav-link" href="../posts/index.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/samucalse"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/samucalse" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/calderonsamuel"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/calderonsamuel" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -109,13 +111,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#presentación" id="toc-presentación" class="nav-link active" data-scroll-target="#presentación"><strong>Presentación</strong></a></li>
+  <li><a href="#experiencia" id="toc-experiencia" class="nav-link" data-scroll-target="#experiencia"><strong>Experiencia</strong></a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 
 
-<div class="quarto-about-trestles column-page">
+<div class="quarto-about-trestles column-page-left">
   <div class="about-entity">
     <img src="profile.jpg" class="about-image
   round " style="height: 20em; width: 20em;">
@@ -128,15 +139,15 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </header>
     <div class="about-links">
-  <a href="https://twitter.com" class="about-link">
+  <a href="https://twitter.com" class="about-link" rel="" target="">
     <i class="bi bi-twitter"></i>
      <span class="about-link-text">Twitter</span>
   </a>
-  <a href="https://github.com/calderonsamuel" class="about-link">
+  <a href="https://github.com/calderonsamuel" class="about-link" rel="" target="">
     <i class="bi bi-github"></i>
      <span class="about-link-text">Github</span>
   </a>
-  <a href="https://www.linkedin.com/in/samuelcalderon/" class="about-link">
+  <a href="https://www.linkedin.com/in/samuelcalderon/" class="about-link" rel="" target="">
     <i class="bi bi-linkedin"></i>
      <span class="about-link-text">Linkedin</span>
   </a>
@@ -171,16 +182,11 @@ ul.task-list li input[type="checkbox"] {
 <!-- Experience grid -->
 <section id="experiencia" class="level1">
 <h1><strong>Experiencia</strong></h1>
-<div class="grid">
-<div class="g-col-4">
-
-</div>
-<div class="g-col-8 shadow">
-<div class="cell">
-
-</div>
 <div class="cell">
 <div class="cell-output-display">
+<div class="grid p-2 mb-3">
+<div class="d-none d-md-block g-col-md-4"></div>
+<div class="g-col-12 g-col-md-8 shadow-sm">
 <div class="card">
 <div class="d-flex p-3">
 <div class="me-2">
@@ -191,15 +197,118 @@ ul.task-list li input[type="checkbox"] {
 <div class="flex-grow-1">
 <h5 class="card-title fw-bold text-muted" data-anchor-id="experiencia">Integrante del Equipo Técnico Normativo de la Dirección de Licenciamiento</h5>
 <a href="https://www.gob.pe/sunedu" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Superintendencia Nacional de Educación Universitaria</a>
-<p class="text-muted">Aug 2020 - Actualidad. Lima</p>
+<p class="text-muted mb-0">2020-08-21 - . Lima</p>
 </div>
 </div>
-<div class="card-body pt-0">Responsabilidades: Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional. Modelo de Renovación de Licencia Institucional (Modelo 2.0)</div>
+<div class="card-body pt-0">  Responsabilidades:
+  
+  * Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional
+  * Modelo de Renovación de Licencia Institucional (Modelo 2.0)
+  </div>
+</div>
+</div>
+</div>
+<div class="grid p-2 mb-3">
+<div class="d-none d-md-block g-col-md-4"></div>
+<div class="g-col-12 g-col-md-8 shadow-sm">
+<div class="card">
+<div class="d-flex p-3">
+<div class="me-2">
+<a href="https://www.gob.pe/vivienda" target="_blank">
+<img src="vivienda-svg" alt="Ministerio de Vivienda, Construcción y Saneamiento" width="60px" height="60px">
+</a>
+</div>
+<div class="flex-grow-1">
+<h5 class="card-title fw-bold text-muted">Seguimiento al Plan Sectorial de Lucha contra la Corrupción</h5>
+<a href="https://www.gob.pe/vivienda" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Ministerio de Vivienda, Construcción y Saneamiento</a>
+<p class="text-muted mb-0">2019-04-25 - 2020-08-11. Lima</p>
+</div>
+</div>
+<div class="card-body pt-0">Seguimiento, sistematización, procesamiento y análisis de información, y elaboración de instructivos para la Oficina de Integridad y Lucha contra la Corrupción.</div>
+</div>
+</div>
+</div>
+<div class="grid p-2 mb-3">
+<div class="d-none d-md-block g-col-md-4"></div>
+<div class="g-col-12 g-col-md-8 shadow-sm">
+<div class="card">
+<div class="d-flex p-3">
+<div class="me-2">
+<a href="https://www.enap.edu.pe/" target="_blank">
+<img src="enap-svg" alt="Escuela Nacional de Administración Pública – ENAP" width="60px" height="60px">
+</a>
+</div>
+<div class="flex-grow-1">
+<h5 class="card-title fw-bold text-muted">Asistente Académico de Capacitación</h5>
+<a href="https://www.enap.edu.pe/" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Escuela Nacional de Administración Pública – ENAP</a>
+<p class="text-muted mb-0">2018-10-20 - 2018-12-17. Lima</p>
+</div>
+</div>
+<div class="card-body pt-0">Asistencia académica presencial y virtual para la implementación, ejecución y evaluación de cursos de capacitación.</div>
+</div>
+</div>
+</div>
+<div class="grid p-2 mb-3">
+<div class="d-none d-md-block g-col-md-4"></div>
+<div class="g-col-12 g-col-md-8 shadow-sm">
+<div class="card">
+<div class="d-flex p-3">
+<div class="me-2">
+<a href="https://www.gob.pe/minsa" target="_blank">
+<img src="minsa-svg" alt="Ministerio de Salud" width="60px" height="60px">
+</a>
+</div>
+<div class="flex-grow-1">
+<h5 class="card-title fw-bold text-muted">Supervisor de encuestadores</h5>
+<a href="https://www.gob.pe/minsa" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Ministerio de Salud</a>
+<p class="text-muted mb-0">2018-05-02 - 2018-02-27. Lima</p>
+</div>
+</div>
+<div class="card-body pt-0">Supervisión a encuestadores, procesamiento y análisis de consistencia de la información recogida en el Proyecto Termómetro Salud de la DGOS</div>
+</div>
+</div>
+</div>
+<div class="grid p-2 mb-3">
+<div class="d-none d-md-block g-col-md-4"></div>
+<div class="g-col-12 g-col-md-8 shadow-sm">
+<div class="card">
+<div class="d-flex p-3">
+<div class="me-2">
+<a href="https://www.gob.pe/minsa" target="_blank">
+<img src="minsa-svg" alt="Ministerio de Salud" width="60px" height="60px">
+</a>
+</div>
+<div class="flex-grow-1">
+<h5 class="card-title fw-bold text-muted">Supervisor de encuestadores</h5>
+<a href="https://www.gob.pe/minsa" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Ministerio de Salud</a>
+<p class="text-muted mb-0">2018-05-02 - 2018-02-27. Lima</p>
+</div>
+</div>
+<div class="card-body pt-0">Supervisión a encuestadores, procesamiento y análisis de consistencia de la información recogida en el Proyecto piloto Semáforo Salud de la DGOS</div>
+</div>
+</div>
+</div>
+<div class="grid p-2 mb-3">
+<div class="d-none d-md-block g-col-md-4"></div>
+<div class="g-col-12 g-col-md-8 shadow-sm">
+<div class="card">
+<div class="d-flex p-3">
+<div class="me-2">
+<a href="https://www.inei.gob.pe/" target="_blank">
+<img src="inei-svg" alt="Instituto Nacional de Estadística e Informática" width="60px" height="60px">
+</a>
+</div>
+<div class="flex-grow-1">
+<h5 class="card-title fw-bold text-muted">Operador de aplicación de Encuestas</h5>
+<a href="https://www.inei.gob.pe/" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Instituto Nacional de Estadística e Informática</a>
+<p class="text-muted mb-0">2016-06-12 - 2017-09-30. Lima</p>
+</div>
+</div>
+<div class="card-body pt-0">Levantamiento de información en hogares, procesamiento y análisis de consistencia de la información recogida en la Encuesta Nacional de Hogares – ENAHO</div>
 </div>
 </div>
 </div>
 </div>
-<p><img src="logos/sunedu.png" class="img-fluid"></p>
 </div>
 
 
@@ -227,9 +336,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -294,6 +417,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

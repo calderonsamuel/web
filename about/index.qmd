@@ -65,15 +65,6 @@ Descarga mi [CV](SamuelCalderonCV.pdf){target="_blank"}.
 
 # **Experiencia**
 
-::: {.grid}
-
-::: {.g-col-4}
-
-
-:::
-
-::: {.g-col-8 .shadow}
-
 ```{r}
 library(htmltools)
 
@@ -87,8 +78,6 @@ experience_card <- function(
   date_end = "Actualidad",
   location = "Lima"
   ) {
-  root_url <- Sys.getenv("ROOT_URL")
-  logo_path <- file.path(root_url, company_logo)
     
   div(
     class = "card",
@@ -119,7 +108,7 @@ experience_card <- function(
           class = "card-subtitle mb-2 text-decoration-none text-reset",
           company
         ),
-        p(class="text-muted", glue::glue("{date_start} - {date_end}. {location}"))
+        p(class="text-muted mb-0", glue::glue("{date_start} - {date_end}. {location}"))
       )
     ),
     
@@ -131,28 +120,33 @@ experience_card <- function(
   )
 }
 
+experience_row <- function(...) {
+  div(
+    class = "grid p-2 mb-3",
+    div(
+      class = "d-none d-md-block g-col-md-4"
+    ),
+    div(
+      class = "g-col-12 g-col-md-8 shadow-sm",
+      experience_card(...)
+    )
+  )
+}
+
 ```
+
 
 ```{r}
-experience_card(
-  "Integrante del Equipo Técnico Normativo de la Dirección de Licenciamiento",
-    "Superintendencia Nacional de Educación Universitaria",
-    "https://www.gob.pe/sunedu",
-    "logos/sunedu-svg.svg",
-    "Responsabilidades: Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional. Modelo de Renovación de Licencia Institucional (Modelo 2.0)",
-    "Aug 2020",
-    "Actualidad",
-    "Lima"
-)
+experiences <- yaml::read_yaml("experience.yaml")[[1]] |> 
+  purrr::map(as.data.frame) |>
+  purrr::list_rbind()
+
+experiences |> 
+  purrr::pmap(experience_row) |> 
+  tagList()
 ```
 
 
 
-
-:::
-
-![](logos/sunedu.png)
-
-:::
 
 
