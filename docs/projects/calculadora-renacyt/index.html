@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Una aplicación que permite obtener un cálculo de calificación y clasificación al registro RENACYT de acuerdo a la normativa más reciente (agosto 2021).">
 
-<title>web - Samuel Calderon Serrano</title>
+<title>web - Calculadora RENACYT</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,21 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">web</span>
     </a>
   </div>
@@ -79,15 +81,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../about/index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../about/index.html" rel="" target="">
  <span class="menu-text">Acerca de mí</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../projects/index.html" rel="" target="">
+    <a class="nav-link" href="../../projects/index.html" rel="" target="">
  <span class="menu-text">Proyectos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../posts/index.html" rel="" target="">
+    <a class="nav-link" href="../../posts/index.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item compact">
@@ -108,212 +110,39 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#presentación" id="toc-presentación" class="nav-link active" data-scroll-target="#presentación"><strong>Presentación</strong></a></li>
-  <li><a href="#experiencia" id="toc-experiencia" class="nav-link" data-scroll-target="#experiencia"><strong>Experiencia</strong></a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-
-
-<div class="quarto-about-trestles column-page-left">
-  <div class="about-entity">
-    <img src="profile.jpg" class="about-image
-  round " style="height: 20em; width: 20em;">
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Samuel Calderon Serrano</h1>
-<p class="subtitle lead">Analista de Gestión de la Información en Ministerio del Interior</p>
+<h1 class="title">Calculadora RENACYT</h1>
 </div>
+
+<div>
+  <div class="description">
+    Una aplicación que permite obtener un cálculo de calificación y clasificación al registro RENACYT de acuerdo a la normativa más reciente (agosto 2021).
+  </div>
+</div>
+
+
 <div class="quarto-title-meta">
-  </div>
-</header>
-    <div class="about-links">
-  <a href="https://twitter.com" class="about-link" rel="" target="">
-    <i class="bi bi-twitter"></i>
-     <span class="about-link-text">Twitter</span>
-  </a>
-  <a href="https://github.com/calderonsamuel" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">Github</span>
-  </a>
-  <a href="https://www.linkedin.com/in/samuelcalderon/" class="about-link" rel="" target="">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text">Linkedin</span>
-  </a>
-</div>
-  </div>
-  <div class="about-contents"><div id="hero-heading">
-<section id="presentación" class="level1">
-<h1><strong>Presentación</strong></h1>
-<p>Politólogo de la Universidad Antonio Ruiz de Montoya. Actualmente trabaja en la Superintendencia Nacional de Educación Universitaria - SUNEDU como miembro del Equipo Técnico Normativo de la Dirección de Licenciamiento. Su desempeño profesional ha sido siempre en el sector público, participando en iniciativas de recojo, análisis y sistematización de información con miras a mejorar la calidad de los servicios brindados a la ciudadanía.</p>
-<p>Miembro de la organización DecideBien, colabora ocasionalmente en iniciativas de código abierto. Durante los últimos meses, ha dictado talleres de Elaboración de Productos de Datos a profesionales de las ciencias sociales. Proviene de Lima, Perú.</p>
-<p>Descarga mi <a href="SamuelCalderonCV.pdf" target="_blank">CV</a>.</p>
-<div class="grid">
-<section id="intereses" class="level3 g-col-6">
-<h3 data-anchor-id="intereses"><strong>Intereses</strong></h3>
-<ul>
-<li>Datos abiertos</li>
-<li>Educación superior</li>
-<li>Enseñanza de herramientas de uso de datos</li>
-</ul>
-</section>
-<section id="educación" class="level3 g-col-6">
-<h3 data-anchor-id="educación"><strong>Educación</strong></h3>
-<ul>
-<li>Bach. En Ciencia Política, 2016. Universidad Antonio Ruiz de Montoya.</li>
-</ul>
-</section>
-</div>
-</section>
-</div></div>
-</div>
 
-<!-- Experience grid -->
-<section id="experiencia" class="level1">
-<h1><strong>Experiencia</strong></h1>
-<div class="cell">
-<div class="cell-output-display">
-<div class="grid p-1 mb-1">
-<div class="d-none d-md-block g-col-md-4"></div>
-<div class="g-col-12 g-col-md-8 shadow-sm">
-<div class="card">
-<div class="d-flex p-3">
-<div class="me-2">
-<a href="https://www.gob.pe/sunedu" target="_blank">
-<img src="logos/sunedu-svg.svg" alt="Superintendencia Nacional de Educación Universitaria" width="60px" height="60px">
-</a>
-</div>
-<div class="flex-grow-1">
-<h5 class="card-title fw-bold text-muted" data-anchor-id="experiencia">Integrante del Equipo Técnico Normativo de la Dirección de Licenciamiento</h5>
-<a href="https://www.gob.pe/sunedu" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Superintendencia Nacional de Educación Universitaria</a>
-<p class="text-muted mb-0">Ago. 2020 - Actualidad. Lima</p>
-</div>
-</div>
-<div class="card-body pt-0">  Responsabilidades:
+    
   
-  * Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional
-  * Modelo de Renovación de Licencia Institucional (Modelo 2.0)
+    
   </div>
-</div>
-</div>
-</div>
-<div class="grid p-1 mb-1">
-<div class="d-none d-md-block g-col-md-4"></div>
-<div class="g-col-12 g-col-md-8 shadow-sm">
-<div class="card">
-<div class="d-flex p-3">
-<div class="me-2">
-<a href="https://www.gob.pe/vivienda" target="_blank">
-<img src="logos/vivienda-svg.svg" alt="Ministerio de Vivienda, Construcción y Saneamiento" width="60px" height="60px">
-</a>
-</div>
-<div class="flex-grow-1">
-<h5 class="card-title fw-bold text-muted">Seguimiento al Plan Sectorial de Lucha contra la Corrupción</h5>
-<a href="https://www.gob.pe/vivienda" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Ministerio de Vivienda, Construcción y Saneamiento</a>
-<p class="text-muted mb-0">Abr. 2019 - Ago. 2020. Lima</p>
-</div>
-</div>
-<div class="card-body pt-0">Seguimiento, sistematización, procesamiento y análisis de información, y elaboración de instructivos para la Oficina de Integridad y Lucha contra la Corrupción.</div>
-</div>
-</div>
-</div>
-<div class="grid p-1 mb-1">
-<div class="d-none d-md-block g-col-md-4"></div>
-<div class="g-col-12 g-col-md-8 shadow-sm">
-<div class="card">
-<div class="d-flex p-3">
-<div class="me-2">
-<a href="https://www.enap.edu.pe/" target="_blank">
-<img src="logos/enap-svg.svg" alt="Escuela Nacional de Administración Pública – ENAP" width="60px" height="60px">
-</a>
-</div>
-<div class="flex-grow-1">
-<h5 class="card-title fw-bold text-muted">Asistente Académico de Capacitación</h5>
-<a href="https://www.enap.edu.pe/" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Escuela Nacional de Administración Pública – ENAP</a>
-<p class="text-muted mb-0">Oct. 2018 - Dic. 2018. Lima</p>
-</div>
-</div>
-<div class="card-body pt-0">Asistencia académica presencial y virtual para la implementación, ejecución y evaluación de cursos de capacitación.</div>
-</div>
-</div>
-</div>
-<div class="grid p-1 mb-1">
-<div class="d-none d-md-block g-col-md-4"></div>
-<div class="g-col-12 g-col-md-8 shadow-sm">
-<div class="card">
-<div class="d-flex p-3">
-<div class="me-2">
-<a href="https://www.gob.pe/minsa" target="_blank">
-<img src="logos/minsa-svg.svg" alt="Ministerio de Salud" width="60px" height="60px">
-</a>
-</div>
-<div class="flex-grow-1">
-<h5 class="card-title fw-bold text-muted">Supervisor de encuestadores</h5>
-<a href="https://www.gob.pe/minsa" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Ministerio de Salud</a>
-<p class="text-muted mb-0">May. 2018 - May. 2018. Lima</p>
-</div>
-</div>
-<div class="card-body pt-0">Supervisión a encuestadores, procesamiento y análisis de consistencia de la información recogida en el Proyecto Termómetro Salud de la DGOS</div>
-</div>
-</div>
-</div>
-<div class="grid p-1 mb-1">
-<div class="d-none d-md-block g-col-md-4"></div>
-<div class="g-col-12 g-col-md-8 shadow-sm">
-<div class="card">
-<div class="d-flex p-3">
-<div class="me-2">
-<a href="https://www.gob.pe/minsa" target="_blank">
-<img src="logos/minsa-svg.svg" alt="Ministerio de Salud" width="60px" height="60px">
-</a>
-</div>
-<div class="flex-grow-1">
-<h5 class="card-title fw-bold text-muted">Supervisor de encuestadores</h5>
-<a href="https://www.gob.pe/minsa" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Ministerio de Salud</a>
-<p class="text-muted mb-0">Nov. 2017 - Dic. 2017. Lima</p>
-</div>
-</div>
-<div class="card-body pt-0">Supervisión a encuestadores, procesamiento y análisis de consistencia de la información recogida en el Proyecto piloto Semáforo Salud de la DGOS</div>
-</div>
-</div>
-</div>
-<div class="grid p-1 mb-1">
-<div class="d-none d-md-block g-col-md-4"></div>
-<div class="g-col-12 g-col-md-8 shadow-sm">
-<div class="card">
-<div class="d-flex p-3">
-<div class="me-2">
-<a href="https://www.inei.gob.pe/" target="_blank">
-<img src="logos/inei-svg.svg" alt="Instituto Nacional de Estadística e Informática" width="60px" height="60px">
-</a>
-</div>
-<div class="flex-grow-1">
-<h5 class="card-title fw-bold text-muted">Operador de aplicación de Encuestas</h5>
-<a href="https://www.inei.gob.pe/" target="_blank" class="card-subtitle mb-2 text-decoration-none text-reset">Instituto Nacional de Estadística e Informática</a>
-<p class="text-muted mb-0">Jun. 2016 - Set. 2017. Lima</p>
-</div>
-</div>
-<div class="card-body pt-0">Levantamiento de información en hogares, procesamiento y análisis de consistencia de la información recogida en la Encuesta Nacional de Hogares – ENAHO</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+  
+
+</header>
 
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -336,6 +165,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     

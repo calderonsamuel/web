@@ -15,7 +15,7 @@ website:
     right: 
       - href: about/index.qmd
         text: "Acerca de mí"
-      - href: projects.qmd
+      - href: projects/index.qmd
         text: "Proyectos"
       - href: posts/index.qmd
         text: "Blog"

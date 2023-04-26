@@ -1,0 +1,5 @@
+---
+title: "Calculadora RENACYT"
+description: "Una aplicación que permite obtener un cálculo de calificación y clasificación al registro RENACYT de acuerdo a la normativa más reciente (agosto 2021)."
+image: featured.jpg
+---

@@ -1,0 +1,9 @@
+---
+title: "Paquetes para R"
+description: "Una colección de paquetes creados por mí"
+listing:
+  contents: "."
+  sort: "date desc"
+  type: grid
+  fields: [image, title, description]
+---
