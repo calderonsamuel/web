@@ -13,7 +13,7 @@ website:
     #   - href: index.qmd
     #     text: Home
     right: 
-      - href: about/index.qmd
+      - href: index.qmd
         text: "Acerca de mí"
       - href: projects/index.qmd
         text: "Proyectos"

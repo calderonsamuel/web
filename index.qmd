@@ -1,11 +1,150 @@
 ---
-title: "web"
+title: "Samuel Calderon Serrano"
+subtitle: "Analista de Gestión de la Información en Ministerio del Interior"
+image: about/profile.jpg
+
+about:
+  id: hero-heading
+  template: trestles
+  image-shape: round
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com
+    - icon: github
+      text: Github
+      href: https://github.com/calderonsamuel
+    - icon: linkedin
+      text: Linkedin
+      href: https://www.linkedin.com/in/samuelcalderon/
+      
+format: 
+  html:
+    page-layout: full
+    
+execute: 
+  echo: false
+  warning: false
 ---
 
-This is a Quarto website.
+:::{#hero-heading}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+# **Presentación**
+
+Politólogo de la Universidad Antonio Ruiz de Montoya. Actualmente trabaja en la Superintendencia Nacional de Educación Universitaria - SUNEDU como miembro del Equipo Técnico Normativo de la Dirección de Licenciamiento. Su desempeño profesional ha sido siempre en el sector público, participando en iniciativas de recojo, análisis y sistematización de información con miras a mejorar la calidad de los servicios brindados a la ciudadanía.
+
+Miembro de la organización DecideBien, colabora ocasionalmente en iniciativas de código abierto. Durante los últimos meses, ha dictado talleres de Elaboración de Productos de Datos a profesionales de las ciencias sociales. Proviene de Lima, Perú.
+
+Descarga mi [CV](about/SamuelCalderonCV.pdf){target="_blank"}.
+
+::: {.grid}
+
+::: {.g-col-6}
+
+### **Intereses**
+
+- Datos abiertos
+- Educación superior
+- Enseñanza de herramientas de uso de datos
+
+:::
+
+::: {.g-col-6}
+
+### **Educación**
+
+- Bach. En Ciencia Política, 2016. Universidad Antonio Ruiz de Montoya.
+
+:::
+
+:::
+
+:::
+
+<!-- Experience grid -->
+
+# **Experiencia**
 
 ```{r}
-1 + 1
+library(htmltools)
+
+experience_card <- function(
+  title = "Card title", 
+  company = "Card subtitle", 
+  company_url = "https://www.gob.pe/sunedu",
+  company_logo = "about/logos/sunedu-svg.svg",
+  description = "body text",
+  date_start = "Mar 2020",
+  date_end = "Actualidad",
+  location = "Lima"
+  ) {
+  
+  date_start <- date_start |> as.Date() |> format("%b %Y")
+  date_end <- if (date_end == "") "Actualidad" else date_end |> as.Date() |> format("%b %Y")
+    
+  div(
+    class = "card",
+    # header
+    div(
+      class = "d-flex p-3",
+      # image
+      div(
+        class = "me-2",
+        a(
+          href = company_url,
+          target = "_blank",
+          img(
+            src = file.path("about", company_logo),
+            alt = company,
+            width = "60px",
+            height = "60px"
+          )
+        )
+      ),
+      # title
+      div(
+        class = "flex-grow-1",
+        h5(class="card-title fw-bold text-muted", title),
+        a(
+          href = company_url,
+          target = "_blank",
+          class = "card-subtitle mb-2 text-decoration-none text-reset",
+          company
+        ),
+        p(class="text-muted mb-0", glue::glue("{date_start} - {date_end}. {location}"))
+      )
+    ),
+    
+    # body
+    div(
+      class = "card-body pt-0",
+      description
+    )
+  )
+}
+
+experience_row <- function(...) {
+  div(
+    class = "grid p-1 mb-1",
+    div(
+      class = "d-none d-md-block g-col-md-4"
+    ),
+    div(
+      class = "g-col-12 g-col-md-8 shadow-sm",
+      experience_card(...)
+    )
+  )
+}
+
+```
+
+
+```{r}
+experiences <- yaml::read_yaml("about/experience.yaml")[[1]] |> 
+  purrr::map(as.data.frame) |>
+  purrr::list_rbind()
+
+experiences |> 
+  purrr::pmap(experience_row) |> 
+  tagList()
 ```
