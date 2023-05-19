@@ -152,5 +152,12 @@
     "title": "Paquetes para R",
     "section": "",
     "text": "No matching items"
+  },
+  {
+    "objectID": "posts/2022-07-23-bug-arreglado-en-calculadora-renacyt/index.html",
+    "href": "posts/2022-07-23-bug-arreglado-en-calculadora-renacyt/index.html",
+    "title": "Bug arreglado en Calculadora Renacyt",
+    "section": "",
+    "text": "Este breve post describe un problema que se había encontrado en la Calculadora Renacyt.\nEn el mes de mayo de este año hice cambios en el repositorio para poder usar shiny modules, con la esperanza de que así fuera más solucionar cualquier problema en la aplicación.\nLamentablemente, esto introdujo un bug en la aplicación debido a un desafortunado error de tipeo que ocasionaba que la suma del puntaje total ignore el puntaje en formación académica y sume dos veces el puntaje en producción científica. Gracias a los reportes de Rolando Montenegro y Mg. Vitelio Asencios Tarazona pude localizar el problema y corregirlo. ¡Esa es la magia del código abierto!\nTambién quiero aprovechar para anunciar que la app estará siendo alojada en un nuevo servidor que no tiene límites de uso: https://apps.samuelenrique.com/calculadora-renacyt . La sección de proyectos de esta web ahora dirigirá a este enlace.\nEn el raro caso de que ese enlace falle, se puede seguir usando el anterior: https://samuelcalderon.shinyapps.io/caluladora-renacyt/\nSi alguien encuentra errores o es necesario actualizar la app, la manera más directa de encontrarme pos vía Twitter: https://twitter.com/samucalse"
   }
 ]

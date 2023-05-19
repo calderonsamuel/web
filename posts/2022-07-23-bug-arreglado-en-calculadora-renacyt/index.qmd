@@ -14,4 +14,4 @@ También quiero aprovechar para anunciar que la app estará siendo alojada en un
 
 En el raro caso de que ese enlace falle, se puede seguir usando el anterior: <https://samuelcalderon.shinyapps.io/caluladora-renacyt/>
 
-Si alguien encuentra errores o es necesario actualizar la app, la manera más directa de encontrarme pos vía Twitter: <https://twitter.com/samuel__case>
+Si alguien encuentra errores o es necesario actualizar la app, la manera más directa de encontrarme pos vía Twitter: <https://twitter.com/samucalse>
