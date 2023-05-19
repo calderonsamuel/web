@@ -6,7 +6,8 @@ listing:
   type: default
   categories: true
   feed: true
-  fields: [image, date, title, description, reading-time, file-modified]
+  fields: [image, date, title, description, reading-time, file-modified, categories]
 execute: 
   freeze: true
 ---
+

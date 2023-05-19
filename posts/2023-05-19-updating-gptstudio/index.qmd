@@ -1,0 +1,51 @@
+---
+title: On updating a chat assistant for the RStudio IDE
+author: Samuel Calderon
+date: '2023-05-19'
+draft: true
+categories:
+  - "rweekly"
+---
+
+This post summarizes the challenges overcomed while trying to improve three areas of the ChatGPT addin (shiny app) from `{gptstudio}`. 
+
+This post is a recap of the challenges I encountered while working on enhancing the ChatGPT addin (shiny app) from {gptstudio}. The whole journey began quite unexpectedly for me. I was developing a shiny app for my work and decided to venture into writing JavaScript code. However, I felt that the autocomplete feature in the RStudio IDE wasn't the best available. So, I decided to give VSCode a shot. 
+
+As I'm not well versed with JS (or VSCode), I was requesting a lot of help from ChatGPT. That's when I stumbled upon the [Genie extension](https://github.com/ai-genie/chatgpt-vscode), which integrates ChatGPT seamlessly into the IDE (provided you have a valid API key).
+
+That got me thinking: shouldn't we have a similar integration for the RStudio IDE? It turns out, I wasn't the only one who had this idea. That's when I stumbled upon version 0.1.0 of `{gptstudio}` and decided to give its ChatGPT addin a try. To my surprise, it exceeded my expectations, and I was intrigued to explore it further. I enthusiastically checked out its GitHub repository and couldn't resist giving it a well-deserved star. As I dug deeper, I made an unexpected discovery—an open issue with a `help wanted` label.
+
+## Run Shiny App in Background [#64](https://github.com/MichelNivard/gptstudio/issues/64)
+
+*Isn't that the guy from the R4DS slack channel? Also, I agree with him*
+
+This was the perfect issue to try to solve. Just a few days prior, I had watched a video discussing RStudio jobs for shiny apps. Although I couldn't locate the video at the time of writing this, I did find a [README file](https://github.com/sol-eng/background-jobs/tree/main/shiny-job#viewing-the-app) containing the relevant information.
+
+To sum it up, I discovered that it is possible to launch an app as a background job and then open it from the R console. This functionality extends to shiny apps that are addins from a package. By doing this, you can have your background shiny app displayed in the Viewer pane of the RStudio IDE. 
+
+After trying this in my fork of the package, I documented all my code and submitted a Pull Request to the maintainers, which was integrated in very short time. I was very happy with this but still thought that there some things that could be improved.
+
+## The UI should resemble a chat
+
+Even though at the moment you were able to have your chat assistant, the UI was a bit awkward to navigate when you had a long chat history. I had the intention to just move the text input to the bottom of the app, like in a chat window. 
+In order to do that I though that I should incorporate shiny modules and separate the app in smaller, more manageable, components. Ok this was a couple more lines of code that I expected. After that, I though that the viewer pane was very small to have a lot of controls always visible, and decided to hide some inputs on a "Configuration" dropdown button. 
+
+*But shiny doesn't have native dropdown buttons. Should I import bs4Dash just to have them? Should I make my own? Maybe the theme colors are a bit weird. Should I change them? How on earth will I test all these changes? Will the previous tests even pass? I would love to have the app's theme match the RStudio IDE theme of every user. I would also love to provide a welcome message to the users. Oh man, I would totally love to have a "Copy" button on every code chunk provided in the responses (this was the hardest thing to get done).*
+
+At the end the small contribution I intended to make was [59 commits long](https://github.com/MichelNivard/gptstudio/pull/78) and I wont even say how many files were affected. I was very hessitant to make a Pull request for something nobody had asked for so I went for the "Discussions" tab. 
+
+*Me: Hey guys, I did this.  I haven't done a PR yet because no one really asked for this...*
+
+*JamesHWade: This is fantastic! I would very much welcome a PR. Great work!!!*
+
+*MichelNivard: Amazing! yes please submit a PR would love this!*
+
+Ok then. Pull request merged!! 
+
+
+## Receiving a response shouldn't take too long
+
+
+
+## Final thoughts
+
