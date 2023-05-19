@@ -1,0 +1,16 @@
+{
+  "hash": "a55b8fe7a7abec697ee15f4a49a9431c",
+  "result": {
+    "markdown": "---\ntitle: Dos paquetes para mapas peruanos\nauthor: Samuel Calderon\ndate: '2021-10-12'\n---\n\n\n\n\nPor cuestiones de trabajo, en los últimos meses tuve necesidad de dibujar mapas y usar las cifras del [Mapa de Pobreza 2018](https://www.inei.gob.pe/media/MenuRecursivo/publicaciones_digitales/Est/Lib1718/Libro.pdf) del INEI. En ambos casos, conseguir que la data se encuentre en un formato ordenado que permita trabajar de manera sencilla no fue fácil de lograr.\n\nPara que otras personas no tengan que pasar por ese mismo *entretenimiento*, desarrollé dos paquetes que contienen la data lista para usar. De paso, creé la sección de [proyectos](/project) en mi web, donde alojaré nuevos paquetes o apps que cree en el futuro. Cada paquete tiene su propia web y repositorio en Github.\n\nCon `{perumapas}` se puede obtener las geometrías necesarias para dibujar los mapas y con `{perupobreza2018}` se puede usar las cifras del mapa de pobreza, incluyendo una columna calculada de cifra de pobreza monetaria.\n\nA continuación, un ejemplo para ver cómo trabajan en conjunto.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(perupobreza2018)\nlibrary(perumapas)\nlibrary(sf) # obligatorio para perumapas\nlibrary(tidyverse) # para transformación y gráficos\n```\n:::\n\n\nCon `{perumapas}` es sencillo realizar mapas a nivel regional, provincial y distrital. Por ejemplo, el mapa de las regiones del Perú.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmapa_regional %>% \n    ggplot() +\n    geom_sf()\n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n\nEl mapa de los distritos de la provincia de Lima:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmapa_distrital %>% \n    filter(departamento == \"LIMA\", provincia == \"LIMA\") %>% \n    ggplot() +\n    geom_sf()\n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n\n\nCon `{perupobreza2018}` podemos añadirle una capa de información a cualquier mapa distrital. Para ello, primero se hace un join/merge entre los datos.\n\n\n::: {.cell}\n\n```{.r .cell-code}\npobreza_lima <- mapa_distrital %>% \n    filter(departamento == \"LIMA\", provincia == \"LIMA\") %>% \n    left_join(pobreza2018, by = \"ubigeo\")\n```\n:::\n\n\nCon este cruce, podemos colorear cada distrito según su cifra de pobreza monetaria.\n\n\n::: {.cell}\n\n```{.r .cell-code}\npobreza_lima %>% \n    ggplot() +\n    geom_sf(aes(fill = pobreza_monetaria))\n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-5-1.png){width=672}\n:::\n:::\n\n\nEvidentemente, también es posible usar los paquetes de manera independiente. El nivel de personalización de los mapas generados dependerá del conocimiento en R y el paquete `{ggplot2}` .\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
