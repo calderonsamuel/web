@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Samuel Calderon">
+<meta name="dcterms.date" content="2020-04-18">
+
+<title>web - Propuesta para elegir preguntas en conferencia de prensa</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<link href="../../site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="../../site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">web</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Acerca de mí</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html" rel="" target="">
+ <span class="menu-text">Proyectos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/samucalse" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/calderonsamuel" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#el-motivo" id="toc-el-motivo" class="nav-link active" data-scroll-target="#el-motivo">El motivo</a></li>
+  <li><a href="#la-propuesta" id="toc-la-propuesta" class="nav-link" data-scroll-target="#la-propuesta">La propuesta</a>
+  <ul class="collapse">
+  <li><a href="#paso-1-recolectar-las-preguntas" id="toc-paso-1-recolectar-las-preguntas" class="nav-link" data-scroll-target="#paso-1-recolectar-las-preguntas">Paso 1: Recolectar las preguntas</a></li>
+  <li><a href="#paso-2-sortear-las-preguntas" id="toc-paso-2-sortear-las-preguntas" class="nav-link" data-scroll-target="#paso-2-sortear-las-preguntas">Paso 2: Sortear las preguntas</a></li>
+  <li><a href="#paso-3-comunicar-los-resultados" id="toc-paso-3-comunicar-los-resultados" class="nav-link" data-scroll-target="#paso-3-comunicar-los-resultados">Paso 3: Comunicar los resultados</a></li>
+  <li><a href="#paso-4-repetir" id="toc-paso-4-repetir" class="nav-link" data-scroll-target="#paso-4-repetir">Paso 4: Repetir</a></li>
+  <li><a href="#extra-tiempo-usado" id="toc-extra-tiempo-usado" class="nav-link" data-scroll-target="#extra-tiempo-usado">Extra: Tiempo usado</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Propuesta para elegir preguntas en conferencia de prensa</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Samuel Calderon </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 18, 2020</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="el-motivo" class="level2">
+<h2 class="anchored" data-anchor-id="el-motivo">El motivo</h2>
+<p>Casi todos los días vemos las conferencias de prensa que el presidente brinda. En ellas nos da las nuevas cifras importantes acerca del avance del covid19, nuevas medidas del gobierno y respuestas a preguntas de la prensa. Respecto a este último punto, no se conoce de fuentes oficiales la metodología a través de la cuál se realiza la elección de preguntas de la prensa. No me ha parecido que se hayan estado escogiendo preguntas malas, pero me quedé con la duda.</p>
+<p>Decidí consultarle a internet. El único medio que reportó algo acerca del tema fue <a href="https://libero.pe/ocio/1553598-coronavirus-peru-preguntas-presidente-martin-vizcarra-covid-19-whatsapp">Líbero</a> (muy para mi sorpresa), y en realidad se trató de un artículo acerca de un hilo en twitter realizado por Eloy Marchán.</p>
+<blockquote class="twitter-tweet blockquote" data-lang="es">
+<p lang="es" dir="ltr">
+(1/4) ¿Cómo salen las preguntas que el presidente <a href="https://twitter.com/MartinVizcarraC?ref_src=twsrc%5Etfw"><span class="citation" data-cites="MartinVizcarraC">@MartinVizcarraC</span></a> responde en las "conferencias de prensa" que da cada día?<br>-Hay un chat de Whatsapp llamado "Actividades Palacio", lo administran los funcionarios Gabriela Carrillo y Juan Francisco Celis y tiene 172 integrantes. <a href="https://t.co/Fc43JZRj3n">pic.twitter.com/Fc43JZRj3n</a>
+</p>
+— Eloy Marchán (<span class="citation" data-cites="eloymarchan">@eloymarchan</span>) <a href="https://twitter.com/eloymarchan/status/1250922549120315392?ref_src=twsrc%5Etfw">16 de abril de 2020</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>En pocas palabras, según su explicación, existe un grupo de Whatsapp integrado por funcionarios y periodistas de varios medios de comunicación a través del cual se les comunica qué medios podrán enviar sus preguntas, que luego son respondidas en la conferencia de prensa. Los medios son escogidos a través de un sorteo.</p>
+<p>El asunto es que, según Marchán, no se sabe en qué consiste ese sorteo. Yo creo que es una duda razonable, e innecesaria de mantener porque podría tener una solución muy simple.</p>
+</section>
+<section id="la-propuesta" class="level2">
+<h2 class="anchored" data-anchor-id="la-propuesta">La propuesta</h2>
+<p>Esta propuesta se basa en el supuesto de que es mejor hacer un sorteo de preguntas y no uno de medios de comunicación.</p>
+<section id="paso-1-recolectar-las-preguntas" class="level3">
+<h3 class="anchored" data-anchor-id="paso-1-recolectar-las-preguntas">Paso 1: Recolectar las preguntas</h3>
+<p>Para esto se puede usar un servicio de recolección de formularios/encuestas, como el de Google Forms. Basta con tener dos campos de llenado en el formulario: uno de identificación y uno en el que se brinde el detalle de la pregunta.</p>
+<p>El campo de identificación necesitaría que los medios ingresen una contraseña que previamente los funcionarios les hayan brindado. La contraseña es única por medio de comunicación y, para mayor seguridad, puede ser actualizada diariamente.</p>
+<p>En el segundo campo de llenado los medios de comunicación ingresan sus preguntas. Se podría poner un límite de caracteres para asegurar que la pregunta no sea más larga que la respuesta que se brindará.</p>
+<p>Aquí debajo pongo un formulario de ejemplo en el que sólo se puede llenar el campo de pregunta si se ingresa primero una contraseña adecuada. La contraseña de este formulario consiste de 16 caracteres alfanuméricos aleatorios.</p>
+<blockquote class="blockquote">
+<p>Contraseña: sEcVwNCLpKqf8oH3</p>
+</blockquote>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfL_zYqFoWp7t0spC-fQ86Oe3TNZ8pttDaglfkGK_bvE75eyw/viewform?embedded=true" width="100%" height="333" frameborder="0" marginheight="0" marginwidth="0">
+Cargando…
+</iframe>
+<p>Después de llenar algunas preguntas en el formulario, obtuve la siguiente tabla. Esta tabla se irá actualizando conforme le lleguen nuevas preguntas.</p>
+<iframe width="100%" height="350px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkF8DydOAYAGXVHuUi8oLBUZX1nBqKUBb9JUbVAT4EnZ9GVmhYEINYZNQ8pNC1Gax2ZXZCcd01kS7W/pubhtml?gid=1524799486&amp;single=true&amp;widget=true&amp;headers=false">
+</iframe>
+<p>Para trabajar el ejemplo, tomaré las cuatro (4) observaciones que yo ingresé. Con un cambio en los encabezados y un nuevo formato la tabla se ve así.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-02e24bda{}.cl-02db8944{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-02de5638{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-02de67c2{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67cc{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67cd{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67ce{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d6{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d7{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d8{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d9{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67e0{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67ea{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67eb{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67f4{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-02e24bda"><caption><p>Ejemplo</p></caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-02de67c2"><p class="cl-02de5638"><span class="cl-02db8944">Hora</span></p></th><th class="cl-02de67cc"><p class="cl-02de5638"><span class="cl-02db8944">Contraseña</span></p></th><th class="cl-02de67cd"><p class="cl-02de5638"><span class="cl-02db8944">Pregunta</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-02de67ce"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:34:32.967</span></p></td><td class="cl-02de67d6"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67d7"><p class="cl-02de5638"><span class="cl-02db8944">En vista de las observaciones emitidas por los especialistas Fulano, Mengana y Sotana acerca de la medida X, ¿cuál será la nueva estrategia del gobierno?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67d8"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:38:38.994</span></p></td><td class="cl-02de67d9"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67e0"><p class="cl-02de5638"><span class="cl-02db8944">Las periodistas Fulana y Mengana denunciaron los hechos 1 y 2 ocurridos en las regiones X y Z. ¿Qué medidas está tomando el ministerio A para prevenir que vuelvan a ocurrir?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67ce"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:40:27.624</span></p></td><td class="cl-02de67d6"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67d7"><p class="cl-02de5638"><span class="cl-02db8944">Los médicos de la provincia A de la región X denunciaron la falta de material en el hospital regional. ¿Desde cuándo se tenía conocimiento de este hecho y por qué no se logró enfrentar a tiempo?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67ea"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:42:12.543</span></p></td><td class="cl-02de67eb"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67f4"><p class="cl-02de5638"><span class="cl-02db8944">El funcionario Fulano ha declarado X en el medio A. ¿Es esta la postura oficial del gobierno?</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>La columna <strong>Hora</strong> se genera de manera automática en Google Forms e indica la hora y fecha en que fue ingresada la pregunta. Cuando cada medio tenga su contraseña, la columna <strong>Contraseña</strong> tendría contraseñas diferentes en cada fila.</p>
+</section>
+<section id="paso-2-sortear-las-preguntas" class="level3">
+<h3 class="anchored" data-anchor-id="paso-2-sortear-las-preguntas">Paso 2: Sortear las preguntas</h3>
+<p>Una vez obtenida la tabla de preguntas se debe realizar el sorteo y aquí viene el aporte principal de este artículo: el sorteo debe ser aleatorio y reproducible. Esto se puede lograr usando un valor <em>semilla</em> al momento de realizar el muestreo. En el siguiente bloque de código de R uso como valor semilla la fecha de hoy para obtener una muestra de dos observaciones de mi tabla de <code>preguntas</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">18042020</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>muestra <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">sample_n</span>(preguntas, <span class="at">size =</span> <span class="dv">2</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(muestra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="tabwid"><style>.cl-03027216{}.cl-02fccbc2{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-02ff140e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-02ff205c{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2066{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2067{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2068{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2070{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2071{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2072{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2073{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff207a{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-03027216"><caption><p>Preguntas</p></caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-02ff205c"><p class="cl-02ff140e"><span class="cl-02fccbc2">Hora</span></p></th><th class="cl-02ff2066"><p class="cl-02ff140e"><span class="cl-02fccbc2">Contraseña</span></p></th><th class="cl-02ff2067"><p class="cl-02ff140e"><span class="cl-02fccbc2">Pregunta</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-02ff2068"><p class="cl-02ff140e"><span class="cl-02fccbc2">2020-04-17 22:42:12.543</span></p></td><td class="cl-02ff2070"><p class="cl-02ff140e"><span class="cl-02fccbc2">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02ff2071"><p class="cl-02ff140e"><span class="cl-02fccbc2">El funcionario Fulano ha declarado X en el medio A. ¿Es esta la postura oficial del gobierno?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02ff2072"><p class="cl-02ff140e"><span class="cl-02fccbc2">2020-04-17 22:38:38.994</span></p></td><td class="cl-02ff2073"><p class="cl-02ff140e"><span class="cl-02fccbc2">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02ff207a"><p class="cl-02ff140e"><span class="cl-02fccbc2">Las periodistas Fulana y Mengana denunciaron los hechos 1 y 2 ocurridos en las regiones X y Z. ¿Qué medidas está tomando el ministerio A para prevenir que vuelvan a ocurrir?</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<p>Ahora, cualquier persona que tenga acceso a la tabla de preguntas puede reproducir el resultado de mi “elección” aleatoria usando el valor <em>semilla</em>.</p>
+</section>
+<section id="paso-3-comunicar-los-resultados" class="level3">
+<h3 class="anchored" data-anchor-id="paso-3-comunicar-los-resultados">Paso 3: Comunicar los resultados</h3>
+<p>Además de contestar las preguntas que fueron escogidas, es necesario que se hagan públicos la tabla de preguntas y el valor semilla utilizado para el muestreo (compartir el código utilizado sería incluso más útil). Esto puede servir de oportunidad para compartirse de manera conjunta con un resumen indicando las preguntas escogidas y sus respectivas respuestas.</p>
+<p>La “elección” de preguntas tendría que hacerse con el tiempo prudente para preparar respuestas satisfactorias y descartar preguntas repetidas o inútiles (riesgos latentes). En este artículo no se propone que se haga esta elección en medio de la conferencia de prensa.</p>
+</section>
+<section id="paso-4-repetir" class="level3">
+<h3 class="anchored" data-anchor-id="paso-4-repetir">Paso 4: Repetir</h3>
+<p>Para la siguiente conferencia de prensa basta con limpiar los registros anteriores o filtrarlos de acuerdo a la nueva fecha. En caso se de decida, podrían actualizarse las contraseñas de los medios.</p>
+</section>
+<section id="extra-tiempo-usado" class="level3">
+<h3 class="anchored" data-anchor-id="extra-tiempo-usado">Extra: Tiempo usado</h3>
+<p>Para crear el formulario en Google Forms demoré menos de diez minutos. El proceso de muestreo de la tabla con valor semilla fue practicamente instantáneo.</p>
+<p>En el siguiente bloque uso código R para demostrar que se tarda mucho menos de un segundo crear una gran cantidad de contraseñas para medios de comunicación.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creando conjunto de caracteres alfanumericos con</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># minúsculas, mayúsculas y números</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>alfanumericos <span class="ot">&lt;-</span> <span class="fu">c</span>(letters, LETTERS, <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Creando función para replicar </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># creación de contraseña</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>crear_contraseñas <span class="ot">&lt;-</span> <span class="cf">function</span>(conjunto, numero) {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replicate</span>(numero, </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">paste0</span>(<span class="fu">sample</span>(<span class="at">x =</span> conjunto, </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">size =</span> <span class="dv">16</span>, </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">replace =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                   <span class="at">collapse =</span> <span class="st">""</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Cantidad de milisegundos requeridos </span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># para crear n contraseñas</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">300</span><span class="st">`</span> <span class="ot">=</span> {crear_contraseñas(alfanumericos, <span class="dv">300</span>)},</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">500</span><span class="st">`</span> <span class="ot">=</span> {crear_contraseñas(alfanumericos, <span class="dv">500</span>)},</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">1000</span><span class="st">`</span><span class="ot">=</span> {crear_contraseñas(alfanumericos, <span class="dv">1000</span>)}</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Unit: milliseconds
+ expr      min       lq     mean   median       uq       max neval
+  300 1.801001 1.884000 2.236111 1.967452 2.091251  8.926201   100
+  500 2.974700 3.202051 3.630210 3.381851 3.685250  9.327401   100
+ 1000 6.008501 6.324001 7.794788 6.736301 7.614100 22.179302   100</code></pre>
+</div>
+</div>
+<p>Viendo el cruce de la fila “1000” con la columna “mean”, vemos que en promedio requiere poquísimos milisegundos crear 1000 contraseñas diferentes. Usando 16 caracteres alfanuméricos, es posible obtener hasta <span class="math inline">\(62^{16}\)</span> contraseñas únicas (equivalente a <span class="math inline">\(4.76*10^{28}\)</span>).</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Utilizo en un bloque oculto <code>flextable::flextable()</code> para imprimir la tabla con el formato adecuado.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
