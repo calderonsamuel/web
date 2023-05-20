@@ -2,70 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://calderonsamuel.github.io/web/blog.html</loc>
-    <lastmod>2023-05-19T22:15:31.213Z</lastmod>
+    <lastmod>2023-05-20T01:19:16.405Z</lastmod>
   </url>
   <url>
     <loc>https://calderonsamuel.github.io/web/index.html</loc>
-    <lastmod>2023-05-19T22:15:31.913Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calderonsamuel.github.io/web/posts/2022-08-09-monitorear-ejecuci-n-presupuestal-desde-r/index.html</loc>
-    <lastmod>2023-05-19T22:15:32.505Z</lastmod>
+    <lastmod>2023-05-20T01:19:17.060Z</lastmod>
   </url>
   <url>
     <loc>https://calderonsamuel.github.io/web/posts/2020-01-13-inicios/index.html</loc>
-    <lastmod>2023-05-19T22:15:32.985Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calderonsamuel.github.io/web/posts/2022-07-23-bug-arreglado-en-calculadora-renacyt/index.html</loc>
-    <lastmod>2023-05-19T22:15:33.297Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index.html</loc>
-    <lastmod>2023-05-19T22:15:33.905Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calderonsamuel.github.io/web/posts/2020-04-25-codigo-noob-de-js/index.html</loc>
-    <lastmod>2023-05-19T22:15:34.841Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calderonsamuel.github.io/web/posts/2021-08-15-grafico-de-parlamento/index.html</loc>
-    <lastmod>2023-05-19T22:15:35.457Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calderonsamuel.github.io/web/posts/2020-03-10-por-que-debo-dejar-que-usen-mi-trabajo/index.html</loc>
-    <lastmod>2023-05-19T22:15:35.893Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/index.html</loc>
-    <lastmod>2023-05-19T22:15:36.537Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calderonsamuel.github.io/web/posts/index.html</loc>
-    <lastmod>2023-05-19T22:15:37.441Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calderonsamuel.github.io/web/posts/2020-04-18-propuesta-para-elegir-preguntas-en-conferencia-de-prensa/index.html</loc>
-    <lastmod>2023-05-19T22:15:38.137Z</lastmod>
-  </url>
-  <url>
-    <loc>https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index.html</loc>
-    <lastmod>2023-05-19T22:15:38.673Z</lastmod>
+    <lastmod>2023-05-20T01:19:17.679Z</lastmod>
   </url>
   <url>
     <loc>https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index.html</loc>
-    <lastmod>2023-05-19T22:15:39.273Z</lastmod>
+    <lastmod>2023-05-20T01:19:18.520Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index.html</loc>
+    <lastmod>2023-05-20T01:19:19.358Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calderonsamuel.github.io/web/posts/2020-03-10-por-que-debo-dejar-que-usen-mi-trabajo/index.html</loc>
+    <lastmod>2023-05-20T01:19:20.014Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calderonsamuel.github.io/web/posts/2020-04-18-propuesta-para-elegir-preguntas-en-conferencia-de-prensa/index.html</loc>
+    <lastmod>2023-05-20T01:19:20.838Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calderonsamuel.github.io/web/posts/2020-04-25-codigo-noob-de-js/index.html</loc>
+    <lastmod>2023-05-20T01:19:21.512Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/index.html</loc>
+    <lastmod>2023-05-20T01:19:22.332Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calderonsamuel.github.io/web/posts/2021-08-15-grafico-de-parlamento/index.html</loc>
+    <lastmod>2023-05-20T01:19:23.181Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index.html</loc>
+    <lastmod>2023-05-20T01:19:24.009Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calderonsamuel.github.io/web/posts/2022-07-23-bug-arreglado-en-calculadora-renacyt/index.html</loc>
+    <lastmod>2023-05-20T01:19:24.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calderonsamuel.github.io/web/posts/2022-08-09-monitorear-ejecuci-n-presupuestal-desde-r/index.html</loc>
+    <lastmod>2023-05-20T01:19:25.220Z</lastmod>
+  </url>
+  <url>
+    <loc>https://calderonsamuel.github.io/web/posts/index.html</loc>
+    <lastmod>2023-05-20T01:19:26.529Z</lastmod>
   </url>
   <url>
     <loc>https://calderonsamuel.github.io/web/projects/calculadora-renacyt/index.html</loc>
-    <lastmod>2023-05-19T22:15:39.581Z</lastmod>
+    <lastmod>2023-05-20T01:19:27.041Z</lastmod>
   </url>
   <url>
     <loc>https://calderonsamuel.github.io/web/projects/index.html</loc>
-    <lastmod>2023-05-19T22:15:39.933Z</lastmod>
+    <lastmod>2023-05-20T01:19:27.719Z</lastmod>
   </url>
   <url>
     <loc>https://calderonsamuel.github.io/web/projects/packages/index.html</loc>
-    <lastmod>2023-05-19T22:15:40.213Z</lastmod>
+    <lastmod>2023-05-20T01:19:28.209Z</lastmod>
   </url>
 </urlset>
