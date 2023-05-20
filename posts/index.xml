@@ -9,8 +9,51 @@
 <link>https://calderonsamuel.github.io/web/posts/index.html</link>
 <atom:link href="https://calderonsamuel.github.io/web/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description>Web de Samuel Calderon</description>
-<generator>quarto-1.2.280</generator>
-<lastBuildDate>Tue, 09 Aug 2022 05:00:00 GMT</lastBuildDate>
+<generator>quarto-1.3.353</generator>
+<lastBuildDate>Fri, 19 May 2023 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>On updating a chat assistant for the RStudio IDE</title>
+  <dc:creator>Samuel Calderon</dc:creator>
+  <link>https://calderonsamuel.github.io/web/posts/2023-05-19-updating-gptstudio/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>This post summarizes the challenges overcomed while trying to improve three areas of the ChatGPT addin (shiny app) from <code>{gptstudio}</code>.</p>
+<p>This post is a recap of the challenges I encountered while working on enhancing the ChatGPT addin (shiny app) from {gptstudio}. The whole journey began quite unexpectedly for me. I was developing a shiny app for my work and decided to venture into writing JavaScript code. However, I felt that the autocomplete feature in the RStudio IDE wasn’t the best available. So, I decided to give VSCode a shot.</p>
+<p>As I’m not well versed with JS (or VSCode), I was requesting a lot of help from ChatGPT. That’s when I stumbled upon the <a href="https://github.com/ai-genie/chatgpt-vscode">Genie extension</a>, which integrates ChatGPT seamlessly into the IDE (provided you have a valid API key).</p>
+<p>That got me thinking: shouldn’t we have a similar integration for the RStudio IDE? It turns out, I wasn’t the only one who had this idea. That’s when I stumbled upon version 0.1.0 of <code>{gptstudio}</code> and decided to give its ChatGPT addin a try. To my surprise, it exceeded my expectations, and I was intrigued to explore it further. I enthusiastically checked out its GitHub repository and couldn’t resist giving it a well-deserved star. As I dug deeper, I made an unexpected discovery—an open issue with a <code>help wanted</code> label.</p>
+<section id="run-shiny-app-in-background-64" class="level2">
+<h2 class="anchored" data-anchor-id="run-shiny-app-in-background-64">Run Shiny App in Background <a href="https://github.com/MichelNivard/gptstudio/issues/64">#64</a></h2>
+<p><em>Isn’t that the guy from the R4DS slack channel? Also, I agree with him</em></p>
+<p>This was the perfect issue to try to solve. Just a few days prior, I had watched a video discussing RStudio jobs for shiny apps. Although I couldn’t locate the video at the time of writing this, I did find a <a href="https://github.com/sol-eng/background-jobs/tree/main/shiny-job#viewing-the-app">README file</a> containing the relevant information.</p>
+<p>To sum it up, I discovered that it is possible to launch an app as a background job and then open it from the R console. This functionality extends to shiny apps that are addins from a package. By doing this, you can have your background shiny app displayed in the Viewer pane of the RStudio IDE.</p>
+<p>After trying this in my fork of the package, I documented all my code and submitted a Pull Request to the maintainers, which was integrated in very short time. I was very happy with this but still thought that there some things that could be improved.</p>
+</section>
+<section id="the-ui-should-resemble-a-chat" class="level2">
+<h2 class="anchored" data-anchor-id="the-ui-should-resemble-a-chat">The UI should resemble a chat</h2>
+<p>Even though at the moment you were able to have your chat assistant, the UI was a bit awkward to navigate when you had a long chat history. I had the intention to just move the text input to the bottom of the app, like in a chat window. In order to do that I though that I should incorporate shiny modules and separate the app in smaller, more manageable, components. Ok this was a couple more lines of code that I expected. After that, I though that the viewer pane was very small to have a lot of controls always visible, and decided to hide some inputs on a “Configuration” dropdown button.</p>
+<p><em>But shiny doesn’t have native dropdown buttons. Should I import bs4Dash just to have them? Should I make my own? Maybe the theme colors are a bit weird. Should I change them? How on earth will I test all these changes? Will the previous tests even pass? I would love to have the app’s theme match the RStudio IDE theme of every user. I would also love to provide a welcome message to the users. Oh man, I would totally love to have a “Copy” button on every code chunk provided in the responses (this was the hardest thing to get done).</em></p>
+<p>At the end the small contribution I intended to make was <a href="https://github.com/MichelNivard/gptstudio/pull/78">59 commits long</a> and I wont even say how many files were affected. I was very hessitant to make a Pull request for something nobody had asked for so I went for the “Discussions” tab.</p>
+<p><em>Me: Hey guys, I did this. I haven’t done a PR yet because no one really asked for this…</em></p>
+<p><em>JamesHWade: This is fantastic! I would very much welcome a PR. Great work!!!</em></p>
+<p><em>MichelNivard: Amazing! yes please submit a PR would love this!</em></p>
+<p>Ok then. Pull request merged!!</p>
+</section>
+<section id="receiving-a-response-shouldnt-take-too-long" class="level2">
+<h2 class="anchored" data-anchor-id="receiving-a-response-shouldnt-take-too-long">Receiving a response shouldn’t take too long</h2>
+</section>
+<section id="final-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h2>
+
+
+</section>
+
+ ]]></description>
+  <category>rweekly</category>
+  <guid>https://calderonsamuel.github.io/web/posts/2023-05-19-updating-gptstudio/index.html</guid>
+  <pubDate>Fri, 19 May 2023 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Monitorear ejecución presupuestal desde R</title>
   <dc:creator>Samuel Calderon</dc:creator>
@@ -23,27 +66,83 @@
 <p>El paquete es mejor aprovechable para las personas que estén familiarizadas con el <a href="https://apps5.mineco.gob.pe/transparencia/Navegador/default.aspx">Portal de seguimiento a la ejecución de gasto presupuestal</a> del Ministerio de Economía y Finanzas. Hasta el momento, sirve para hacer consultas a partir del 2012. Con el paso del tiempo (y con algo de apoyo de la comunidad) puede ampliarse para abarcar años anteriores.</p>
 <p>Como ejemplo, podemos ver cuánto se presupuesto y gastó en el año 2021 en todo el país. Comenzamos por cargar el paquete y la colección <code>tidyverse</code> para facilidad de tratamiento de los datos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(perutranspaeconomica)</span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(perutranspaeconomica)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <p>Para hacer la consulta, podemos usar la función <code>gasto()</code>. Con esto obtenemos una tabla muy similar a la de la plataforma del MEF. Para apreciar mejor la información, la convierto en un objeto JSON.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;">gasto</span>(<span class="at" style="color: #657422;">year =</span> <span class="dv" style="color: #AD0000;">2021</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
-<span id="cb2-2">    jsonlite<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">toJSON</span>(<span class="at" style="color: #657422;">pretty =</span> <span class="cn" style="color: #8f5902;">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gasto</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">year =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2021</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb2-2">    jsonlite<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">toJSON</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">pretty =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span></code></pre></div>
 </div>
 <p>Para ver una evolución en el tiempo, podemos usar una consulta iterativa. Así aprovechamos mejor las oportunidades del paquete.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">consulta <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">2012</span><span class="sc" style="color: #5E5E5E;">:</span><span class="dv" style="color: #AD0000;">2021</span> <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
-<span id="cb3-2">    <span class="fu" style="color: #4758AB;">map_dfr</span>(<span class="sc" style="color: #5E5E5E;">~</span><span class="fu" style="color: #4758AB;">gasto</span>(<span class="at" style="color: #657422;">year =</span> .x))</span>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">consulta <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2012</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2021</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map_dfr</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gasto</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">year =</span> .x))</span>
 <span id="cb3-3"></span>
 <span id="cb3-4">consulta</span></code></pre></div>
 </div>
 <p>Por último, podemos graficar los datos obtenidos. En este caso, para conocer la evolución en la ejecución presupuestal del Estado peruano desde el 2012 al 2021.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">consulta <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
-<span id="cb4-2">    <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(year, avance_percent)) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb4-3">    <span class="fu" style="color: #4758AB;">geom_line</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb4-4">    <span class="fu" style="color: #4758AB;">geom_label</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> avance_percent))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">consulta <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb4-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(year, avance_percent)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_label</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> avance_percent))</span></code></pre></div>
 </div>
 <p>Como se puede ver, la ejecución presupuestal ha sido superior al 80% en los últimos años, pero nunca alcanzó el 90% de lo presupuestado.</p>
 <p>Sin usar el paquete habría sido necesario:</p>
@@ -59,7 +158,7 @@
 
  ]]></description>
   <guid>https://calderonsamuel.github.io/web/posts/2022-08-09-monitorear-ejecuci-n-presupuestal-desde-r/index.html</guid>
-  <pubDate>Tue, 09 Aug 2022 05:00:00 GMT</pubDate>
+  <pubDate>Tue, 09 Aug 2022 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Bug arreglado en Calculadora Renacyt</title>
@@ -80,7 +179,7 @@
 
  ]]></description>
   <guid>https://calderonsamuel.github.io/web/posts/2022-07-23-bug-arreglado-en-calculadora-renacyt/index.html</guid>
-  <pubDate>Sat, 23 Jul 2022 05:00:00 GMT</pubDate>
+  <pubDate>Sat, 23 Jul 2022 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Dos paquetes para mapas peruanos</title>
@@ -95,41 +194,115 @@
 <p>Con <code>{perumapas}</code> se puede obtener las geometrías necesarias para dibujar los mapas y con <code>{perupobreza2018}</code> se puede usar las cifras del mapa de pobreza, incluyendo una columna calculada de cifra de pobreza monetaria.</p>
 <p>A continuación, un ejemplo para ver cómo trabajan en conjunto.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(perupobreza2018)</span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(perumapas)</span>
-<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(sf) <span class="co" style="color: #5E5E5E;"># obligatorio para perumapas</span></span>
-<span id="cb1-4"><span class="fu" style="color: #4758AB;">library</span>(tidyverse) <span class="co" style="color: #5E5E5E;"># para transformación y gráficos</span></span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(perupobreza2018)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(perumapas)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(sf) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># obligatorio para perumapas</span></span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># para transformación y gráficos</span></span></code></pre></div>
 </div>
 <p>Con <code>{perumapas}</code> es sencillo realizar mapas a nivel regional, provincial y distrital. Por ejemplo, el mapa de las regiones del Perú.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">mapa_regional <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-2">    <span class="fu" style="color: #4758AB;">ggplot</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-3">    <span class="fu" style="color: #4758AB;">geom_sf</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">mapa_regional <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_sf</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>El mapa de los distritos de la provincia de Lima:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">mapa_distrital <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb3-2">    <span class="fu" style="color: #4758AB;">filter</span>(departamento <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"LIMA"</span>, provincia <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"LIMA"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb3-3">    <span class="fu" style="color: #4758AB;">ggplot</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb3-4">    <span class="fu" style="color: #4758AB;">geom_sf</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">mapa_distrital <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb3-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(departamento <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"LIMA"</span>, provincia <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"LIMA"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb3-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_sf</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Con <code>{perupobreza2018}</code> podemos añadirle una capa de información a cualquier mapa distrital. Para ello, primero se hace un join/merge entre los datos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">pobreza_lima <span class="ot" style="color: #003B4F;">&lt;-</span> mapa_distrital <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb4-2">    <span class="fu" style="color: #4758AB;">filter</span>(departamento <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"LIMA"</span>, provincia <span class="sc" style="color: #5E5E5E;">==</span> <span class="st" style="color: #20794D;">"LIMA"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb4-3">    <span class="fu" style="color: #4758AB;">left_join</span>(pobreza2018, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"ubigeo"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">pobreza_lima <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> mapa_distrital <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb4-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(departamento <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"LIMA"</span>, provincia <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"LIMA"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb4-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">left_join</span>(pobreza2018, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ubigeo"</span>)</span></code></pre></div>
 </div>
 <p>Con este cruce, podemos colorear cada distrito según su cifra de pobreza monetaria.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">pobreza_lima <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb5-2">    <span class="fu" style="color: #4758AB;">ggplot</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb5-3">    <span class="fu" style="color: #4758AB;">geom_sf</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">fill =</span> pobreza_monetaria))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">pobreza_lima <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-2">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_sf</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> pobreza_monetaria))</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -140,7 +313,7 @@
 
  ]]></description>
   <guid>https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index.html</guid>
-  <pubDate>Tue, 12 Oct 2021 05:00:00 GMT</pubDate>
+  <pubDate>Tue, 12 Oct 2021 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Código noob de JS</title>
@@ -157,33 +330,151 @@
 <p>For example, [“hello”, “Hello”], should return true because all of the letters in the second string are present in the first, ignoring case.</p>
 <p>The arguments [“hello”, “hey”] should return false because the string “hello” does not contain a “y”.</p>
 <p>Lastly, [“Alien”, “line”], should return true because all of the letters in “line” are present in “Alien”.</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><span class="kw" style="color: #003B4F;">function</span> <span class="fu" style="color: #4758AB;">mutation</span>(arr) {</span>
-<span id="cb1-2">  <span class="co" style="color: #5E5E5E;">// a minusculas las dos palabras</span></span>
-<span id="cb1-3">  <span class="kw" style="color: #003B4F;">let</span> arr2 <span class="op" style="color: #5E5E5E;">=</span> arr<span class="op" style="color: #5E5E5E;">.</span><span class="fu" style="color: #4758AB;">map</span>(el <span class="kw" style="color: #003B4F;">=&gt;</span> el<span class="op" style="color: #5E5E5E;">.</span><span class="fu" style="color: #4758AB;">toLowerCase</span>())<span class="op" style="color: #5E5E5E;">;</span></span>
-<span id="cb1-4">  <span class="co" style="color: #5E5E5E;">// segunda palabra a array</span></span>
-<span id="cb1-5">  <span class="kw" style="color: #003B4F;">let</span> word2 <span class="op" style="color: #5E5E5E;">=</span> arr2[<span class="dv" style="color: #AD0000;">1</span>]<span class="op" style="color: #5E5E5E;">.</span><span class="fu" style="color: #4758AB;">split</span>(<span class="st" style="color: #20794D;">""</span>)<span class="op" style="color: #5E5E5E;">;</span></span>
-<span id="cb1-6">  <span class="co" style="color: #5E5E5E;">// indice de aparicion de letra de palabra 2 en palabra 1</span></span>
-<span id="cb1-7">  <span class="kw" style="color: #003B4F;">let</span> indices <span class="op" style="color: #5E5E5E;">=</span> word2<span class="op" style="color: #5E5E5E;">.</span><span class="fu" style="color: #4758AB;">map</span>(el <span class="kw" style="color: #003B4F;">=&gt;</span> arr2[<span class="dv" style="color: #AD0000;">0</span>]<span class="op" style="color: #5E5E5E;">.</span><span class="fu" style="color: #4758AB;">search</span>(el))<span class="op" style="color: #5E5E5E;">;</span></span>
-<span id="cb1-8">  <span class="co" style="color: #5E5E5E;">// test logico para ver si existe un '-1' en indices</span></span>
-<span id="cb1-9">  <span class="kw" style="color: #003B4F;">let</span> bool <span class="op" style="color: #5E5E5E;">=</span> indices<span class="op" style="color: #5E5E5E;">.</span><span class="fu" style="color: #4758AB;">map</span>(el <span class="kw" style="color: #003B4F;">=&gt;</span> el <span class="op" style="color: #5E5E5E;">&gt;=</span> <span class="dv" style="color: #AD0000;">0</span>)<span class="op" style="color: #5E5E5E;">;</span></span>
-<span id="cb1-10">  <span class="co" style="color: #5E5E5E;">// se ordena el array bool y se obtiene el primer elemento</span></span>
-<span id="cb1-11">  <span class="co" style="color: #5E5E5E;">// si hay 'false' siempre estará delante</span></span>
-<span id="cb1-12">  <span class="cf" style="color: #003B4F;">return</span> bool<span class="op" style="color: #5E5E5E;">.</span><span class="fu" style="color: #4758AB;">sort</span>()[<span class="dv" style="color: #AD0000;">0</span>]<span class="op" style="color: #5E5E5E;">;</span></span>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutation</span>(arr) {</span>
+<span id="cb1-2">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// a minusculas las dos palabras</span></span>
+<span id="cb1-3">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">let</span> arr2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> arr<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(el <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=&gt;</span> el<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">toLowerCase</span>())<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-4">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// segunda palabra a array</span></span>
+<span id="cb1-5">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">let</span> word2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> arr2[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">split</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-6">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// indice de aparicion de letra de palabra 2 en palabra 1</span></span>
+<span id="cb1-7">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">let</span> indices <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> word2<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(el <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=&gt;</span> arr2[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">search</span>(el))<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-8">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// test logico para ver si existe un '-1' en indices</span></span>
+<span id="cb1-9">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">let</span> bool <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> indices<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(el <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=&gt;</span> el <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-10">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// se ordena el array bool y se obtiene el primer elemento</span></span>
+<span id="cb1-11">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// si hay 'false' siempre estará delante</span></span>
+<span id="cb1-12">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">return</span> bool<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sort</span>()[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
 <span id="cb1-13">}</span>
 <span id="cb1-14"></span>
-<span id="cb1-15"><span class="kw" style="color: #003B4F;">let</span> res <span class="op" style="color: #5E5E5E;">=</span> <span class="fu" style="color: #4758AB;">mutation</span>([<span class="st" style="color: #20794D;">"Hello"</span><span class="op" style="color: #5E5E5E;">,</span> <span class="st" style="color: #20794D;">"hey"</span>])<span class="op" style="color: #5E5E5E;">;</span></span>
-<span id="cb1-16"><span class="co" style="color: #5E5E5E;">//let res2 = [true, false, true, false];</span></span>
-<span id="cb1-17"><span class="bu" style="color: null;">console</span><span class="op" style="color: #5E5E5E;">.</span><span class="fu" style="color: #4758AB;">log</span>(res)<span class="op" style="color: #5E5E5E;">;</span></span>
+<span id="cb1-15"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">let</span> res <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutation</span>([<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Hello"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"hey"</span>])<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">//let res2 = [true, false, true, false];</span></span>
+<span id="cb1-17"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">console</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">log</span>(res)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
 <span id="cb1-18"></span>
 <span id="cb1-19"></span>
-<span id="cb1-20"><span class="op" style="color: #5E5E5E;">&gt;</span><span class="kw" style="color: #003B4F;">false</span></span></code></pre></div>
+<span id="cb1-20"><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">false</span></span></code></pre></div>
 
 
 </section>
 
  ]]></description>
   <guid>https://calderonsamuel.github.io/web/posts/2020-04-25-codigo-noob-de-js/index.html</guid>
-  <pubDate>Sat, 25 Apr 2020 05:00:00 GMT</pubDate>
+  <pubDate>Sat, 25 Apr 2020 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Propuesta para elegir preguntas en conferencia de prensa</title>
@@ -229,7 +520,7 @@ Cargando…
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="tabwid"><style>.cl-02e24bda{}.cl-02db8944{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-02de5638{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-02de67c2{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67cc{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67cd{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67ce{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d6{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d7{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d8{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d9{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67e0{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67ea{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67eb{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67f4{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-02e24bda"><caption>Ejemplo</caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-02de67c2"><p class="cl-02de5638"><span class="cl-02db8944">Hora</span></p></th><th class="cl-02de67cc"><p class="cl-02de5638"><span class="cl-02db8944">Contraseña</span></p></th><th class="cl-02de67cd"><p class="cl-02de5638"><span class="cl-02db8944">Pregunta</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-02de67ce"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:34:32.967</span></p></td><td class="cl-02de67d6"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67d7"><p class="cl-02de5638"><span class="cl-02db8944">En vista de las observaciones emitidas por los especialistas Fulano, Mengana y Sotana acerca de la medida X, ¿cuál será la nueva estrategia del gobierno?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67d8"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:38:38.994</span></p></td><td class="cl-02de67d9"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67e0"><p class="cl-02de5638"><span class="cl-02db8944">Las periodistas Fulana y Mengana denunciaron los hechos 1 y 2 ocurridos en las regiones X y Z. ¿Qué medidas está tomando el ministerio A para prevenir que vuelvan a ocurrir?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67ce"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:40:27.624</span></p></td><td class="cl-02de67d6"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67d7"><p class="cl-02de5638"><span class="cl-02db8944">Los médicos de la provincia A de la región X denunciaron la falta de material en el hospital regional. ¿Desde cuándo se tenía conocimiento de este hecho y por qué no se logró enfrentar a tiempo?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67ea"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:42:12.543</span></p></td><td class="cl-02de67eb"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67f4"><p class="cl-02de5638"><span class="cl-02db8944">El funcionario Fulano ha declarado X en el medio A. ¿Es esta la postura oficial del gobierno?</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-02e24bda{}.cl-02db8944{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-02de5638{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-02de67c2{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67cc{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67cd{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67ce{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d6{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d7{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d8{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d9{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67e0{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67ea{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67eb{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67f4{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-02e24bda"><caption><p>Ejemplo</p></caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-02de67c2"><p class="cl-02de5638"><span class="cl-02db8944">Hora</span></p></th><th class="cl-02de67cc"><p class="cl-02de5638"><span class="cl-02db8944">Contraseña</span></p></th><th class="cl-02de67cd"><p class="cl-02de5638"><span class="cl-02db8944">Pregunta</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-02de67ce"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:34:32.967</span></p></td><td class="cl-02de67d6"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67d7"><p class="cl-02de5638"><span class="cl-02db8944">En vista de las observaciones emitidas por los especialistas Fulano, Mengana y Sotana acerca de la medida X, ¿cuál será la nueva estrategia del gobierno?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67d8"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:38:38.994</span></p></td><td class="cl-02de67d9"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67e0"><p class="cl-02de5638"><span class="cl-02db8944">Las periodistas Fulana y Mengana denunciaron los hechos 1 y 2 ocurridos en las regiones X y Z. ¿Qué medidas está tomando el ministerio A para prevenir que vuelvan a ocurrir?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67ce"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:40:27.624</span></p></td><td class="cl-02de67d6"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67d7"><p class="cl-02de5638"><span class="cl-02db8944">Los médicos de la provincia A de la región X denunciaron la falta de material en el hospital regional. ¿Desde cuándo se tenía conocimiento de este hecho y por qué no se logró enfrentar a tiempo?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67ea"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:42:12.543</span></p></td><td class="cl-02de67eb"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67f4"><p class="cl-02de5638"><span class="cl-02db8944">El funcionario Fulano ha declarado X en el medio A. ¿Es esta la postura oficial del gobierno?</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 <p>La columna <strong>Hora</strong> se genera de manera automática en Google Forms e indica la hora y fecha en que fue ingresada la pregunta. Cuando cada medio tenga su contraseña, la columna <strong>Contraseña</strong> tendría contraseñas diferentes en cada fila.</p>
@@ -238,14 +529,30 @@ Cargando…
 <h3 class="anchored" data-anchor-id="paso-2-sortear-las-preguntas">Paso 2: Sortear las preguntas</h3>
 <p>Una vez obtenida la tabla de preguntas se debe realizar el sorteo y aquí viene el aporte principal de este artículo: el sorteo debe ser aleatorio y reproducible. Esto se puede lograr usando un valor <em>semilla</em> al momento de realizar el muestreo. En el siguiente bloque de código de R uso como valor semilla la fecha de hoy para obtener una muestra de dos observaciones de mi tabla de <code>preguntas</code><sup>1</sup>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">set.seed</span>(<span class="dv" style="color: #AD0000;">18042020</span>)</span>
-<span id="cb1-2">muestra <span class="ot" style="color: #003B4F;">&lt;-</span> dplyr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">sample_n</span>(preguntas, <span class="at" style="color: #657422;">size =</span> <span class="dv" style="color: #AD0000;">2</span>)</span>
-<span id="cb1-3"><span class="fu" style="color: #4758AB;">print</span>(muestra)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18042020</span>)</span>
+<span id="cb1-2">muestra <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> dplyr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample_n</span>(preguntas, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(muestra)</span></code></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="tabwid"><style>.cl-03027216{}.cl-02fccbc2{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-02ff140e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-02ff205c{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2066{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2067{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2068{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2070{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2071{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2072{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2073{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff207a{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-03027216"><caption>Preguntas</caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-02ff205c"><p class="cl-02ff140e"><span class="cl-02fccbc2">Hora</span></p></th><th class="cl-02ff2066"><p class="cl-02ff140e"><span class="cl-02fccbc2">Contraseña</span></p></th><th class="cl-02ff2067"><p class="cl-02ff140e"><span class="cl-02fccbc2">Pregunta</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-02ff2068"><p class="cl-02ff140e"><span class="cl-02fccbc2">2020-04-17 22:42:12.543</span></p></td><td class="cl-02ff2070"><p class="cl-02ff140e"><span class="cl-02fccbc2">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02ff2071"><p class="cl-02ff140e"><span class="cl-02fccbc2">El funcionario Fulano ha declarado X en el medio A. ¿Es esta la postura oficial del gobierno?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02ff2072"><p class="cl-02ff140e"><span class="cl-02fccbc2">2020-04-17 22:38:38.994</span></p></td><td class="cl-02ff2073"><p class="cl-02ff140e"><span class="cl-02fccbc2">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02ff207a"><p class="cl-02ff140e"><span class="cl-02fccbc2">Las periodistas Fulana y Mengana denunciaron los hechos 1 y 2 ocurridos en las regiones X y Z. ¿Qué medidas está tomando el ministerio A para prevenir que vuelvan a ocurrir?</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-03027216{}.cl-02fccbc2{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-02ff140e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-02ff205c{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2066{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2067{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2068{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2070{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2071{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2072{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2073{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff207a{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-03027216"><caption><p>Preguntas</p></caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-02ff205c"><p class="cl-02ff140e"><span class="cl-02fccbc2">Hora</span></p></th><th class="cl-02ff2066"><p class="cl-02ff140e"><span class="cl-02fccbc2">Contraseña</span></p></th><th class="cl-02ff2067"><p class="cl-02ff140e"><span class="cl-02fccbc2">Pregunta</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-02ff2068"><p class="cl-02ff140e"><span class="cl-02fccbc2">2020-04-17 22:42:12.543</span></p></td><td class="cl-02ff2070"><p class="cl-02ff140e"><span class="cl-02fccbc2">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02ff2071"><p class="cl-02ff140e"><span class="cl-02fccbc2">El funcionario Fulano ha declarado X en el medio A. ¿Es esta la postura oficial del gobierno?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02ff2072"><p class="cl-02ff140e"><span class="cl-02fccbc2">2020-04-17 22:38:38.994</span></p></td><td class="cl-02ff2073"><p class="cl-02ff140e"><span class="cl-02fccbc2">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02ff207a"><p class="cl-02ff140e"><span class="cl-02fccbc2">Las periodistas Fulana y Mengana denunciaron los hechos 1 y 2 ocurridos en las regiones X y Z. ¿Qué medidas está tomando el ministerio A para prevenir que vuelvan a ocurrir?</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 <p>Ahora, cualquier persona que tenga acceso a la tabla de preguntas puede reproducir el resultado de mi “elección” aleatoria usando el valor <em>semilla</em>.</p>
@@ -264,28 +571,108 @@ Cargando…
 <p>Para crear el formulario en Google Forms demoré menos de diez minutos. El proceso de muestreo de la tabla con valor semilla fue practicamente instantáneo.</p>
 <p>En el siguiente bloque uso código R para demostrar que se tarda mucho menos de un segundo crear una gran cantidad de contraseñas para medios de comunicación.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;"># Creando conjunto de caracteres alfanumericos con</span></span>
-<span id="cb2-2"><span class="co" style="color: #5E5E5E;"># minúsculas, mayúsculas y números</span></span>
-<span id="cb2-3">alfanumericos <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(letters, LETTERS, <span class="dv" style="color: #AD0000;">0</span><span class="sc" style="color: #5E5E5E;">:</span><span class="dv" style="color: #AD0000;">9</span>)</span>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Creando conjunto de caracteres alfanumericos con</span></span>
+<span id="cb2-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># minúsculas, mayúsculas y números</span></span>
+<span id="cb2-3">alfanumericos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(letters, LETTERS, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>)</span>
 <span id="cb2-4"></span>
-<span id="cb2-5"><span class="co" style="color: #5E5E5E;"># Creando función para replicar </span></span>
-<span id="cb2-6"><span class="co" style="color: #5E5E5E;"># creación de contraseña</span></span>
-<span id="cb2-7">crear_contraseñas <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(conjunto, numero) {</span>
+<span id="cb2-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Creando función para replicar </span></span>
+<span id="cb2-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># creación de contraseña</span></span>
+<span id="cb2-7">crear_contraseñas <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(conjunto, numero) {</span>
 <span id="cb2-8">  </span>
-<span id="cb2-9">  <span class="fu" style="color: #4758AB;">replicate</span>(numero, </span>
-<span id="cb2-10">            <span class="fu" style="color: #4758AB;">paste0</span>(<span class="fu" style="color: #4758AB;">sample</span>(<span class="at" style="color: #657422;">x =</span> conjunto, </span>
-<span id="cb2-11">                          <span class="at" style="color: #657422;">size =</span> <span class="dv" style="color: #AD0000;">16</span>, </span>
-<span id="cb2-12">                          <span class="at" style="color: #657422;">replace =</span> <span class="cn" style="color: #8f5902;">TRUE</span>), </span>
-<span id="cb2-13">                   <span class="at" style="color: #657422;">collapse =</span> <span class="st" style="color: #20794D;">""</span>)</span>
+<span id="cb2-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">replicate</span>(numero, </span>
+<span id="cb2-10">            <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste0</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sample</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> conjunto, </span>
+<span id="cb2-11">                          <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span>, </span>
+<span id="cb2-12">                          <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">replace =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>), </span>
+<span id="cb2-13">                   <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">collapse =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>)</span>
 <span id="cb2-14">            )</span>
 <span id="cb2-15">}</span>
 <span id="cb2-16"></span>
-<span id="cb2-17"><span class="co" style="color: #5E5E5E;"># Cantidad de milisegundos requeridos </span></span>
-<span id="cb2-18"><span class="co" style="color: #5E5E5E;"># para crear n contraseñas</span></span>
-<span id="cb2-19">microbenchmark<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">microbenchmark</span>(</span>
-<span id="cb2-20">  <span class="st" style="color: #20794D;">`</span><span class="at" style="color: #657422;">300</span><span class="st" style="color: #20794D;">`</span> <span class="ot" style="color: #003B4F;">=</span> {crear_contraseñas(alfanumericos, <span class="dv" style="color: #AD0000;">300</span>)},</span>
-<span id="cb2-21">  <span class="st" style="color: #20794D;">`</span><span class="at" style="color: #657422;">500</span><span class="st" style="color: #20794D;">`</span> <span class="ot" style="color: #003B4F;">=</span> {crear_contraseñas(alfanumericos, <span class="dv" style="color: #AD0000;">500</span>)},</span>
-<span id="cb2-22">  <span class="st" style="color: #20794D;">`</span><span class="at" style="color: #657422;">1000</span><span class="st" style="color: #20794D;">`</span><span class="ot" style="color: #003B4F;">=</span> {crear_contraseñas(alfanumericos, <span class="dv" style="color: #AD0000;">1000</span>)}</span>
+<span id="cb2-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Cantidad de milisegundos requeridos </span></span>
+<span id="cb2-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># para crear n contraseñas</span></span>
+<span id="cb2-19">microbenchmark<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">microbenchmark</span>(</span>
+<span id="cb2-20">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">300</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> {crear_contraseñas(alfanumericos, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300</span>)},</span>
+<span id="cb2-21">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">500</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span> <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> {crear_contraseñas(alfanumericos, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">500</span>)},</span>
+<span id="cb2-22">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">1000</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> {crear_contraseñas(alfanumericos, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1000</span>)}</span>
 <span id="cb2-23">    )</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
@@ -309,7 +696,7 @@ Cargando…
 </ol>
 </section></div> ]]></description>
   <guid>https://calderonsamuel.github.io/web/posts/2020-04-18-propuesta-para-elegir-preguntas-en-conferencia-de-prensa/index.html</guid>
-  <pubDate>Sat, 18 Apr 2020 05:00:00 GMT</pubDate>
+  <pubDate>Sat, 18 Apr 2020 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>¿Por qué debo dejar que usen mi trabajo?</title>
@@ -360,7 +747,7 @@ Cargando…
 </ol>
 </section></div> ]]></description>
   <guid>https://calderonsamuel.github.io/web/posts/2020-03-10-por-que-debo-dejar-que-usen-mi-trabajo/index.html</guid>
-  <pubDate>Tue, 10 Mar 2020 05:00:00 GMT</pubDate>
+  <pubDate>Tue, 10 Mar 2020 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>¿Cómo hacer un gráfico de parlamento en R?</title>
@@ -372,48 +759,114 @@ Cargando…
 
 <p>Para esta tarea vamos a hacer de uso dos paquetes principalmente: el viejo conocido <code>tidyverse</code> y también de <code>ggpol</code>, una extensión de ggplot2 desarrollada especialmente para este tipo de gráficos. <code>ggforce</code> nos servirá al final sólo para una mejora estética.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(ggpol)</span>
-<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(ggforce)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggpol)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggforce)</span></code></pre></div>
 </div>
 <p>Como en todo gráfico que se realiza con ggplot2, necesitamos primero contar con un <em>data.frame</em> o <em>tibble</em> que contenga la información necesaria para construirlo. La fuente primaria de estos datos es la web de la <a href="https://resultados.eleccionescongresales2020.pe/PRECE2020/">ONPE</a>, de donde se puede obtener el detalle de la votación por varios niveles de desagregación. Debido a que no es propósito de este post mostrar cómo hacer el <em>scrapping</em> de la información, ni el cálculo de las curules, voy a preferir un resumen que ya ha trabajado otra persona para graficar en base a ello.</p>
 <p>En la web de <a href="http://www.joseincio.com/post/resultados-congreso-extraordinario-2020/">José Incio</a> podemos encontrar un cuadro de la distribución de escaños del nuevo congreso peruano. Debido a que esa información aún está actualizándose según el conteo de los votos que ONPE sigue realizando, quiero hacer uso de <code>Sys.time()</code> para mostrar la hora en que estoy escribiendo este post.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;">Sys.time</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Sys.time</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2023-05-19 11:41:38 -05"</code></pre>
 </div>
 </div>
 <p>Haciendo uso del add-in <em>Paste as tribble</em> que el paquete <code>datapasta</code> incluye en RStudio, puedo obtenr el <em>tibble</em> <code>congreso</code>, que no es más que un copy/paste de la tabla elaborada por José Incio disponible a esta hora.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">votos <span class="ot" style="color: #003B4F;">&lt;-</span> tibble<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">tribble</span>(</span>
-<span id="cb4-2">                                          <span class="sc" style="color: #5E5E5E;">~</span>Partido, <span class="sc" style="color: #5E5E5E;">~</span>Escaños,</span>
-<span id="cb4-3">                                  <span class="st" style="color: #20794D;">"ACCION POPULAR"</span>,      25L,</span>
-<span id="cb4-4">                        <span class="st" style="color: #20794D;">"ALIANZA PARA EL PROGRESO"</span>,      22L,</span>
-<span id="cb4-5">   <span class="st" style="color: #20794D;">"FRENTE POPULAR AGRICOLA FIA DEL PERU - FREPAP"</span>,      15L,</span>
-<span id="cb4-6">                                  <span class="st" style="color: #20794D;">"FUERZA POPULAR"</span>,      15L,</span>
-<span id="cb4-7">                               <span class="st" style="color: #20794D;">"UNION POR EL PERU"</span>,      13L,</span>
-<span id="cb4-8">                  <span class="st" style="color: #20794D;">"PARTIDO DEMOCRATICO SOMOS PERU"</span>,      11L,</span>
-<span id="cb4-9">                                    <span class="st" style="color: #20794D;">"PODEMOS PERU"</span>,      11L,</span>
-<span id="cb4-10">  <span class="st" style="color: #20794D;">"EL FRENTE AMPLIO POR JUSTICIA, VIDA Y LIBERTAD"</span>,       9L,</span>
-<span id="cb4-11">                                  <span class="st" style="color: #20794D;">"PARTIDO MORADO"</span>,       9L</span>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">votos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> tibble<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tribble</span>(</span>
+<span id="cb4-2">                                          <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>Partido, <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>Escaños,</span>
+<span id="cb4-3">                                  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ACCION POPULAR"</span>,      25L,</span>
+<span id="cb4-4">                        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ALIANZA PARA EL PROGRESO"</span>,      22L,</span>
+<span id="cb4-5">   <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"FRENTE POPULAR AGRICOLA FIA DEL PERU - FREPAP"</span>,      15L,</span>
+<span id="cb4-6">                                  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"FUERZA POPULAR"</span>,      15L,</span>
+<span id="cb4-7">                               <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"UNION POR EL PERU"</span>,      13L,</span>
+<span id="cb4-8">                  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PARTIDO DEMOCRATICO SOMOS PERU"</span>,      11L,</span>
+<span id="cb4-9">                                    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PODEMOS PERU"</span>,      11L,</span>
+<span id="cb4-10">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"EL FRENTE AMPLIO POR JUSTICIA, VIDA Y LIBERTAD"</span>,       9L,</span>
+<span id="cb4-11">                                  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PARTIDO MORADO"</span>,       9L</span>
 <span id="cb4-12">  )</span></code></pre></div>
 </div>
 <p>El siguiente paso es mejorar el <em>tibble</em> de tal modo que nos permita realizar el gráfico deseado. Empezamos por agregarle un color a cada uno de los partidos presentes en el gráfico. Podemos guiarnos de una <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">hoja de referencia</a> para escoger los colores, tomando en cuenta los colores partidarios. Podemos unir los colores a los partidos haciendo uso de <code>bind_cols()</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">congreso <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tibble</span>(</span>
-<span id="cb5-2">  <span class="at" style="color: #657422;">colores =</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
-<span id="cb5-3">  <span class="st" style="color: #20794D;">"darkred"</span>,</span>
-<span id="cb5-4">  <span class="st" style="color: #20794D;">"dodgerblue4"</span>,</span>
-<span id="cb5-5">  <span class="st" style="color: #20794D;">"deepskyblue3"</span>,</span>
-<span id="cb5-6">  <span class="st" style="color: #20794D;">"darkorange2"</span>,</span>
-<span id="cb5-7">  <span class="st" style="color: #20794D;">"gold2"</span>,</span>
-<span id="cb5-8">  <span class="st" style="color: #20794D;">"brown3"</span>,</span>
-<span id="cb5-9">  <span class="st" style="color: #20794D;">"royalblue3"</span>,</span>
-<span id="cb5-10">  <span class="st" style="color: #20794D;">"forestgreen"</span>,</span>
-<span id="cb5-11">  <span class="st" style="color: #20794D;">"mediumpurple4"</span></span>
-<span id="cb5-12">)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb5-13">  <span class="fu" style="color: #4758AB;">bind_cols</span>(votos)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">congreso <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(</span>
+<span id="cb5-2">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colores =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb5-3">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkred"</span>,</span>
+<span id="cb5-4">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"dodgerblue4"</span>,</span>
+<span id="cb5-5">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"deepskyblue3"</span>,</span>
+<span id="cb5-6">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"darkorange2"</span>,</span>
+<span id="cb5-7">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gold2"</span>,</span>
+<span id="cb5-8">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"brown3"</span>,</span>
+<span id="cb5-9">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"royalblue3"</span>,</span>
+<span id="cb5-10">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"forestgreen"</span>,</span>
+<span id="cb5-11">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mediumpurple4"</span></span>
+<span id="cb5-12">)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_cols</span>(votos)</span></code></pre></div>
 </div>
 <p>Ahora que contamos con los datos, simplemente realizamos el gráfico. Hacemos uso de <code>geom_parliament()</code> del paquete <code>ggpol</code>. Tan sólo necesitamos mapear dos argumentos:</p>
 <ol type="1">
@@ -422,18 +875,54 @@ Cargando…
 </ol>
 <p>Además de eso, usaremos <code>scale_fill_manual()</code> para utilizar nuestros colores personalizados y el nombre de los partidos en la leyenda del gráfico. Luego, <code>coord_fixed()</code> nos ayuda a preservar el ratio de aspecto del gráfico.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">grafico <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">ggplot</span>(congreso)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-2">  <span class="fu" style="color: #4758AB;">geom_parliament</span>(</span>
-<span id="cb6-3">    <span class="fu" style="color: #4758AB;">aes</span>(</span>
-<span id="cb6-4">      <span class="at" style="color: #657422;">seats =</span> Escaños, </span>
-<span id="cb6-5">      <span class="at" style="color: #657422;">fill =</span> Partido), </span>
-<span id="cb6-6">    <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"white"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-7">  <span class="fu" style="color: #4758AB;">scale_fill_manual</span>(</span>
-<span id="cb6-8">    <span class="at" style="color: #657422;">values =</span> congreso<span class="sc" style="color: #5E5E5E;">$</span>colores, </span>
-<span id="cb6-9">    <span class="at" style="color: #657422;">labels =</span> congreso<span class="sc" style="color: #5E5E5E;">$</span>Partido) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-10">  <span class="fu" style="color: #4758AB;">coord_fixed</span>()</span>
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">grafico <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(congreso)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_parliament</span>(</span>
+<span id="cb6-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(</span>
+<span id="cb6-4">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">seats =</span> Escaños, </span>
+<span id="cb6-5">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> Partido), </span>
+<span id="cb6-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">scale_fill_manual</span>(</span>
+<span id="cb6-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values =</span> congreso<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>colores, </span>
+<span id="cb6-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">labels =</span> congreso<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Partido) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coord_fixed</span>()</span>
 <span id="cb6-11"></span>
-<span id="cb6-12"><span class="fu" style="color: #4758AB;">print</span>(grafico)</span></code></pre></div>
+<span id="cb6-12"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(grafico)</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.
 ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.</code></pre>
@@ -448,16 +937,52 @@ Cargando…
 </div>
 <p>Vemos que hemos obtenido el gráfico y los partidos aparecen pintados con los colores que hemos asignado. Sin embargo, aún es posible hacerle unas mejoras estéticas. Usamos <code>theme_no_axes()</code> del paquete <code>ggforce</code> para eliminar las líneas guía de nuestro plano cartesiano y quedarnos sólo con un marco negro. También usamos <code>labs()</code> para agregarle un título a nuestro gráfico y <code>theme()</code> para cambiar el tamaño de los elementos de nuestra leyenda.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">grafico <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-2">  <span class="fu" style="color: #4758AB;">theme_no_axes</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-3">  <span class="fu" style="color: #4758AB;">labs</span>(</span>
-<span id="cb8-4">    <span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"DISTRIBUCIÓN DE ESCAÑOS"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb8-5">  <span class="fu" style="color: #4758AB;">theme</span>(</span>
-<span id="cb8-6">    <span class="at" style="color: #657422;">legend.text =</span> <span class="fu" style="color: #4758AB;">element_text</span>(</span>
-<span id="cb8-7">      <span class="at" style="color: #657422;">size=</span><span class="dv" style="color: #AD0000;">5</span>),</span>
-<span id="cb8-8">    <span class="at" style="color: #657422;">legend.key.size =</span> <span class="fu" style="color: #4758AB;">unit</span>(</span>
-<span id="cb8-9">      <span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">3</span>, </span>
-<span id="cb8-10">      <span class="at" style="color: #657422;">units =</span> <span class="st" style="color: #20794D;">"mm"</span>))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">grafico <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_no_axes</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb8-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"DISTRIBUCIÓN DE ESCAÑOS"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb8-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb8-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.text =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(</span>
+<span id="cb8-7">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>),</span>
+<span id="cb8-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">legend.key.size =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unit</span>(</span>
+<span id="cb8-9">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, </span>
+<span id="cb8-10">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">units =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"mm"</span>))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -472,7 +997,7 @@ Cargando…
 
  ]]></description>
   <guid>https://calderonsamuel.github.io/web/posts/2021-08-15-grafico-de-parlamento/index.html</guid>
-  <pubDate>Wed, 29 Jan 2020 05:00:00 GMT</pubDate>
+  <pubDate>Wed, 29 Jan 2020 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Cédula Elecciones 2020 usando ggplot2 (parte 3)</title>
@@ -484,23 +1009,85 @@ Cargando…
 
 <p>En el <a href="../../blog/cedula-2020-ggplot2-parte-2/">post anterior</a> logramos agregarle texto al esqueleto de nuestra cédula. Ahora debemos aprender a agregarle imágenes. Iniciamos, como siempre, haciendo uso de nuestros paquetes predilectos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <section id="lo-básico" class="level3">
 <h3 class="anchored" data-anchor-id="lo-básico">Lo básico</h3>
 <p>Para poder entender cómo se logra insertar los logos de los partidos políticos hace falta primero entender cómo insertar imágenes a un gráfico de ggplot2. Hasta la fecha, la forma más conveniente que he encontrado es haciendo uso de <code>annotation_custom()</code>. Esta función toma como primer argumento un <code>grob</code>, un objeto que sirve como bloque básico de construcción de todos los gráficos de ggplot2. Para lo que buscamos hacer, colocar los logos de los partidos dentro del gráfico, necesitamos convertir nuestras imágenes en <code>grob</code>s.</p>
 <p>Para que R interprete nuestras imágenes, hacemos uso de la función <code>load.image()</code> del paquete <code>imager</code>. Con el objeto obtenido hacemos uso de la función <code>rasterGrob()</code> del paquete <code>grid</code>, para obtener el <code>grob</code> necesario. Finalmente, <code>annotation_custom()</code> nos permite colocar el <code>grob</code> usando una sintaxis muy similar a la que hemos usado anteriormente con <code>geom_rect()</code>. Con el siguiente ejemplo, que usa el logo de esta página, debería quedar más claro.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-1_b98d297ec927679c8b285a3a9d57b541">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">url_ejemplo <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="st" style="color: #20794D;">"https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg/800px-Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"</span></span>
-<span id="cb2-2">imagen_ejemplo <span class="ot" style="color: #003B4F;">&lt;-</span> imager<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">load.image</span>(url_ejemplo)</span>
-<span id="cb2-3">grob_ejemplo <span class="ot" style="color: #003B4F;">&lt;-</span> grid<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">rasterGrob</span>(imagen_ejemplo)</span>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">url_ejemplo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg/800px-Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"</span></span>
+<span id="cb2-2">imagen_ejemplo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> imager<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">load.image</span>(url_ejemplo)</span>
+<span id="cb2-3">grob_ejemplo <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> grid<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rasterGrob</span>(imagen_ejemplo)</span>
 <span id="cb2-4"></span>
-<span id="cb2-5"><span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-6">  <span class="fu" style="color: #4758AB;">xlim</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>,<span class="dv" style="color: #AD0000;">10</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-7">  <span class="fu" style="color: #4758AB;">ylim</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>,<span class="dv" style="color: #AD0000;">10</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-8">  <span class="fu" style="color: #4758AB;">annotation_custom</span>(<span class="at" style="color: #657422;">grob =</span> grob_ejemplo,</span>
-<span id="cb2-9">                    <span class="at" style="color: #657422;">xmin =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">xmax =</span> <span class="dv" style="color: #AD0000;">10</span>,</span>
-<span id="cb2-10">                    <span class="at" style="color: #657422;">ymin =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">ymax =</span> <span class="dv" style="color: #AD0000;">10</span>)</span></code></pre></div>
+<span id="cb2-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xlim</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ylim</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">annotation_custom</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">grob =</span> grob_ejemplo,</span>
+<span id="cb2-9">                    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmin =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmax =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>,</span>
+<span id="cb2-10">                    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymin =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymax =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="288"></p>
 </div>
@@ -511,49 +1098,137 @@ Cargando…
 <p>Ahora que hemos entendido cómo funciona el procedimiento de agregar las imágenes, estamos listos para agregar los logos a nuestra cédula. Podríamos repetir el procedimiento anterior por cada partido en contienda, sin embargo, aprovechemos las ventajas de usar R para hacerlo más rápido (no necesariamente más sencillo).</p>
 <p>Lo primero será tener los enlaces a todos los logos de los partidos. Esto es posible debido a que el portal <a href="https://votoinformado.jne.gob.pe/voto">Voto Informado</a> cuenta con todos ellos. El vector <code>logo_url</code> fue creado manualmente para contener todos los logos, a excepción del de <strong>Todos por el Perú</strong> debido a que fue eliminado de la contienda por el JNE. En nuestro vector aparece como un <code>NA</code>.</p>
 <div class="cell" data-hash="index_cache/html/logos_75dc7259f3ee6d7b35b80d96dfe3517e">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">logo_url <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
-<span id="cb3-2">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2160.JPG"</span>,</span>
-<span id="cb3-3">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/1366.JPG"</span>,</span>
-<span id="cb3-4">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/1264.JPG"</span>,</span>
-<span id="cb3-5">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/55.JPG"</span>,</span>
-<span id="cb3-6">  <span class="cn" style="color: #8f5902;">NA</span>,</span>
-<span id="cb3-7">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/1257.JPG"</span>,</span>
-<span id="cb3-8">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2840.JPG"</span>,</span>
-<span id="cb3-9">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/4.JPG"</span>,</span>
-<span id="cb3-10">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2173.JPG"</span>,</span>
-<span id="cb3-11">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/5.JPG"</span>,</span>
-<span id="cb3-12">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2731.JPG"</span>,</span>
-<span id="cb3-13">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/47.JPG"</span>,</span>
-<span id="cb3-14">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/14.JPG"</span>,</span>
-<span id="cb3-15">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2191.JPG"</span>,</span>
-<span id="cb3-16">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/32.JPG"</span>,</span>
-<span id="cb3-17">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2649.JPG"</span>,</span>
-<span id="cb3-18">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2646.JPG"</span>,</span>
-<span id="cb3-19">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2235.JPG"</span>,</span>
-<span id="cb3-20">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2218.JPG"</span>,</span>
-<span id="cb3-21">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2190.JPG"</span>,</span>
-<span id="cb3-22">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/22.JPG"</span>,</span>
-<span id="cb3-23">  <span class="st" style="color: #20794D;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/15.JPG"</span></span>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">logo_url <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb3-2">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2160.JPG"</span>,</span>
+<span id="cb3-3">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/1366.JPG"</span>,</span>
+<span id="cb3-4">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/1264.JPG"</span>,</span>
+<span id="cb3-5">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/55.JPG"</span>,</span>
+<span id="cb3-6">  <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>,</span>
+<span id="cb3-7">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/1257.JPG"</span>,</span>
+<span id="cb3-8">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2840.JPG"</span>,</span>
+<span id="cb3-9">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/4.JPG"</span>,</span>
+<span id="cb3-10">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2173.JPG"</span>,</span>
+<span id="cb3-11">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/5.JPG"</span>,</span>
+<span id="cb3-12">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2731.JPG"</span>,</span>
+<span id="cb3-13">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/47.JPG"</span>,</span>
+<span id="cb3-14">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/14.JPG"</span>,</span>
+<span id="cb3-15">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2191.JPG"</span>,</span>
+<span id="cb3-16">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/32.JPG"</span>,</span>
+<span id="cb3-17">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2649.JPG"</span>,</span>
+<span id="cb3-18">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2646.JPG"</span>,</span>
+<span id="cb3-19">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2235.JPG"</span>,</span>
+<span id="cb3-20">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2218.JPG"</span>,</span>
+<span id="cb3-21">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/2190.JPG"</span>,</span>
+<span id="cb3-22">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/22.JPG"</span>,</span>
+<span id="cb3-23">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/15.JPG"</span></span>
 <span id="cb3-24">)</span></code></pre></div>
 </div>
 <p>Ahora que contamos con los enlaces, creamos una función que nos permita repetir el proceso de crear los <code>grob</code>s, de tal modo que podamos usarla sistemáticamente. La función que estamos creando, <code>grob_url()</code>, devuelve los valores <code>NA</code>. El argumento <code>interpolate = TRUE</code> dentro de <code>grid::rasterGrob()</code> ayuda a mejorar la calidad de la imagen.</p>
 <div class="cell" data-hash="index_cache/html/grob_url_caaa6ada68786a5c6cbec55caf2e2854">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">grob_url <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(fileurl){</span>
-<span id="cb4-2">  <span class="cf" style="color: #003B4F;">if</span>(<span class="fu" style="color: #4758AB;">is.na</span>(fileurl)) <span class="fu" style="color: #4758AB;">return</span>(<span class="cn" style="color: #8f5902;">NA</span>)</span>
-<span id="cb4-3">  img <span class="ot" style="color: #003B4F;">&lt;-</span> imager<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">load.image</span>(fileurl)</span>
-<span id="cb4-4">  grob <span class="ot" style="color: #003B4F;">&lt;-</span> grid<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">rasterGrob</span>(</span>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">grob_url <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(fileurl){</span>
+<span id="cb4-2">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(fileurl)) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NA</span>)</span>
+<span id="cb4-3">  img <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> imager<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">load.image</span>(fileurl)</span>
+<span id="cb4-4">  grob <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> grid<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rasterGrob</span>(</span>
 <span id="cb4-5">    img, </span>
-<span id="cb4-6">    <span class="at" style="color: #657422;">interpolate=</span><span class="cn" style="color: #8f5902;">TRUE</span>)</span>
+<span id="cb4-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">interpolate=</span><span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
 <span id="cb4-7">  </span>
 <span id="cb4-8">  grob</span>
 <span id="cb4-9">}</span></code></pre></div>
 </div>
 <p>Ahora que contamos con una función que cumple nuestros objetivos, la aplicamos a todos los enlaces contenidos en <code>logo_url</code>. Para ello hacemos uso de la función <code>map()</code> del paquete <code>purrr</code>. Debido a que <code>map()</code> siempre nos devuelve una lista, usamos la función <code>tibble()</code> para crear un objeto <em>tibble</em> con una sola columna (grob), que contiene cada uno de nuestros <code>grob</code>s. Es el mismo nombre que el primer argumento de <code>annotation_custom()</code>, y tiene un motivo que descubriremos más adelante. El objeto <code>grob</code> ahora es una tabla que contiene listas en su única columna, pero nos permite trabajar con ella como si fuera cualquier <em>data.frame</em> normal.</p>
 <div class="cell" data-hash="index_cache/html/grob_9230994d9fc61ca2f7cf0b6008dc0520">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">grob <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">map</span>(logo_url, grob_url) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb5-2">  <span class="fu" style="color: #4758AB;">tibble</span>(<span class="at" style="color: #657422;">grob =</span> .)</span>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">grob <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(logo_url, grob_url) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">grob =</span> .)</span>
 <span id="cb5-3"></span>
-<span id="cb5-4"><span class="fu" style="color: #4758AB;">head</span>(grob)</span></code></pre></div>
+<span id="cb5-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>(grob)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 1
   grob      
@@ -576,7 +1251,9 @@ Cargando…
 </ol>
 <p>Ya tenemos nuestros <em>grobs</em> mapeados en el tibble <code>grob</code>, ahora necesitamos los otros cuatro argumentos. Sin embargo, estos ya los teníamos desde hace muchísimo antes. Están contenidos en el tibble <code>preferencial</code> que creamos en la <a href="../../blog/cedula-2020-ggplot2-parte-2/">primera parte</a> cuando usamos <code>geom_rect()</code> para dibujar los cuadros para voto preferencial.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-2_615749b95adf95b950e44da489b51407">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">head</span>(preferencial)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>(preferencial)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
    xmin  xmax  ymin  ymax
@@ -591,32 +1268,86 @@ Cargando…
 </div>
 <p>Entonces, lo que necesitamos hacer ahora es unir ambos tibbles con <code>bind_cols()</code> del paquete <code>dplyr()</code>. Luego usamos <code>filter()</code> para librarnos del valor <code>NA</code> porque ya no es útil (de hecho, si lo dejamos ocasionaremos un bug que me costó más tiempo del debido identificar). Finalmente, utilizamos <code>pmap()</code> del paquete <code>purrr</code> para usar cada fila de nuestri tibble como lista de argumentos de <code>annotation_custom()</code>. Con esto, hemos conseguido la lista <code>annotations</code> con la que podemos graficar todos los logos.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-3_0d127a189700cdf80683704df41f527a">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">annotations <span class="ot" style="color: #003B4F;">&lt;-</span> grob <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb9-2">  <span class="fu" style="color: #4758AB;">bind_cols</span>(preferencial) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb9-3">  <span class="fu" style="color: #4758AB;">filter</span>(<span class="sc" style="color: #5E5E5E;">!</span><span class="fu" style="color: #4758AB;">is.na</span>(grob)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb9-4">  <span class="fu" style="color: #4758AB;">pmap</span>(annotation_custom)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">annotations <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> grob <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb9-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_cols</span>(preferencial) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb9-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">is.na</span>(grob)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb9-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pmap</span>(annotation_custom)</span></code></pre></div>
 </div>
 <p>Sin embargo, unir todos los <em>annotations</em> no es tan sencillo como hacer <code>cedula + annotations</code> debido a que <code>annotation_custom()</code> no se comporta como un <code>geom_*</code>. Será necesario crear una función que nos permita hacer una suma recursiva de todos los elementos: <code>rec_ggadd()</code> toma un objeto de <code>ggplot2</code> y una lista para añadir recursivamente sus elementos al objeto. El tercer argumento es un iterador que permite la recursividad, y no necesita ser identificado por quien use la función.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-4_9ce4a45e0bcc3c66943483f7799a1349">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">rec_ggadd <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="cf" style="color: #003B4F;">function</span>(ggobj, lista, <span class="at" style="color: #657422;">i =</span> <span class="fu" style="color: #4758AB;">length</span>(lista)){</span>
-<span id="cb10-2">  <span class="cf" style="color: #003B4F;">if</span>(i <span class="sc" style="color: #5E5E5E;">==</span> <span class="dv" style="color: #AD0000;">1</span>){</span>
-<span id="cb10-3">    ggobj <span class="sc" style="color: #5E5E5E;">+</span> lista[[i]]</span>
-<span id="cb10-4">  } <span class="cf" style="color: #003B4F;">else</span> {</span>
-<span id="cb10-5">    ggobj <span class="ot" style="color: #003B4F;">&lt;-</span> ggobj <span class="sc" style="color: #5E5E5E;">+</span> lista[[i]]</span>
-<span id="cb10-6">    <span class="fu" style="color: #4758AB;">rec_ggadd</span>(ggobj, lista, <span class="at" style="color: #657422;">i =</span> i<span class="dv" style="color: #AD0000;">-1</span>)</span>
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">rec_ggadd <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(ggobj, lista, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">i =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(lista)){</span>
+<span id="cb10-2">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span>(i <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>){</span>
+<span id="cb10-3">    ggobj <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> lista[[i]]</span>
+<span id="cb10-4">  } <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">else</span> {</span>
+<span id="cb10-5">    ggobj <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> ggobj <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> lista[[i]]</span>
+<span id="cb10-6">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rec_ggadd</span>(ggobj, lista, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">i =</span> i<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">-1</span>)</span>
 <span id="cb10-7">  }</span>
 <span id="cb10-8">}</span></code></pre></div>
 </div>
 <p>Ahora sí, sólo queda aplicar la función a nuestra <code>cedula</code> y habremos conseguido lo que tanto deseábamos.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-5_cb092057206bba5857ce522d096b382e">
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">cedula <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rec_ggadd</span>(cedula, annotations)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">cedula <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rec_ggadd</span>(cedula, annotations)</span></code></pre></div>
 </div>
 <p>Imprimimos <code>cedula</code> para ver que todo salió bien.</p>
 <div class="cell" data-hash="index_cache/html/print_bd3bd24e73a6f2a08200c7e8317aa6c4">
 <div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">cedula</span></code></pre></div>
 </div>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-6_62a99048d1c68be5099d1dfee8e1b23b">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;">ggsave</span>(<span class="st" style="color: #20794D;">"cedula-parte-3.png"</span>, cedula)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggsave</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cedula-parte-3.png"</span>, cedula)</span></code></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Saving 3 x 6.4 in image</code></pre>
 </div>
@@ -628,7 +1359,7 @@ Cargando…
 
  ]]></description>
   <guid>https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/index.html</guid>
-  <pubDate>Fri, 24 Jan 2020 05:00:00 GMT</pubDate>
+  <pubDate>Fri, 24 Jan 2020 00:00:00 GMT</pubDate>
   <media:content url="https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/cedula-parte-3.png" medium="image" type="image/png" height="307" width="144"/>
 </item>
 <item>
@@ -641,11 +1372,15 @@ Cargando…
 
 <p>En el <a href="../../post/2020-01-15-cedula-2020-ggplot2-parte-1">post anterior</a> mostramos cómo crear el “esqueleto” de la cédula. En este, en cambio, incluiremos el texto y los logos de los partidos. Primero lo primero, habilitamos los paquetes del tidyverse.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <p>Nos aseguramos de contar con los objetos creados en el paso anterior. Especialmente el objeto <code>cedula</code>, que contiene las instrucciones de nuestro “esqueleto”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;">ls</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ls</span>()</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "cedula"          "has_annotations" "instrucciones"   "preferencial"   
 [5] "rectangulos"    </code></pre>
@@ -653,43 +1388,135 @@ Cargando…
 </div>
 <p>Comenzaremos por crear un vector que contenga los nombres de los partidos políticos en contienda, basados en el orden que obtuvieron en el <a href="https://www.onpe.gob.pe/sala-prensa/notas-prensa/elecciones-congresales-2020-onpe-sorteo-ubicacion-de-organizaciones-politicas-en-cedulas-sufragio/">sorteo</a> realizado por la ONPE para determinar la posición en la cédula. Lo llamamos <code>partidos</code>. .</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">partidos <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
-<span id="cb4-2">  <span class="st" style="color: #20794D;">"EL FRENTE AMPLIO POR JUSTICIA, VIDA Y LIBERTAD"</span>,</span>
-<span id="cb4-3">  <span class="st" style="color: #20794D;">"FUERZA POPULAR"</span>,</span>
-<span id="cb4-4">  <span class="st" style="color: #20794D;">"JUNTOS POR EL PERU"</span>,</span>
-<span id="cb4-5">  <span class="st" style="color: #20794D;">"PERU PATRIA SEGURA"</span>,</span>
-<span id="cb4-6">  <span class="st" style="color: #20794D;">"TODOS POR EL PERU"</span>,</span>
-<span id="cb4-7">  <span class="st" style="color: #20794D;">"ALIANZA PARA EL PROGRESO"</span>,</span>
-<span id="cb4-8">  <span class="st" style="color: #20794D;">"PARTIDO MORADO"</span>,</span>
-<span id="cb4-9">  <span class="st" style="color: #20794D;">"ACCION POPULAR"</span>,</span>
-<span id="cb4-10">  <span class="st" style="color: #20794D;">"AVANZA PAIS – PARTIDO DE INTEGRACION SOCIAL"</span>,</span>
-<span id="cb4-11">  <span class="st" style="color: #20794D;">"RENACIMIENTO UNIDO NACIONAL"</span>,</span>
-<span id="cb4-12">  <span class="st" style="color: #20794D;">"PODEMOS PERU"</span>,</span>
-<span id="cb4-13">  <span class="st" style="color: #20794D;">"UNION POR EL PERU"</span>,</span>
-<span id="cb4-14">  <span class="st" style="color: #20794D;">"PARTIDO DEMOCRATICO SOMOS PERU"</span>,</span>
-<span id="cb4-15">  <span class="st" style="color: #20794D;">"DEMOCRACIA DIRECTA"</span>,</span>
-<span id="cb4-16">  <span class="st" style="color: #20794D;">"PARTIDO APRISTA PERUANO"</span>,</span>
-<span id="cb4-17">  <span class="st" style="color: #20794D;">"PERU NACION"</span>,</span>
-<span id="cb4-18">  <span class="st" style="color: #20794D;">"FRENTE POPULAR AGRICOLA FIA DEL PERU- FREPAP"</span>,</span>
-<span id="cb4-19">  <span class="st" style="color: #20794D;">"PARTIDO POLITICO CONTIGO"</span>,</span>
-<span id="cb4-20">  <span class="st" style="color: #20794D;">"PARTIDO POLITICO NACIONAL PERU LIBRE"</span>,</span>
-<span id="cb4-21">  <span class="st" style="color: #20794D;">"VAMOS PERU"</span>,</span>
-<span id="cb4-22">  <span class="st" style="color: #20794D;">"SOLIDARIDAD NACIONAL"</span>,</span>
-<span id="cb4-23">  <span class="st" style="color: #20794D;">"PARTIDO POPULAR CRISTIANO - PPC"</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">partidos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb4-2">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"EL FRENTE AMPLIO POR JUSTICIA, VIDA Y LIBERTAD"</span>,</span>
+<span id="cb4-3">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"FUERZA POPULAR"</span>,</span>
+<span id="cb4-4">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"JUNTOS POR EL PERU"</span>,</span>
+<span id="cb4-5">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PERU PATRIA SEGURA"</span>,</span>
+<span id="cb4-6">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"TODOS POR EL PERU"</span>,</span>
+<span id="cb4-7">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ALIANZA PARA EL PROGRESO"</span>,</span>
+<span id="cb4-8">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PARTIDO MORADO"</span>,</span>
+<span id="cb4-9">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ACCION POPULAR"</span>,</span>
+<span id="cb4-10">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"AVANZA PAIS – PARTIDO DE INTEGRACION SOCIAL"</span>,</span>
+<span id="cb4-11">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"RENACIMIENTO UNIDO NACIONAL"</span>,</span>
+<span id="cb4-12">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PODEMOS PERU"</span>,</span>
+<span id="cb4-13">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"UNION POR EL PERU"</span>,</span>
+<span id="cb4-14">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PARTIDO DEMOCRATICO SOMOS PERU"</span>,</span>
+<span id="cb4-15">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"DEMOCRACIA DIRECTA"</span>,</span>
+<span id="cb4-16">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PARTIDO APRISTA PERUANO"</span>,</span>
+<span id="cb4-17">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PERU NACION"</span>,</span>
+<span id="cb4-18">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"FRENTE POPULAR AGRICOLA FIA DEL PERU- FREPAP"</span>,</span>
+<span id="cb4-19">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PARTIDO POLITICO CONTIGO"</span>,</span>
+<span id="cb4-20">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PARTIDO POLITICO NACIONAL PERU LIBRE"</span>,</span>
+<span id="cb4-21">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"VAMOS PERU"</span>,</span>
+<span id="cb4-22">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SOLIDARIDAD NACIONAL"</span>,</span>
+<span id="cb4-23">  <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"PARTIDO POPULAR CRISTIANO - PPC"</span>)</span></code></pre></div>
 </div>
 <p>Del mismo modo que utilizamos una secuencia para generar el objeto <code>preferencial</code> en la primera parte, generamos una secuencia para la ubicación de los nombres de los partidos. Esta vez, la generamos directamente dentro de <code>geom_text()</code>, la función que nos permite colocar texto en un gráfico de <code>ggplot</code>. Tengamos en cuenta que el argumento <code>size</code> cambiará según el tamaño en pixeles que le hayamos asignado al gráfico<sup>1</sup>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">cedula <span class="ot" style="color: #003B4F;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb5-2">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
-<span id="cb5-3">    <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fl" style="color: #AD0000;">0.8</span>, </span>
-<span id="cb5-4">        <span class="at" style="color: #657422;">y =</span> <span class="fu" style="color: #4758AB;">seq</span>(</span>
-<span id="cb5-5">          <span class="at" style="color: #657422;">from =</span> <span class="fl" style="color: #AD0000;">27.8</span>, </span>
-<span id="cb5-6">          <span class="at" style="color: #657422;">to =</span> <span class="fl" style="color: #AD0000;">2.6</span>, </span>
-<span id="cb5-7">          <span class="at" style="color: #657422;">by =</span> <span class="sc" style="color: #5E5E5E;">-</span><span class="fl" style="color: #AD0000;">1.2</span>), </span>
-<span id="cb5-8">        <span class="at" style="color: #657422;">label =</span> partidos),</span>
-<span id="cb5-9">      <span class="at" style="color: #657422;">fontface =</span> <span class="st" style="color: #20794D;">"bold"</span>,</span>
-<span id="cb5-10">      <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">1.5</span>,</span>
-<span id="cb5-11">      <span class="at" style="color: #657422;">hjust =</span> <span class="dv" style="color: #AD0000;">0</span>)</span>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">cedula <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(</span>
+<span id="cb5-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>, </span>
+<span id="cb5-4">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(</span>
+<span id="cb5-5">          <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">from =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">27.8</span>, </span>
+<span id="cb5-6">          <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">to =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.6</span>, </span>
+<span id="cb5-7">          <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.2</span>), </span>
+<span id="cb5-8">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> partidos),</span>
+<span id="cb5-9">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fontface =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb5-10">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5</span>,</span>
+<span id="cb5-11">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
 <span id="cb5-12">cedula</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="288"></p>
@@ -697,14 +1524,50 @@ Cargando…
 </div>
 <p>Lo siguiente es incluir el título de la cédula. Para esto utilizamos nuevamente <code>geom_text()</code>. Esta vez será necesario utilizar un <em>linebreak</em> (<code>\n</code>) para tener el texto en dos líneas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">cedula <span class="ot" style="color: #003B4F;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-2">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
-<span id="cb6-3">    <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fl" style="color: #AD0000;">7.5</span>, </span>
-<span id="cb6-4">        <span class="at" style="color: #657422;">y =</span> <span class="fl" style="color: #AD0000;">30.6</span>, </span>
-<span id="cb6-5">        <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"ELECCIONES CONGRESALES</span><span class="sc" style="color: #5E5E5E;">\n</span><span class="st" style="color: #20794D;">EXTRAORDINARIAS 2020"</span>), </span>
-<span id="cb6-6">    <span class="at" style="color: #657422;">fontface =</span> <span class="st" style="color: #20794D;">"bold"</span>,</span>
-<span id="cb6-7">    <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">2.1</span>,</span>
-<span id="cb6-8">    <span class="at" style="color: #657422;">lineheight =</span> <span class="fl" style="color: #AD0000;">0.8</span>)</span>
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">cedula <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(</span>
+<span id="cb6-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7.5</span>, </span>
+<span id="cb6-4">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30.6</span>, </span>
+<span id="cb6-5">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ELECCIONES CONGRESALES</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">EXTRAORDINARIAS 2020"</span>), </span>
+<span id="cb6-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fontface =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb6-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.1</span>,</span>
+<span id="cb6-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>)</span>
 <span id="cb6-9">cedula</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="288"></p>
@@ -712,31 +1575,157 @@ Cargando…
 </div>
 <p>Incluyamos ahora las instrucciones que indican cómo votar. Nuevamente, <code>geom_text()</code> nos servirá para lograrlo. En esta ocasión incluiremos más de un <em>linebreak</em> en algunos casos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">cedula <span class="ot" style="color: #003B4F;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-2">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
-<span id="cb7-3">    <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fl" style="color: #AD0000;">6.3</span>, </span>
-<span id="cb7-4">        <span class="at" style="color: #657422;">y =</span> <span class="fl" style="color: #AD0000;">29.6</span>, </span>
-<span id="cb7-5">        <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"ORGANIZACIÓN POLÍTICA"</span>),</span>
-<span id="cb7-6">    <span class="at" style="color: #657422;">fontface =</span> <span class="st" style="color: #20794D;">"bold"</span>,</span>
-<span id="cb7-7">    <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">1.2</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-8">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
-<span id="cb7-9">    <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fl" style="color: #AD0000;">6.3</span>,</span>
-<span id="cb7-10">        <span class="at" style="color: #657422;">y =</span> <span class="fl" style="color: #AD0000;">28.9</span>,</span>
-<span id="cb7-11">        <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"MARQUE CON UNA CRUZ  +   O UN ASPA   X  DENTRO DEL RECUADRO DEL SÍMBOLO</span><span class="sc" style="color: #5E5E5E;">\n</span><span class="st" style="color: #20794D;">DE SU PREFERENCIA"</span>),</span>
-<span id="cb7-12">    <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">0.9</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-13">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
-<span id="cb7-14">    <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fl" style="color: #AD0000;">13.25</span>,</span>
-<span id="cb7-15">        <span class="at" style="color: #657422;">y =</span> <span class="fl" style="color: #AD0000;">29.5</span>,</span>
-<span id="cb7-16">        <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"VOTO</span><span class="sc" style="color: #5E5E5E;">\n</span><span class="st" style="color: #20794D;">PREFERENCIAL"</span>),</span>
-<span id="cb7-17">    <span class="at" style="color: #657422;">fontface =</span> <span class="st" style="color: #20794D;">"bold"</span>,</span>
-<span id="cb7-18">    <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">1.05</span>,</span>
-<span id="cb7-19">    <span class="at" style="color: #657422;">lineheight =</span> <span class="fl" style="color: #AD0000;">0.8</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb7-20">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
-<span id="cb7-21">    <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> <span class="fl" style="color: #AD0000;">13.25</span>,</span>
-<span id="cb7-22">        <span class="at" style="color: #657422;">y =</span> <span class="fl" style="color: #AD0000;">28.9</span>,</span>
-<span id="cb7-23">        <span class="at" style="color: #657422;">label =</span> <span class="st" style="color: #20794D;">"SI DESEA COLOQUE DENTRO</span><span class="sc" style="color: #5E5E5E;">\n</span><span class="st" style="color: #20794D;">DE LOS RECUADROS UNO O DOS</span><span class="sc" style="color: #5E5E5E;">\n</span><span class="st" style="color: #20794D;">NÚMEROS DE LOS CANDIDATOS</span><span class="sc" style="color: #5E5E5E;">\n</span><span class="st" style="color: #20794D;">DE SU PREFERENCIA"</span>),</span>
-<span id="cb7-24">    <span class="at" style="color: #657422;">size =</span> <span class="fl" style="color: #AD0000;">0.54</span>,</span>
-<span id="cb7-25">    <span class="at" style="color: #657422;">lineheight =</span> <span class="fl" style="color: #AD0000;">0.9</span>)</span>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">cedula <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(</span>
+<span id="cb7-3">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6.3</span>, </span>
+<span id="cb7-4">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">29.6</span>, </span>
+<span id="cb7-5">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ORGANIZACIÓN POLÍTICA"</span>),</span>
+<span id="cb7-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fontface =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb7-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.2</span>)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(</span>
+<span id="cb7-9">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6.3</span>,</span>
+<span id="cb7-10">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">28.9</span>,</span>
+<span id="cb7-11">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MARQUE CON UNA CRUZ  +   O UN ASPA   X  DENTRO DEL RECUADRO DEL SÍMBOLO</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">DE SU PREFERENCIA"</span>),</span>
+<span id="cb7-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.9</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(</span>
+<span id="cb7-14">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.25</span>,</span>
+<span id="cb7-15">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">29.5</span>,</span>
+<span id="cb7-16">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"VOTO</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">PREFERENCIAL"</span>),</span>
+<span id="cb7-17">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fontface =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>,</span>
+<span id="cb7-18">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.05</span>,</span>
+<span id="cb7-19">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb7-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_text</span>(</span>
+<span id="cb7-21">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13.25</span>,</span>
+<span id="cb7-22">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">28.9</span>,</span>
+<span id="cb7-23">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SI DESEA COLOQUE DENTRO</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">DE LOS RECUADROS UNO O DOS</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">NÚMEROS DE LOS CANDIDATOS</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">DE SU PREFERENCIA"</span>),</span>
+<span id="cb7-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.54</span>,</span>
+<span id="cb7-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">lineheight =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.9</span>)</span>
 <span id="cb7-26"></span>
 <span id="cb7-27">cedula</span></code></pre></div>
 <div class="cell-output-display">
@@ -744,9 +1733,6 @@ Cargando…
 </div>
 </div>
 <p>¡Cada vez estamos más cerca! El siguiente paso es incluir los logos de las agrupaciones políticas.</p>
-<div class="cell">
-
-</div>
 
 
 
@@ -758,7 +1744,7 @@ Cargando…
 </ol>
 </section></div> ]]></description>
   <guid>https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index.html</guid>
-  <pubDate>Sat, 18 Jan 2020 05:00:00 GMT</pubDate>
+  <pubDate>Sat, 18 Jan 2020 00:00:00 GMT</pubDate>
   <media:content url="https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/cedula-parte-2.png" medium="image" type="image/png" height="307" width="144"/>
 </item>
 <item>
@@ -772,14 +1758,42 @@ Cargando…
 <p>No tengo conocimiento sobre el software que ha utilizado ONPE para diseñar la cédula que se utilizará en nuestras elecciones congresales, pero es posible intentar replicarla en R, usando funciones de la colección de paquetes del <code>tidyverse</code>.</p>
 <p>Para ello, primero cargamos los paquetes. Omitiré aquí los mensajes y warnings que aparecerán en una sesión normal. Además, en general utilizaré una línea por cada parámetro en las funciones que utilice, de modo que sea fácil de visualizar el código en teléfonos móviles.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <p>El siguiente paso será crear una superficie en la que irá el gráfico. Usaremos las funciones de <code>ggplot2</code> para esto y para todas las futuras personalizaciones. Utilizaremos un ancho de 15 unidades (eje x) y un alto de 32 unidades (eje y) para mantener las proporciones definidas por la ONPE en la <a href="https://busquedas.elperuano.pe/normaslegales/aprueban-modelos-definitivos-de-cedulas-de-sufragio-para-vot-resolucion-jefatural-n-000263-2019-jnonpe-1835783-1/">RESOLUCIÓN JEFATURAL Nº 000263-2019-JN/ONPE</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">cedula <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">ggplot</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-2">  <span class="co" style="color: #5E5E5E;"># límites del plano</span></span>
-<span id="cb2-3">  <span class="fu" style="color: #4758AB;">xlim</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>, <span class="dv" style="color: #AD0000;">15</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb2-4">  <span class="fu" style="color: #4758AB;">ylim</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>, <span class="dv" style="color: #AD0000;">32</span>))</span>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">cedula <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>()<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-2">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># límites del plano</span></span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xlim</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>))<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ylim</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">32</span>))</span>
 <span id="cb2-5"></span>
 <span id="cb2-6">cedula</span></code></pre></div>
 <div class="cell-output-display">
@@ -788,15 +1802,53 @@ Cargando…
 </div>
 <p>Debido a que las líneas divisorias y el fondo no nos ayudan para nuestros propósitos, nos vamos a deshacer de ellos usando <code>theme_void()</code>. Para mantener la referencia de los límites del gráfico, crearemos un marco con borde negro utilizando <code>geom_rect()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">cedula <span class="ot" style="color: #003B4F;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb3-2">  <span class="fu" style="color: #4758AB;">theme_void</span>() <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb3-3">    <span class="co" style="color: #5E5E5E;"># marco rectangular con borde negro</span></span>
-<span id="cb3-4">    <span class="fu" style="color: #4758AB;">geom_rect</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin =</span> <span class="dv" style="color: #AD0000;">0</span>, </span>
-<span id="cb3-5">                  <span class="at" style="color: #657422;">xmax =</span> <span class="dv" style="color: #AD0000;">15</span>, </span>
-<span id="cb3-6">                  <span class="at" style="color: #657422;">ymin =</span> <span class="dv" style="color: #AD0000;">0</span>, </span>
-<span id="cb3-7">                  <span class="at" style="color: #657422;">ymax =</span> <span class="dv" style="color: #AD0000;">32</span>), </span>
-<span id="cb3-8">              <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"black"</span>, </span>
-<span id="cb3-9">              <span class="at" style="color: #657422;">alpha =</span> <span class="dv" style="color: #AD0000;">0</span>)</span>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">cedula <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_void</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-3">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># marco rectangular con borde negro</span></span>
+<span id="cb3-4">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_rect</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmin =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, </span>
+<span id="cb3-5">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmax =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>, </span>
+<span id="cb3-6">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymin =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, </span>
+<span id="cb3-7">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymax =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">32</span>), </span>
+<span id="cb3-8">              <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, </span>
+<span id="cb3-9">              <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
 <span id="cb3-10"></span>
 <span id="cb3-11">cedula</span></code></pre></div>
 <div class="cell-output-display">
@@ -805,19 +1857,71 @@ Cargando…
 </div>
 <p>Lo siguiente es establecer el espacio que ocuparán los elementos de la cédula. En este caso, podemos llamar <code>instrucciones</code> a los marcos de texto que contienen las instrucciones de cómo votar. Los nombres de las columnas del <em>tibble</em> <code>instrucciones</code> nos permitirán identificarlos con los parámetros de <code>geom_rect()</code> cuando lo agreguemos al gráfico.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">instrucciones <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tribble</span>(</span>
-<span id="cb4-2">  <span class="sc" style="color: #5E5E5E;">~</span>xmin, <span class="sc" style="color: #5E5E5E;">~</span>xmax, <span class="sc" style="color: #5E5E5E;">~</span>ymin, <span class="sc" style="color: #5E5E5E;">~</span>ymax,</span>
-<span id="cb4-3">  <span class="fl" style="color: #AD0000;">0.6</span>,  <span class="fl" style="color: #AD0000;">11.8</span>,  <span class="fl" style="color: #AD0000;">28.4</span>,  <span class="fl" style="color: #AD0000;">29.9</span>,</span>
-<span id="cb4-4">  <span class="fl" style="color: #AD0000;">12.1</span>,  <span class="fl" style="color: #AD0000;">14.4</span>,  <span class="fl" style="color: #AD0000;">28.4</span>,  <span class="fl" style="color: #AD0000;">29.9</span>)</span>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">instrucciones <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tribble</span>(</span>
+<span id="cb4-2">  <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>xmin, <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>xmax, <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>ymin, <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>ymax,</span>
+<span id="cb4-3">  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.6</span>,  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.8</span>,  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">28.4</span>,  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">29.9</span>,</span>
+<span id="cb4-4">  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12.1</span>,  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14.4</span>,  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">28.4</span>,  <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">29.9</span>)</span>
 <span id="cb4-5"></span>
-<span id="cb4-6">cedula <span class="ot" style="color: #003B4F;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb4-7">    <span class="co" style="color: #5E5E5E;"># contenedores debajo del título con instruciones</span></span>
-<span id="cb4-8">    <span class="fu" style="color: #4758AB;">geom_rect</span>(<span class="at" style="color: #657422;">data =</span> instrucciones, </span>
-<span id="cb4-9">              <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin =</span> xmin, </span>
-<span id="cb4-10">                  <span class="at" style="color: #657422;">xmax =</span> xmax,</span>
-<span id="cb4-11">                  <span class="at" style="color: #657422;">ymin =</span> ymin, </span>
-<span id="cb4-12">                  <span class="at" style="color: #657422;">ymax =</span> ymax), </span>
-<span id="cb4-13">              <span class="at" style="color: #657422;">alpha =</span> <span class="fl" style="color: #AD0000;">0.25</span>)</span>
+<span id="cb4-6">cedula <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-7">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># contenedores debajo del título con instruciones</span></span>
+<span id="cb4-8">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> instrucciones, </span>
+<span id="cb4-9">              <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmin =</span> xmin, </span>
+<span id="cb4-10">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmax =</span> xmax,</span>
+<span id="cb4-11">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymin =</span> ymin, </span>
+<span id="cb4-12">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymax =</span> ymax), </span>
+<span id="cb4-13">              <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>)</span>
 <span id="cb4-14">cedula</span></code></pre></div>
 <div class="cell-output-display">
 <p><img src="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index_files/figure-html/instrucciones-1.png" class="img-fluid" width="288"></p>
@@ -825,22 +1929,82 @@ Cargando…
 </div>
 <p>Llamaremos<code>rectangulos</code> a los marcos en los que van contenidos los nombres de las agrupaciones políticas. Debido a que son varios contenedores y la distancia entre ellos es uniforme, crearemos los valores del eje Y usando un generador de secuencias. Los valores del eje X, en cambio, son constantes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">rectangulos <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tibble</span>(<span class="at" style="color: #657422;">xmin =</span> <span class="fl" style="color: #AD0000;">0.6</span>, </span>
-<span id="cb5-2">                      <span class="at" style="color: #657422;">xmax =</span> <span class="fl" style="color: #AD0000;">11.8</span>, </span>
-<span id="cb5-3">                      <span class="at" style="color: #657422;">ymin=</span> <span class="fu" style="color: #4758AB;">seq</span>(</span>
-<span id="cb5-4">                        <span class="at" style="color: #657422;">from =</span> <span class="fl" style="color: #AD0000;">27.3</span>, </span>
-<span id="cb5-5">                        <span class="at" style="color: #657422;">to =</span> <span class="fl" style="color: #AD0000;">2.1</span>, </span>
-<span id="cb5-6">                        <span class="at" style="color: #657422;">by =</span> <span class="sc" style="color: #5E5E5E;">-</span><span class="fl" style="color: #AD0000;">1.2</span>), </span>
-<span id="cb5-7">                      <span class="at" style="color: #657422;">ymax =</span> ymin <span class="sc" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">1</span>)</span>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">rectangulos <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmin =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.6</span>, </span>
+<span id="cb5-2">                      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmax =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.8</span>, </span>
+<span id="cb5-3">                      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymin=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(</span>
+<span id="cb5-4">                        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">from =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">27.3</span>, </span>
+<span id="cb5-5">                        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">to =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.1</span>, </span>
+<span id="cb5-6">                        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.2</span>), </span>
+<span id="cb5-7">                      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymax =</span> ymin <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
 <span id="cb5-8"></span>
-<span id="cb5-9">cedula <span class="ot" style="color: #003B4F;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb5-10"><span class="co" style="color: #5E5E5E;"># rectángulos para nombres de partidos</span></span>
-<span id="cb5-11">    <span class="fu" style="color: #4758AB;">geom_rect</span>(<span class="at" style="color: #657422;">data =</span> rectangulos, </span>
-<span id="cb5-12">              <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin =</span> xmin, </span>
-<span id="cb5-13">                  <span class="at" style="color: #657422;">xmax =</span> xmax,</span>
-<span id="cb5-14">                  <span class="at" style="color: #657422;">ymin =</span> ymin, </span>
-<span id="cb5-15">                  <span class="at" style="color: #657422;">ymax =</span> ymax), </span>
-<span id="cb5-16">              <span class="at" style="color: #657422;">alpha =</span> <span class="fl" style="color: #AD0000;">0.15</span>)</span>
+<span id="cb5-9">cedula <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb5-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># rectángulos para nombres de partidos</span></span>
+<span id="cb5-11">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> rectangulos, </span>
+<span id="cb5-12">              <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmin =</span> xmin, </span>
+<span id="cb5-13">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmax =</span> xmax,</span>
+<span id="cb5-14">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymin =</span> ymin, </span>
+<span id="cb5-15">                  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymax =</span> ymax), </span>
+<span id="cb5-16">              <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.15</span>)</span>
 <span id="cb5-17"></span>
 <span id="cb5-18">cedula</span></code></pre></div>
 <div class="cell-output-display">
@@ -849,40 +2013,172 @@ Cargando…
 </div>
 <p>El <em>tibble</em> <code>preferencial</code> contiene los cuadrados en los que el votante puede marcar el logo de la agrupación política de su preferencia. Modificando un poco su ubicación el eje X en dos ocasiones, permitirá tener también los cuadrados de voto preferencial.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">preferencial <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tibble</span>(</span>
-<span id="cb6-2">  <span class="at" style="color: #657422;">xmin =</span> <span class="fl" style="color: #AD0000;">10.8</span>, </span>
-<span id="cb6-3">  <span class="at" style="color: #657422;">xmax =</span> <span class="fl" style="color: #AD0000;">11.8</span>, </span>
-<span id="cb6-4">  <span class="at" style="color: #657422;">ymin=</span> <span class="fu" style="color: #4758AB;">seq</span>(</span>
-<span id="cb6-5">    <span class="at" style="color: #657422;">from =</span> <span class="fl" style="color: #AD0000;">27.3</span>, </span>
-<span id="cb6-6">    <span class="at" style="color: #657422;">to =</span> <span class="fl" style="color: #AD0000;">2.1</span>, </span>
-<span id="cb6-7">    <span class="at" style="color: #657422;">by =</span> <span class="sc" style="color: #5E5E5E;">-</span><span class="fl" style="color: #AD0000;">1.2</span>), </span>
-<span id="cb6-8">  <span class="at" style="color: #657422;">ymax =</span> ymin <span class="sc" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">1</span>)</span>
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">preferencial <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(</span>
+<span id="cb6-2">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmin =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10.8</span>, </span>
+<span id="cb6-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmax =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11.8</span>, </span>
+<span id="cb6-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymin=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(</span>
+<span id="cb6-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">from =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">27.3</span>, </span>
+<span id="cb6-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">to =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.1</span>, </span>
+<span id="cb6-7">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.2</span>), </span>
+<span id="cb6-8">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymax =</span> ymin <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
 <span id="cb6-9"></span>
-<span id="cb6-10">cedula <span class="ot" style="color: #003B4F;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-11">  <span class="co" style="color: #5E5E5E;"># cuadrados para logo </span></span>
-<span id="cb6-12">  <span class="fu" style="color: #4758AB;">geom_rect</span>(<span class="at" style="color: #657422;">data =</span> preferencial, </span>
-<span id="cb6-13">            <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin =</span> xmin, </span>
-<span id="cb6-14">                <span class="at" style="color: #657422;">xmax =</span> xmax,</span>
-<span id="cb6-15">                <span class="at" style="color: #657422;">ymin =</span> ymin, </span>
-<span id="cb6-16">                <span class="at" style="color: #657422;">ymax =</span> ymax), </span>
-<span id="cb6-17">            <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"black"</span>, </span>
-<span id="cb6-18">            <span class="at" style="color: #657422;">fill =</span> <span class="st" style="color: #20794D;">"white"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-19">  <span class="co" style="color: #5E5E5E;"># cuadrado para voto preferencial 1</span></span>
-<span id="cb6-20">  <span class="fu" style="color: #4758AB;">geom_rect</span>(<span class="at" style="color: #657422;">data =</span> preferencial, </span>
-<span id="cb6-21">            <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin =</span> xmin <span class="sc" style="color: #5E5E5E;">+</span> <span class="fl" style="color: #AD0000;">1.3</span>, </span>
-<span id="cb6-22">                <span class="at" style="color: #657422;">xmax =</span> xmax <span class="sc" style="color: #5E5E5E;">+</span> <span class="fl" style="color: #AD0000;">1.3</span>,</span>
-<span id="cb6-23">                <span class="at" style="color: #657422;">ymin =</span> ymin, </span>
-<span id="cb6-24">                <span class="at" style="color: #657422;">ymax =</span> ymax), </span>
-<span id="cb6-25">            <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"black"</span>, </span>
-<span id="cb6-26">            <span class="at" style="color: #657422;">fill =</span> <span class="st" style="color: #20794D;">"white"</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
-<span id="cb6-27">  <span class="co" style="color: #5E5E5E;"># cuadrado para voto preferencial 1</span></span>
-<span id="cb6-28">  <span class="fu" style="color: #4758AB;">geom_rect</span>(<span class="at" style="color: #657422;">data =</span> preferencial, </span>
-<span id="cb6-29">            <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">xmin =</span> xmin <span class="sc" style="color: #5E5E5E;">+</span> <span class="fl" style="color: #AD0000;">2.6</span>, </span>
-<span id="cb6-30">                <span class="at" style="color: #657422;">xmax =</span> xmax <span class="sc" style="color: #5E5E5E;">+</span> <span class="fl" style="color: #AD0000;">2.6</span>,</span>
-<span id="cb6-31">                <span class="at" style="color: #657422;">ymin =</span> ymin, </span>
-<span id="cb6-32">                <span class="at" style="color: #657422;">ymax =</span> ymax), </span>
-<span id="cb6-33">            <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"black"</span>, </span>
-<span id="cb6-34">            <span class="at" style="color: #657422;">fill =</span> <span class="st" style="color: #20794D;">"white"</span>)</span>
+<span id="cb6-10">cedula <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-11">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># cuadrados para logo </span></span>
+<span id="cb6-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> preferencial, </span>
+<span id="cb6-13">            <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmin =</span> xmin, </span>
+<span id="cb6-14">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmax =</span> xmax,</span>
+<span id="cb6-15">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymin =</span> ymin, </span>
+<span id="cb6-16">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymax =</span> ymax), </span>
+<span id="cb6-17">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, </span>
+<span id="cb6-18">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-19">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># cuadrado para voto preferencial 1</span></span>
+<span id="cb6-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> preferencial, </span>
+<span id="cb6-21">            <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmin =</span> xmin <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.3</span>, </span>
+<span id="cb6-22">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmax =</span> xmax <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.3</span>,</span>
+<span id="cb6-23">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymin =</span> ymin, </span>
+<span id="cb6-24">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymax =</span> ymax), </span>
+<span id="cb6-25">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, </span>
+<span id="cb6-26">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-27">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># cuadrado para voto preferencial 1</span></span>
+<span id="cb6-28">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_rect</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> preferencial, </span>
+<span id="cb6-29">            <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmin =</span> xmin <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.6</span>, </span>
+<span id="cb6-30">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">xmax =</span> xmax <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.6</span>,</span>
+<span id="cb6-31">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymin =</span> ymin, </span>
+<span id="cb6-32">                <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">ymax =</span> ymax), </span>
+<span id="cb6-33">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, </span>
+<span id="cb6-34">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>)</span>
 <span id="cb6-35"></span>
 <span id="cb6-36">cedula</span></code></pre></div>
 <div class="cell-output-display">
@@ -890,15 +2186,12 @@ Cargando…
 </div>
 </div>
 <p>En la segunda parte del post explicaré cómo agregar el texto, tanto de los nombres de los partidos políticos como de las instrucciones para votar.</p>
-<div class="cell">
-
-</div>
 
 
 
  ]]></description>
   <guid>https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index.html</guid>
-  <pubDate>Wed, 15 Jan 2020 05:00:00 GMT</pubDate>
+  <pubDate>Wed, 15 Jan 2020 00:00:00 GMT</pubDate>
   <media:content url="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/cedula-parte-1.png" medium="image" type="image/png" height="307" width="144"/>
 </item>
 <item>
@@ -940,7 +2233,7 @@ Cargando…
 
  ]]></description>
   <guid>https://calderonsamuel.github.io/web/posts/2020-01-13-inicios/index.html</guid>
-  <pubDate>Mon, 13 Jan 2020 05:00:00 GMT</pubDate>
+  <pubDate>Mon, 13 Jan 2020 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
