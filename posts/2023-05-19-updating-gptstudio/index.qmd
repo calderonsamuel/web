@@ -4,17 +4,22 @@ author: Samuel Calderon
 date: '2023-05-19'
 categories:
   - "rweekly"
+knitr: 
+  opts_chunk: 
+    comment: "#>"
+    class-output: "text-muted"
+    class-error: "text-danger"
 ---
 
 This post summarizes the challenges overcomed while trying to improve three areas of the ChatGPT addin (shiny app) from `{gptstudio}`. 
 
-This post is a recap of the challenges I encountered while working on enhancing the ChatGPT addin (shiny app) from {gptstudio}. The whole journey began quite unexpectedly for me. I was developing a shiny app for my work and decided to venture into writing JavaScript code. However, I felt that the autocomplete feature in the RStudio IDE wasn't the best available. So, I decided to give VSCode a shot. 
+The whole journey began quite unexpectedly for me. I was developing a shiny app for my work and decided to venture into writing JavaScript code. However, I felt that the autocomplete feature in the RStudio IDE wasn't the best available. So, I decided to give VSCode a shot. 
 
-As I'm not well versed with JS (or VSCode), I was requesting a lot of help from ChatGPT. That's when I stumbled upon the [Genie extension](https://github.com/ai-genie/chatgpt-vscode), which integrates ChatGPT seamlessly into the IDE (provided you have a valid API key).
+As I'm not well versed with JS (or VSCode), I was requesting a lot of help from ChatGPT. That's when I stumbled upon the [Genie extension](https://github.com/ai-genie/chatgpt-vscode), which integrates ChatGPT seamlessly into the IDE (provided you have a valid API key). That got me thinking: shouldn't we have a similar integration for the RStudio IDE?
 
-That got me thinking: shouldn't we have a similar integration for the RStudio IDE? It turns out, I wasn't the only one who had this idea. That's when I stumbled upon version 0.1.0 of `{gptstudio}` and decided to give its ChatGPT addin a try. To my surprise, it exceeded my expectations, and I was intrigued to explore it further. I enthusiastically checked out its GitHub repository and couldn't resist giving it a well-deserved star. As I dug deeper, I made an unexpected discovery—an open issue with a `help wanted` label.
+It turns out, I wasn't the only one who had this idea. Version 0.1.0 of `{gptstudio}` was already on CRAN, so I decided to give its ChatGPT addin a try. To my surprise, it exceeded my expectations, and I was intrigued to explore it further. I enthusiastically checked out its GitHub repository and couldn't resist giving it a well-deserved star. As I dug deeper, I made an unexpected discovery—an open issue with a `help wanted` label.
 
-## Run Shiny App in Background [#64](https://github.com/MichelNivard/gptstudio/issues/64)
+## Run Shiny App in Background - issue [#64](https://github.com/MichelNivard/gptstudio/issues/64)
 
 *Isn't that the guy from the R4DS slack channel? Also, I agree with him*
 
@@ -27,23 +32,302 @@ After trying this in my fork of the package, I documented all my code and submit
 ## The UI should resemble a chat
 
 Even though at the moment you were able to have your chat assistant, the UI was a bit awkward to navigate when you had a long chat history. I had the intention to just move the text input to the bottom of the app, like in a chat window. 
-In order to do that I though that I should incorporate shiny modules and separate the app in smaller, more manageable, components. Ok this was a couple more lines of code that I expected. After that, I though that the viewer pane was very small to have a lot of controls always visible, and decided to hide some inputs on a "Configuration" dropdown button. 
+In order to do that, I thought that I should incorporate shiny modules and separate the app into smaller, more manageable components. Okay, this was a couple more lines of code than I expected. After that, I thought that the viewer pane was very small to have a lot of controls always visible and decided to hide some inputs in a "Configuration" dropdown button. 
 
 *But shiny doesn't have native dropdown buttons. Should I import bs4Dash just to have them? Should I make my own? Maybe the theme colors are a bit weird. Should I change them? How on earth will I test all these changes? Will the previous tests even pass? I would love to have the app's theme match the RStudio IDE theme of every user. I would also love to provide a welcome message to the users. Oh man, I would totally love to have a "Copy" button on every code chunk provided in the responses (this was the hardest thing to get done).*
 
-At the end the small contribution I intended to make was [59 commits long](https://github.com/MichelNivard/gptstudio/pull/78) and I wont even say how many files were affected. I was very hessitant to make a Pull request for something nobody had asked for so I went for the "Discussions" tab. 
+In the end, the small contribution I intended to make was [59 commits long](https://github.com/MichelNivard/gptstudio/pull/78), and I won't even say how many files were affected. I was very hesitant to make a pull request for something nobody had asked for, so I went for the "Discussions" tab. 
 
-*Me: Hey guys, I did this.  I haven't done a PR yet because no one really asked for this...*
+*Me: Hey guys, I did this. I haven't done a PR yet because no one really asked for this...*
 
 *JamesHWade: This is fantastic! I would very much welcome a PR. Great work!!!*
 
-*MichelNivard: Amazing! yes please submit a PR would love this!*
+*MichelNivard: Amazing! Yes, please submit a PR. I would love this!*
 
-Ok then. Pull request merged!! 
+Okay then. Pull request merged!! So, what was the difficult part? Here comes the code.
 
+### The copy button
+
+As I said before, I really wanted to have a button to easily add any code chunk text to the user's system clipboard. At the time, I was unsure about doing it in R or in JS. I'll explain why.
+
+When you send a prompt to ChatGPT, it will, by default, respond in markdown. You can easily convert that to HTML with `shiny::markdown()` and render it dynamically. A minimal shiny app to do that would look like this:
+
+
+```{r}
+#| lst-label: "lst-minimal-app"
+#| lst-cap: "Minimal shiny app"
+#| class-source: lst
+#| eval: false
+library(shiny)
+
+ask_chatgpt <- function(prompt) {
+  # code to make the request
+}
+
+ui <- fluidPage(
+  textInput("prompt", "Enter your prompt"),
+  actionButton("send", "Send prompt"),
+  uiOutput("response")
+)
+
+server <- function(input, output, session) {
+  output$reponse <- renderUI({
+    
+    ask_chatgpt(input$prompt) |> 
+      shiny::markdown()
+    
+  }) |> 
+    bindEvent(input$send)
+}
+
+shinyApp(ui, server)
+```
+
+This receives a response, converts it to HTML, and sends it to the browser to be displayed. Every code chunk present would be wrapped inside a `<pre>` HTML tag, and because we aim to prepend a copy button to them, this tag should be the *selector* for any future manipulation.
+
+Now, we need to decide whether to do it in R or in JS. My first instinct was to do it via JS once the full answer was rendered. I would need a listener for a render event on any `<pre>` tag. This was my first attempt:
+
+
+```{ojs}
+//| lst-label: lst-js-first-attempt
+//| lst-cap: "First attempt in JS"
+//| eval: false
+$('pre').each(function() {
+  const $codeChunk = $(this);
+  const $copyButton = $('<button>').text('Copy');
+  $codeChunk.prepend($copyButton);
+
+  $copyButton.on('click', function() {
+    const codeText = $codeChunk.text();
+    navigator.clipboard.writeText(codeText);
+  });
+});
+```
+
+This can prepend a "Copy" button to a code chunk, but it doesn't do it automatically after rendering. In fact, there is nothing in that code to handle the render event. I searched a lot for methods to achieve that, but unfortunately, I wasn't able to find or understand the necessary code to implement it (remember that all this began because I wasn't well-versed in JS). So, in the end, I would have to do it from R.
+
+So, what is the best way to manipulate HTML tags in R? From my point of view, it is by using `htmltools::tagQuery()` and its corresponding methods. However, that function requires a `tag()`, `tagList()`, or a `list()` of tags. I didn't have that. Compare these outputs:
+
+
+```{r}
+#| lst-label: lst-comparison
+#| lst-cap: "Comparison"
+htmltools::h1("Title 1") |> class()
+
+shiny::markdown("# Title 1") |> class()
+```
+
+Well then, can't we just add the "shiny.tag" class to the rendered markdown to be able to use `tagQuery()`? Well...
+
+```{r}
+#| error: true
+#| lst-label: lst-tagquery-error
+#| lst-cap: "tagQuery error"
+tag_example <- shiny::markdown("# Title 1")
+class(tag_example) <- c(class(tag_example), "shiny.tag")
+
+htmltools::tagQuery(tag_example)
+```
+
+I invite you to try to understand that error message. I, however, decided not to try. What should we do now? Is there a way to convert an `"html"` character to an object that `tagQuery()` can handle? Not that I knew of. But, after a not-so-quick Google search, I came across [this Github repo](https://github.com/alandipert/html2r) where Alan Dipert had shared a shiny app to handle that conversion. His code covered almost every tag conversion, but it didn't work for all my tests and used the `{XML}` package, which was totally unfamiliar to me.
+
+I decided to implement a new version of the code with `{xml2}`, `{glue}`, and `{purrr}` at its core, which I managed to get working after several tries. You can see the code in [this snapshot](https://github.com/calderonsamuel/gptstudio/blob/d5cd13c673eda1e70880f576972ce8fa355dcb58/R/html_to_taglist.R).
+
+```{r}
+#| code-fold: true
+library(magrittr)
+
+#' Convert HTML to a Tag List
+#'
+#' This function takes a character string of HTML code and returns a tag list that can be used to
+#' display the HTML content in an R Markdown document or Shiny app. The resulting tag list can be
+#' passed as an argument to the `htmltools::tagQuery()` function or used as an input to other HTML
+#' rendering functions in R.
+#'
+#' @param html A character string of HTML code
+#' @return A tag list that can be used to display the HTML content
+#' @export
+html_to_taglist <- function(html) {
+  html %>%
+    html_to_r() %>%
+    parse(text = .) %>%
+    eval()
+}
+
+
+#' Convert HTML to R Code
+#'
+#' This function takes a character string of HTML code and returns a styled R code that can be used
+#' to recreate the HTML structure. The resulting R code is a character string that can be copied and
+#' pasted into an R script or console.
+#'
+#' @param html A character string of HTML code
+#' @return A character string of styled R code that can be used to recreate the HTML structure
+#' @export
+html_to_r <- function(html) {
+  html %>%
+    html_str_to_nodeset() %>%
+    purrr::map(get_node_params) %>%
+    purrr::map_chr(node_params_to_str) %>%
+    glue::glue_collapse(sep = ", ") %>%
+    into_taglist()
+}
+
+#' HTML string to xml nodeset
+#'
+#' This function takes HTML defined as a string and returns it as a xml_nodeset.
+#'
+#' @param str A character string that represents the HTML to be parsed
+#' @return A nodeset representing the parsed HTML
+html_str_to_nodeset <- function(str) {
+  str %>%
+    xml2::read_html() %>%
+    xml2::xml_find_all("./body/*")
+}
+
+
+node_is_text <- function(node) xml2::xml_name(node) == "text"
+
+node_text_is_empty <- function(node) xml2::xml_text(node, trim = TRUE) == ""
+
+node_content_is_nodeset <- function(node) "xml_nodeset" %in% class(node$contents)
+
+node_content_is_empty <- function(node) length(node$content) == 0
+
+#' Get Nodeset Tag Contents
+#'
+#' This function takes a nodeset and returns the contents of each tag.
+#'
+#' @param nodeset A nodeset representing a parsed HTML document
+#' @return A character vector containing the contents of each tag in the nodeset
+get_nodeset_tag_contents <- function(nodeset) {
+  nodeset %>%
+    xml2::xml_contents() %>%
+    purrr::discard(\(node) node_is_text(node) && node_text_is_empty(node))
+}
+
+
+#' Get Node Parameters
+#'
+#' This function takes a node and returns a list with its name, attributes, and contents.
+#' This functions applies recursively to every element of its contents until the element is plain text or has no extra content.
+#'
+#' @param node A node representing an element or text node in a parsed HTML document
+#' @return A list with the name, attributes, and contents of the node
+#'
+get_node_params <- function(node) {
+  if (node_is_text(node)) {
+    list(
+      name = "text",
+      attrs = xml2::xml_attrs(node),
+      contents = xml2::xml_text(node)
+    )
+  } else {
+    node_with_params <- list(
+      name = xml2::xml_name(node),
+      attrs = xml2::xml_attrs(node),
+      contents = get_nodeset_tag_contents(node)
+    )
+    if (node_content_is_nodeset(node_with_params) && !node_content_is_empty(node_with_params)) {
+      node_with_params$contents <- node_with_params$contents %>%
+        purrr::map(get_node_params)
+    }
+    node_with_params
+  }
+}
+
+
+#' Convert Attributes to Parameters
+#'
+#' This function takes a named character vector representing attributes and returns a character string
+#' that can be used as a parameter list in an HTML tag.
+#'
+#' @param attrs A named character vector representing attributes
+#' @return A character string that can be used as a parameter list in an HTML tag
+attrs_to_params <- function(attrs) {
+  if (length(attrs) == 0) return("")
+  params_names <- names(attrs)
+  params_values <- unname(attrs)
+  params <- glue::glue("`{params_names}` = \"{params_values}\"")
+  glue::glue_collapse(params, ", ")
+}
+
+
+#' Convert Node Parameters to String
+#'
+#' This function takes a list of parameters for an HTML tag and returns a character string that
+#' represents the tag with the given parameters. Aplies recursively to every child content until
+#' content is text or empty.
+#'
+#' @param node_params A list of parameters for an HTML tag
+#' @return A character string that represents the tag with the given parameters
+#'
+node_params_to_str <- function(node_params) {
+  if (node_params$name == "text") {
+    safe_text <- gsub("'", "\\\\'", node_params$contents)
+    glue::glue("'{safe_text}'")
+  } else {
+    tag_name <- glue::glue("htmltools::tags${node_params$name}")
+    params <- attrs_to_params(node_params$attrs)
+    contents <- node_params$contents
+    if (length(contents) > 0) {
+      contents <- contents %>%
+        purrr::map_chr(node_params_to_str) %>%
+        glue::glue_collapse(sep = ", ")
+      # contents <- paste0(", ", contents)
+    } else {
+      contents <- ""
+    }
+    fun_args <- c(params, contents)
+    fun_args <- fun_args[fun_args != ""]
+    fun_args <- paste(fun_args, collapse = ", ")
+    glue::glue("{tag_name}({fun_args})")
+  }
+}
+
+
+#' Paste tags string inside a tagList
+#'
+#' This function takes a list of HTML tags and returns a character string that, when evaluated,
+#' will produce a tagList object containing the given tags.
+#'
+#' @param tags_str A list of HTML tags
+#' @return A character string that, when evaluated, will produce a tagList object containing the given tags
+into_taglist <- function(tags_str) {
+  glue::glue("htmltools::tagList({tags_str})")
+}
+
+```
+
+
+After that, I was able to run the following:
+
+```{r}
+md_example <- "# Title\n\nSome paragraph content.\n\n```\n# some code content\n```"
+md_rendered <-shiny::markdown(md_example)
+md_translated <- html_to_taglist(md_rendered)
+
+tq_example <- htmltools::tagQuery(md_translated)
+
+tq_example
+```
+
+This meant that I was able to use `tagQuery()`! With this, prepending a copy button is not so difficult. You just need a combination of `htmltools::tags$button()` and `tq$children('pre')$before()`. Of course, you also need to handle the copy action in JS, which was already done in the [first attempt](#lst-js-first-attempt). So, all of this was integrated into version 0.2.0 of `{gptstudio}`.
+
+Now, let's take a look at what happens when we compare the character contents of `md_rendered` and `md_translated`.
+
+```{r}
+as.character(md_rendered)
+as.character(md_translated)
+```
+
+My translation inserts unnecessary whitespace between the opening of the `<pre>` and the `<code>` tags. This results in a weird "indentation" on the first line of every code chunk. This didn't break the app's behavior but it was ugly, and I wasn't really sure why this was happening or how to fix it.
+
+Fortunately, [Iakov Davydov](https://github.com/idavydov) took notice of it and, in addition to fixing the translation, actually implemented the copy button mechanism in JS, superseeding my translation efforts. This person also wrote the original attempt at using the "Enter" key as an alternative to clicking the "Send" button. All of this was added in version 0.2.1 of the package, and my translation code had to be removed. This was bittersweet because it wasn't too easy to achieve, but I understood that it was for the better.
 
 ## Receiving a response shouldn't take too long
 
+At this point we had a better looking app with friendlier input controls. But rendering a response was s-l-o-w.
 
 
 ## Final thoughts
