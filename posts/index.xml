@@ -20,11 +20,11 @@
 
 
 <p>This post summarizes the challenges overcomed while trying to improve three areas of the ChatGPT addin (shiny app) from <code>{gptstudio}</code>.</p>
-<p>This post is a recap of the challenges I encountered while working on enhancing the ChatGPT addin (shiny app) from {gptstudio}. The whole journey began quite unexpectedly for me. I was developing a shiny app for my work and decided to venture into writing JavaScript code. However, I felt that the autocomplete feature in the RStudio IDE wasn’t the best available. So, I decided to give VSCode a shot.</p>
-<p>As I’m not well versed with JS (or VSCode), I was requesting a lot of help from ChatGPT. That’s when I stumbled upon the <a href="https://github.com/ai-genie/chatgpt-vscode">Genie extension</a>, which integrates ChatGPT seamlessly into the IDE (provided you have a valid API key).</p>
-<p>That got me thinking: shouldn’t we have a similar integration for the RStudio IDE? It turns out, I wasn’t the only one who had this idea. That’s when I stumbled upon version 0.1.0 of <code>{gptstudio}</code> and decided to give its ChatGPT addin a try. To my surprise, it exceeded my expectations, and I was intrigued to explore it further. I enthusiastically checked out its GitHub repository and couldn’t resist giving it a well-deserved star. As I dug deeper, I made an unexpected discovery—an open issue with a <code>help wanted</code> label.</p>
-<section id="run-shiny-app-in-background-64" class="level2">
-<h2 class="anchored" data-anchor-id="run-shiny-app-in-background-64">Run Shiny App in Background <a href="https://github.com/MichelNivard/gptstudio/issues/64">#64</a></h2>
+<p>The whole journey began quite unexpectedly for me. I was developing a shiny app for my work and decided to venture into writing JavaScript code. However, I felt that the autocomplete feature in the RStudio IDE wasn’t the best available. So, I decided to give VSCode a shot.</p>
+<p>As I’m not well versed with JS (or VSCode), I was requesting a lot of help from ChatGPT. That’s when I stumbled upon the <a href="https://github.com/ai-genie/chatgpt-vscode">Genie extension</a>, which integrates ChatGPT seamlessly into the IDE (provided you have a valid API key). That got me thinking: shouldn’t we have a similar integration for the RStudio IDE?</p>
+<p>It turns out, I wasn’t the only one who had this idea. Version 0.1.0 of <code>{gptstudio}</code> was already on CRAN, so I decided to give its ChatGPT addin a try. To my surprise, it exceeded my expectations, and I was intrigued to explore it further. I enthusiastically checked out its GitHub repository and couldn’t resist giving it a well-deserved star. As I dug deeper, I made an unexpected discovery—an open issue with a <code>help wanted</code> label.</p>
+<section id="run-shiny-app-in-background---issue-64" class="level2">
+<h2 class="anchored" data-anchor-id="run-shiny-app-in-background---issue-64">Run Shiny App in Background - issue <a href="https://github.com/MichelNivard/gptstudio/issues/64">#64</a></h2>
 <p><em>Isn’t that the guy from the R4DS slack channel? Also, I agree with him</em></p>
 <p>This was the perfect issue to try to solve. Just a few days prior, I had watched a video discussing RStudio jobs for shiny apps. Although I couldn’t locate the video at the time of writing this, I did find a <a href="https://github.com/sol-eng/background-jobs/tree/main/shiny-job#viewing-the-app">README file</a> containing the relevant information.</p>
 <p>To sum it up, I discovered that it is possible to launch an app as a background job and then open it from the R console. This functionality extends to shiny apps that are addins from a package. By doing this, you can have your background shiny app displayed in the Viewer pane of the RStudio IDE.</p>
@@ -32,16 +32,1013 @@
 </section>
 <section id="the-ui-should-resemble-a-chat" class="level2">
 <h2 class="anchored" data-anchor-id="the-ui-should-resemble-a-chat">The UI should resemble a chat</h2>
-<p>Even though at the moment you were able to have your chat assistant, the UI was a bit awkward to navigate when you had a long chat history. I had the intention to just move the text input to the bottom of the app, like in a chat window. In order to do that I though that I should incorporate shiny modules and separate the app in smaller, more manageable, components. Ok this was a couple more lines of code that I expected. After that, I though that the viewer pane was very small to have a lot of controls always visible, and decided to hide some inputs on a “Configuration” dropdown button.</p>
+<p>Even though at the moment you were able to have your chat assistant, the UI was a bit awkward to navigate when you had a long chat history. I had the intention to just move the text input to the bottom of the app, like in a chat window. In order to do that, I thought that I should incorporate shiny modules and separate the app into smaller, more manageable components. Okay, this was a couple more lines of code than I expected. After that, I thought that the viewer pane was very small to have a lot of controls always visible and decided to hide some inputs in a “Configuration” dropdown button.</p>
 <p><em>But shiny doesn’t have native dropdown buttons. Should I import bs4Dash just to have them? Should I make my own? Maybe the theme colors are a bit weird. Should I change them? How on earth will I test all these changes? Will the previous tests even pass? I would love to have the app’s theme match the RStudio IDE theme of every user. I would also love to provide a welcome message to the users. Oh man, I would totally love to have a “Copy” button on every code chunk provided in the responses (this was the hardest thing to get done).</em></p>
-<p>At the end the small contribution I intended to make was <a href="https://github.com/MichelNivard/gptstudio/pull/78">59 commits long</a> and I wont even say how many files were affected. I was very hessitant to make a Pull request for something nobody had asked for so I went for the “Discussions” tab.</p>
+<p>In the end, the small contribution I intended to make was <a href="https://github.com/MichelNivard/gptstudio/pull/78">59 commits long</a>, and I won’t even say how many files were affected. I was very hesitant to make a pull request for something nobody had asked for, so I went for the “Discussions” tab.</p>
 <p><em>Me: Hey guys, I did this. I haven’t done a PR yet because no one really asked for this…</em></p>
 <p><em>JamesHWade: This is fantastic! I would very much welcome a PR. Great work!!!</em></p>
-<p><em>MichelNivard: Amazing! yes please submit a PR would love this!</em></p>
-<p>Ok then. Pull request merged!!</p>
+<p><em>MichelNivard: Amazing! Yes, please submit a PR. I would love this!</em></p>
+<p>Okay then. Pull request merged!! So, what was the difficult part? Here comes the code.</p>
+<section id="the-copy-button" class="level3">
+<h3 class="anchored" data-anchor-id="the-copy-button">The copy button</h3>
+<p>As I said before, I really wanted to have a button to easily add any code chunk text to the user’s system clipboard. At the time, I was unsure about doing it in R or in JS. I’ll explain why.</p>
+<p>When you send a prompt to ChatGPT, it will, by default, respond in markdown. You can easily convert that to HTML with <code>shiny::markdown()</code> and render it dynamically. A minimal shiny app to do that would look like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="lst-minimal-app" data-caption="Minimal shiny app" style="background: #f1f3f5;"><pre class="sourceCode r lst code-with-copy"><code class="sourceCode r"><span id="lst-minimal-app-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(shiny)</span>
+<span id="lst-minimal-app-2"></span>
+<span id="lst-minimal-app-3">ask_chatgpt <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(prompt) {</span>
+<span id="lst-minimal-app-4">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># code to make the request</span></span>
+<span id="lst-minimal-app-5">}</span>
+<span id="lst-minimal-app-6"></span>
+<span id="lst-minimal-app-7">ui <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fluidPage</span>(</span>
+<span id="lst-minimal-app-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">textInput</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"prompt"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Enter your prompt"</span>),</span>
+<span id="lst-minimal-app-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">actionButton</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"send"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Send prompt"</span>),</span>
+<span id="lst-minimal-app-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">uiOutput</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"response"</span>)</span>
+<span id="lst-minimal-app-11">)</span>
+<span id="lst-minimal-app-12"></span>
+<span id="lst-minimal-app-13">server <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(input, output, session) {</span>
+<span id="lst-minimal-app-14">  output<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>reponse <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">renderUI</span>({</span>
+<span id="lst-minimal-app-15">    </span>
+<span id="lst-minimal-app-16">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ask_chatgpt</span>(input<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>prompt) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="lst-minimal-app-17">      shiny<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">markdown</span>()</span>
+<span id="lst-minimal-app-18">    </span>
+<span id="lst-minimal-app-19">  }) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="lst-minimal-app-20">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bindEvent</span>(input<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>send)</span>
+<span id="lst-minimal-app-21">}</span>
+<span id="lst-minimal-app-22"></span>
+<span id="lst-minimal-app-23"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">shinyApp</span>(ui, server)</span></code></pre></div>
+</div>
+<p>This receives a response, converts it to HTML, and sends it to the browser to be displayed. Every code chunk present would be wrapped inside a <code>&lt;pre&gt;</code> HTML tag, and because we aim to prepend a copy button to them, this tag should be the <em>selector</em> for any future manipulation.</p>
+<p>Now, we need to decide whether to do it in R or in JS. My first instinct was to do it via JS once the full answer was rendered. I would need a listener for a render event on any <code>&lt;pre&gt;</code> tag. This was my first attempt:</p>
+<div id="lst-js-first-attempt" class="cell" data-caption="First attempt in JS" data-eval="false">
+<div class="sourceCode cell-code" id="cb1" data-startfrom="94" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 93;"><span id="cb1-94"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">$</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pre'</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">each</span>(<span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>() {</span>
+<span id="cb1-95">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">const</span> $codeChunk <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">$</span>(<span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">this</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-96">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">const</span> $copyButton <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">$</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'&lt;button&gt;'</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">text</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Copy'</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-97">  $codeChunk<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">prepend</span>($copyButton)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-98"></span>
+<span id="cb1-99">  $copyButton<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">on</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'click'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>() {</span>
+<span id="cb1-100">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">const</span> codeText <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> $codeChunk<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">text</span>()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-101">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">navigator</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">clipboard</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">writeText</span>(codeText)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-102">  })<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-103">})<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>This can prepend a “Copy” button to a code chunk, but it doesn’t do it automatically after rendering. In fact, there is nothing in that code to handle the render event. I searched a lot for methods to achieve that, but unfortunately, I wasn’t able to find or understand the necessary code to implement it (remember that all this began because I wasn’t well-versed in JS). So, in the end, I would have to do it from R.</p>
+<p>So, what is the best way to manipulate HTML tags in R? From my point of view, it is by using <code>htmltools::tagQuery()</code> and its corresponding methods. However, that function requires a <code>tag()</code>, <code>tagList()</code>, or a <code>list()</code> of tags. I didn’t have that. Compare these outputs:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="lst-comparison" data-caption="Comparison" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-comparison-1">htmltools<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">h1</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Title 1"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">class</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; [1] "shiny.tag"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="lst-comparison" data-caption="Comparison" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-comparison-1">shiny<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">markdown</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"# Title 1"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">class</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; [1] "html"      "character"</code></pre>
+</div>
+</div>
+<p>Well then, can’t we just add the “shiny.tag” class to the rendered markdown to be able to use <code>tagQuery()</code>? Well…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="lst-tagquery-error" data-caption="tagQuery error" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-tagquery-error-1">tag_example <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> shiny<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">markdown</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"# Title 1"</span>)</span>
+<span id="lst-tagquery-error-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">class</span>(tag_example) <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">class</span>(tag_example), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"shiny.tag"</span>)</span>
+<span id="lst-tagquery-error-3"></span>
+<span id="lst-tagquery-error-4">htmltools<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tagQuery</span>(tag_example)</span></code></pre></div>
+<div class="cell-output cell-output-error">
+<pre class="text-danger"><code>#&gt; Error in list2env(xList, new.env(parent = emptyenv())): first argument must be a named list</code></pre>
+</div>
+</div>
+<p>I invite you to try to understand that error message. I, however, decided not to try. What should we do now? Is there a way to convert an <code>"html"</code> character to an object that <code>tagQuery()</code> can handle? Not that I knew of. But, after a not-so-quick Google search, I came across <a href="https://github.com/alandipert/html2r">this Github repo</a> where Alan Dipert had shared a shiny app to handle that conversion. His code covered almost every tag conversion, but it didn’t work for all my tests and used the <code>{XML}</code> package, which was totally unfamiliar to me.</p>
+<p>I decided to implement a new version of the code with <code>{xml2}</code>, <code>{glue}</code>, and <code>{purrr}</code> at its core, which I managed to get working after several tries. You can see the code in <a href="https://github.com/calderonsamuel/gptstudio/blob/d5cd13c673eda1e70880f576972ce8fa355dcb58/R/html_to_taglist.R">this snapshot</a>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(magrittr)</span>
+<span id="cb5-2"></span>
+<span id="cb5-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' Convert HTML to a Tag List</span></span>
+<span id="cb5-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' This function takes a character string of HTML code and returns a tag list that can be used to</span></span>
+<span id="cb5-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' display the HTML content in an R Markdown document or Shiny app. The resulting tag list can be</span></span>
+<span id="cb5-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' passed as an argument to the `htmltools::tagQuery()` function or used as an input to other HTML</span></span>
+<span id="cb5-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' rendering functions in R.</span></span>
+<span id="cb5-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @param html A character string of HTML code</span></span>
+<span id="cb5-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @return A tag list that can be used to display the HTML content</span></span>
+<span id="cb5-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @export</span></span>
+<span id="cb5-13">html_to_taglist <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(html) {</span>
+<span id="cb5-14">  html <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-15">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">html_to_r</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-16">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">parse</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">text =</span> .) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-17">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">eval</span>()</span>
+<span id="cb5-18">}</span>
+<span id="cb5-19"></span>
+<span id="cb5-20"></span>
+<span id="cb5-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' Convert HTML to R Code</span></span>
+<span id="cb5-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' This function takes a character string of HTML code and returns a styled R code that can be used</span></span>
+<span id="cb5-24"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' to recreate the HTML structure. The resulting R code is a character string that can be copied and</span></span>
+<span id="cb5-25"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' pasted into an R script or console.</span></span>
+<span id="cb5-26"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-27"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @param html A character string of HTML code</span></span>
+<span id="cb5-28"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @return A character string of styled R code that can be used to recreate the HTML structure</span></span>
+<span id="cb5-29"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @export</span></span>
+<span id="cb5-30">html_to_r <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(html) {</span>
+<span id="cb5-31">  html <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-32">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">html_str_to_nodeset</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-33">    purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(get_node_params) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-34">    purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map_chr</span>(node_params_to_str) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-35">    glue<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glue_collapse</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sep =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">", "</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-36">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">into_taglist</span>()</span>
+<span id="cb5-37">}</span>
+<span id="cb5-38"></span>
+<span id="cb5-39"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' HTML string to xml nodeset</span></span>
+<span id="cb5-40"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-41"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' This function takes HTML defined as a string and returns it as a xml_nodeset.</span></span>
+<span id="cb5-42"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-43"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @param str A character string that represents the HTML to be parsed</span></span>
+<span id="cb5-44"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @return A nodeset representing the parsed HTML</span></span>
+<span id="cb5-45">html_str_to_nodeset <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(str) {</span>
+<span id="cb5-46">  str <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-47">    xml2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_html</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-48">    xml2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xml_find_all</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"./body/*"</span>)</span>
+<span id="cb5-49">}</span>
+<span id="cb5-50"></span>
+<span id="cb5-51"></span>
+<span id="cb5-52">node_is_text <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(node) xml2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xml_name</span>(node) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span></span>
+<span id="cb5-53"></span>
+<span id="cb5-54">node_text_is_empty <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(node) xml2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xml_text</span>(node, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">trim =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span></span>
+<span id="cb5-55"></span>
+<span id="cb5-56">node_content_is_nodeset <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(node) <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"xml_nodeset"</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">class</span>(node<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>contents)</span>
+<span id="cb5-57"></span>
+<span id="cb5-58">node_content_is_empty <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(node) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(node<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>content) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb5-59"></span>
+<span id="cb5-60"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' Get Nodeset Tag Contents</span></span>
+<span id="cb5-61"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-62"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' This function takes a nodeset and returns the contents of each tag.</span></span>
+<span id="cb5-63"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-64"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @param nodeset A nodeset representing a parsed HTML document</span></span>
+<span id="cb5-65"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @return A character vector containing the contents of each tag in the nodeset</span></span>
+<span id="cb5-66">get_nodeset_tag_contents <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(nodeset) {</span>
+<span id="cb5-67">  nodeset <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-68">    xml2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xml_contents</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-69">    purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">discard</span>(\(node) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">node_is_text</span>(node) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;&amp;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">node_text_is_empty</span>(node))</span>
+<span id="cb5-70">}</span>
+<span id="cb5-71"></span>
+<span id="cb5-72"></span>
+<span id="cb5-73"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' Get Node Parameters</span></span>
+<span id="cb5-74"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-75"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' This function takes a node and returns a list with its name, attributes, and contents.</span></span>
+<span id="cb5-76"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' This functions applies recursively to every element of its contents until the element is plain text or has no extra content.</span></span>
+<span id="cb5-77"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-78"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @param node A node representing an element or text node in a parsed HTML document</span></span>
+<span id="cb5-79"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @return A list with the name, attributes, and contents of the node</span></span>
+<span id="cb5-80"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-81">get_node_params <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(node) {</span>
+<span id="cb5-82">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">node_is_text</span>(node)) {</span>
+<span id="cb5-83">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb5-84">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span>,</span>
+<span id="cb5-85">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">attrs =</span> xml2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xml_attrs</span>(node),</span>
+<span id="cb5-86">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">contents =</span> xml2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xml_text</span>(node)</span>
+<span id="cb5-87">    )</span>
+<span id="cb5-88">  } <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">else</span> {</span>
+<span id="cb5-89">    node_with_params <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb5-90">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">name =</span> xml2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xml_name</span>(node),</span>
+<span id="cb5-91">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">attrs =</span> xml2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">xml_attrs</span>(node),</span>
+<span id="cb5-92">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">contents =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">get_nodeset_tag_contents</span>(node)</span>
+<span id="cb5-93">    )</span>
+<span id="cb5-94">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">node_content_is_nodeset</span>(node_with_params) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;&amp;</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">node_content_is_empty</span>(node_with_params)) {</span>
+<span id="cb5-95">      node_with_params<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>contents <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> node_with_params<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>contents <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-96">        purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map</span>(get_node_params)</span>
+<span id="cb5-97">    }</span>
+<span id="cb5-98">    node_with_params</span>
+<span id="cb5-99">  }</span>
+<span id="cb5-100">}</span>
+<span id="cb5-101"></span>
+<span id="cb5-102"></span>
+<span id="cb5-103"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' Convert Attributes to Parameters</span></span>
+<span id="cb5-104"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-105"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' This function takes a named character vector representing attributes and returns a character string</span></span>
+<span id="cb5-106"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' that can be used as a parameter list in an HTML tag.</span></span>
+<span id="cb5-107"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-108"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @param attrs A named character vector representing attributes</span></span>
+<span id="cb5-109"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @return A character string that can be used as a parameter list in an HTML tag</span></span>
+<span id="cb5-110">attrs_to_params <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(attrs) {</span>
+<span id="cb5-111">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(attrs) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">return</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>)</span>
+<span id="cb5-112">  params_names <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">names</span>(attrs)</span>
+<span id="cb5-113">  params_values <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unname</span>(attrs)</span>
+<span id="cb5-114">  params <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> glue<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glue</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"`{params_names}` = </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\"</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">{params_values}</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\"</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb5-115">  glue<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glue_collapse</span>(params, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">", "</span>)</span>
+<span id="cb5-116">}</span>
+<span id="cb5-117"></span>
+<span id="cb5-118"></span>
+<span id="cb5-119"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' Convert Node Parameters to String</span></span>
+<span id="cb5-120"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-121"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' This function takes a list of parameters for an HTML tag and returns a character string that</span></span>
+<span id="cb5-122"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' represents the tag with the given parameters. Aplies recursively to every child content until</span></span>
+<span id="cb5-123"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' content is text or empty.</span></span>
+<span id="cb5-124"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-125"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @param node_params A list of parameters for an HTML tag</span></span>
+<span id="cb5-126"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @return A character string that represents the tag with the given parameters</span></span>
+<span id="cb5-127"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-128">node_params_to_str <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(node_params) {</span>
+<span id="cb5-129">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (node_params<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>name <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text"</span>) {</span>
+<span id="cb5-130">    safe_text <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gsub</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"'"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\\\\</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'"</span>, node_params<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>contents)</span>
+<span id="cb5-131">    glue<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glue</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"'{safe_text}'"</span>)</span>
+<span id="cb5-132">  } <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">else</span> {</span>
+<span id="cb5-133">    tag_name <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> glue<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glue</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"htmltools::tags${node_params$name}"</span>)</span>
+<span id="cb5-134">    params <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attrs_to_params</span>(node_params<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>attrs)</span>
+<span id="cb5-135">    contents <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> node_params<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>contents</span>
+<span id="cb5-136">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">length</span>(contents) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>) {</span>
+<span id="cb5-137">      contents <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> contents <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-138">        purrr<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">map_chr</span>(node_params_to_str) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-139">        glue<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glue_collapse</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sep =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">", "</span>)</span>
+<span id="cb5-140">      <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># contents &lt;- paste0(", ", contents)</span></span>
+<span id="cb5-141">    } <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">else</span> {</span>
+<span id="cb5-142">      contents <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span></span>
+<span id="cb5-143">    }</span>
+<span id="cb5-144">    fun_args <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(params, contents)</span>
+<span id="cb5-145">    fun_args <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> fun_args[fun_args <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">!=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">""</span>]</span>
+<span id="cb5-146">    fun_args <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">paste</span>(fun_args, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">collapse =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">", "</span>)</span>
+<span id="cb5-147">    glue<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glue</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"{tag_name}({fun_args})"</span>)</span>
+<span id="cb5-148">  }</span>
+<span id="cb5-149">}</span>
+<span id="cb5-150"></span>
+<span id="cb5-151"></span>
+<span id="cb5-152"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' Paste tags string inside a tagList</span></span>
+<span id="cb5-153"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-154"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' This function takes a list of HTML tags and returns a character string that, when evaluated,</span></span>
+<span id="cb5-155"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' will produce a tagList object containing the given tags.</span></span>
+<span id="cb5-156"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#'</span></span>
+<span id="cb5-157"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @param tags_str A list of HTML tags</span></span>
+<span id="cb5-158"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#' @return A character string that, when evaluated, will produce a tagList object containing the given tags</span></span>
+<span id="cb5-159">into_taglist <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(tags_str) {</span>
+<span id="cb5-160">  glue<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glue</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"htmltools::tagList({tags_str})"</span>)</span>
+<span id="cb5-161">}</span></code></pre></div>
+</details>
+</div>
+<p>After that, I was able to run the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">md_example <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"# Title</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Some paragraph content.</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"># some code content</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">```"</span></span>
+<span id="cb6-2">md_rendered <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span>shiny<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">markdown</span>(md_example)</span>
+<span id="cb6-3">md_translated <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">html_to_taglist</span>(md_rendered)</span>
+<span id="cb6-4"></span>
+<span id="cb6-5">tq_example <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> htmltools<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tagQuery</span>(md_translated)</span>
+<span id="cb6-6"></span>
+<span id="cb6-7">tq_example</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; `$allTags()`:
+#&gt; &lt;h1&gt;Title&lt;/h1&gt;
+#&gt; &lt;p&gt;Some paragraph content.&lt;/p&gt;
+#&gt; &lt;pre&gt;
+#&gt;   &lt;code&gt;# some code content
+#&gt; &lt;/code&gt;
+#&gt; &lt;/pre&gt;
+#&gt; 
+#&gt; `$selectedTags()`: `$allTags()`</code></pre>
+</div>
+</div>
+<p>This meant that I was able to use <code>tagQuery()</code>! With this, prepending a copy button is not so difficult. You just need a combination of <code>htmltools::tags$button()</code> and <code>tq$children('pre')$before()</code>. Of course, you also need to handle the copy action in JS, which was already done in the first attempt. So, all of this was integrated into version 0.2.0 of <code>{gptstudio}</code>.</p>
+<p>Now, let’s take a look at what happens when we compare the character contents of <code>md_rendered</code> and <code>md_translated</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.character</span>(md_rendered)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; [1] "&lt;h1&gt;Title&lt;/h1&gt;\n&lt;p&gt;Some paragraph content.&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;# some code content\n&lt;/code&gt;&lt;/pre&gt;\n"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as.character</span>(md_translated)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; [1] "&lt;h1&gt;Title&lt;/h1&gt;\n&lt;p&gt;Some paragraph content.&lt;/p&gt;\n&lt;pre&gt;\n  &lt;code&gt;# some code content\n&lt;/code&gt;\n&lt;/pre&gt;"</code></pre>
+</div>
+</div>
+<p>My translation inserts unnecessary whitespace between the opening of the <code>&lt;pre&gt;</code> and the <code>&lt;code&gt;</code> tags. This results in a weird “indentation” on the first line of every code chunk. This didn’t break the app’s behavior but it was ugly, and I wasn’t really sure why this was happening or how to fix it.</p>
+<p>Fortunately, <a href="https://github.com/idavydov">Iakov Davydov</a> took notice of it and, in addition to fixing the translation, actually implemented the copy button mechanism in JS, superseeding my translation efforts. This person also wrote the original attempt at using the “Enter” key as an alternative to clicking the “Send” button. All of this was added in version 0.2.1 of the package, and my translation code had to be removed. This was bittersweet because it wasn’t too easy to achieve, but I understood that it was for the better.</p>
+</section>
 </section>
 <section id="receiving-a-response-shouldnt-take-too-long" class="level2">
 <h2 class="anchored" data-anchor-id="receiving-a-response-shouldnt-take-too-long">Receiving a response shouldn’t take too long</h2>
+<p>At this point we had a better looking app with friendlier input controls. But rendering a response was s-l-o-w.</p>
 </section>
 <section id="final-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h2>
