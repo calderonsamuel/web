@@ -11,13 +11,13 @@ knitr:
     class-error: "text-danger"
 ---
 
-This post summarizes the challenges overcomed while trying to improve three areas of the ChatGPT addin (shiny app) from `{gptstudio}`. 
+This post summarizes the challenges overcomed while trying to improve three areas of the ChatGPT addin (shiny app) from `{gptstudio}`.
 
-The whole journey began quite unexpectedly for me. I was developing a shiny app for my work and decided to venture into writing JavaScript code. However, I felt that the autocomplete feature in the RStudio IDE wasn't the best available. So, I decided to give VSCode a shot. 
+The whole journey began quite unexpectedly for me. I was developing a shiny app for my work and decided to venture into writing JavaScript code. However, I felt that the autocomplete feature in the RStudio IDE wasn't the best available. So, I decided to give VSCode a shot.
 
 As I'm not well versed with JS (or VSCode), I was requesting a lot of help from ChatGPT. That's when I stumbled upon the [Genie extension](https://github.com/ai-genie/chatgpt-vscode), which integrates ChatGPT seamlessly into the IDE (provided you have a valid API key). That got me thinking: shouldn't we have a similar integration for the RStudio IDE?
 
-It turns out, I wasn't the only one who had this idea. Version 0.1.0 of `{gptstudio}` was already on CRAN, so I decided to give its ChatGPT addin a try. To my surprise, it exceeded my expectations, and I was intrigued to explore it further. I enthusiastically checked out its GitHub repository and couldn't resist giving it a well-deserved star. As I dug deeper, I made an unexpected discovery—an open issue with a `help wanted` label.
+It turns out, I wasn't the only one who had this idea. Version 0.1.0 of `{gptstudio}` was already on CRAN, so I decided to give its ChatGPT addin a try. To my surprise, it exceeded my expectations, and I was intrigued to explore it further. I enthusiastically checked out its GitHub repository and couldn't resist giving it a well-deserved star. As I dug deeper, I made an unexpected discovery---an open issue with a `help wanted` label.
 
 ## Run Shiny App in Background - issue [#64](https://github.com/MichelNivard/gptstudio/issues/64)
 
@@ -25,18 +25,17 @@ It turns out, I wasn't the only one who had this idea. Version 0.1.0 of `{gptstu
 
 This was the perfect issue to try to solve. Just a few days prior, I had watched a video discussing RStudio jobs for shiny apps. Although I couldn't locate the video at the time of writing this, I did find a [README file](https://github.com/sol-eng/background-jobs/tree/main/shiny-job#viewing-the-app) containing the relevant information.
 
-To sum it up, I discovered that it is possible to launch an app as a background job and then open it from the R console. This functionality extends to shiny apps that are addins from a package. By doing this, you can have your background shiny app displayed in the Viewer pane of the RStudio IDE. 
+To sum it up, I discovered that it is possible to launch an app as a background job and then open it from the R console. This functionality extends to shiny apps that are addins from a package. By doing this, you can have your background shiny app displayed in the Viewer pane of the RStudio IDE.
 
 After trying this in my fork of the package, I documented all my code and submitted a Pull Request to the maintainers, which was integrated in very short time. I was very happy with this but still thought that there some things that could be improved.
 
 ## The UI should resemble a chat
 
-Even though at the moment you were able to have your chat assistant, the UI was a bit awkward to navigate when you had a long chat history. I had the intention to just move the text input to the bottom of the app, like in a chat window. 
-In order to do that, I thought that I should incorporate shiny modules and separate the app into smaller, more manageable components. Okay, this was a couple more lines of code than I expected. After that, I thought that the viewer pane was very small to have a lot of controls always visible and decided to hide some inputs in a "Configuration" dropdown button. 
+Even though at the moment you were able to have your chat assistant, the UI was a bit awkward to navigate when you had a long chat history. I had the intention to just move the text input to the bottom of the app, like in a chat window. In order to do that, I thought that I should incorporate shiny modules and separate the app into smaller, more manageable components. Okay, this was a couple more lines of code than I expected. After that, I thought that the viewer pane was very small to have a lot of controls always visible and decided to hide some inputs in a "Configuration" dropdown button.
 
 *But shiny doesn't have native dropdown buttons. Should I import bs4Dash just to have them? Should I make my own? Maybe the theme colors are a bit weird. Should I change them? How on earth will I test all these changes? Will the previous tests even pass? I would love to have the app's theme match the RStudio IDE theme of every user. I would also love to provide a welcome message to the users. Oh man, I would totally love to have a "Copy" button on every code chunk provided in the responses (this was the hardest thing to get done).*
 
-In the end, the small contribution I intended to make was [59 commits long](https://github.com/MichelNivard/gptstudio/pull/78), and I won't even say how many files were affected. I was very hesitant to make a pull request for something nobody had asked for, so I went for the "Discussions" tab. 
+In the end, the small contribution I intended to make was [59 commits long](https://github.com/MichelNivard/gptstudio/pull/78), and I won't even say how many files were affected. I was very hesitant to make a pull request for something nobody had asked for, so I went for the "Discussions" tab.
 
 *Me: Hey guys, I did this. I haven't done a PR yet because no one really asked for this...*
 
@@ -51,7 +50,6 @@ Okay then. Pull request merged!! So, what was the difficult part? Here comes the
 As I said before, I really wanted to have a button to easily add any code chunk text to the user's system clipboard. At the time, I was unsure about doing it in R or in JS. I'll explain why.
 
 When you send a prompt to ChatGPT, it will, by default, respond in markdown. You can easily convert that to HTML with `shiny::markdown()` and render it dynamically. A minimal shiny app to do that would look like this:
-
 
 ```{r}
 #| lst-label: "lst-minimal-app"
@@ -83,10 +81,18 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
+A flowchart representing this app would look like this:
+
+```{r}
+#| label: fig-process-minimal
+#| fig-cap: "Flowchart of a minimal chat app"
+#| echo: false
+knitr::include_graphics("process-minimal.svg")
+```
+
 This receives a response, converts it to HTML, and sends it to the browser to be displayed. Every code chunk present would be wrapped inside a `<pre>` HTML tag, and because we aim to prepend a copy button to them, this tag should be the *selector* for any future manipulation.
 
 Now, we need to decide whether to do it in R or in JS. My first instinct was to do it via JS once the full answer was rendered. I would need a listener for a render event on any `<pre>` tag. This was my first attempt:
-
 
 ```{ojs}
 //| lst-label: lst-js-first-attempt
@@ -107,7 +113,6 @@ $('pre').each(function() {
 This can prepend a "Copy" button to a code chunk, but it doesn't do it automatically after rendering. In fact, there is nothing in that code to handle the render event. I searched a lot for methods to achieve that, but unfortunately, I wasn't able to find or understand the necessary code to implement it (remember that all this began because I wasn't well-versed in JS). So, in the end, I would have to do it from R.
 
 So, what is the best way to manipulate HTML tags in R? From my point of view, it is by using `htmltools::tagQuery()` and its corresponding methods. However, that function requires a `tag()`, `tagList()`, or a `list()` of tags. I didn't have that. Compare these outputs:
-
 
 ```{r}
 #| lst-label: lst-comparison
@@ -299,7 +304,6 @@ into_taglist <- function(tags_str) {
 
 ```
 
-
 After that, I was able to run the following:
 
 ```{r}
@@ -314,6 +318,15 @@ tq_example
 
 This meant that I was able to use `tagQuery()`! With this, prepending a copy button is not so difficult. You just need a combination of `htmltools::tags$button()` and `tq$children('pre')$before()`. Of course, you also need to handle the copy action in JS, which was already done in the [first attempt](#lst-js-first-attempt). So, all of this was integrated into version 0.2.0 of `{gptstudio}`.
 
+At this point, the flowchart of the app would look like this:
+
+```{r}
+#| label: fig-process-html-to-r
+#| fig-cap: "Flowchart including translation to shiny.tag"
+#| echo: false
+knitr::include_graphics("process-html-to-r.svg")
+```
+
 Now, let's take a look at what happens when we compare the character contents of `md_rendered` and `md_translated`.
 
 ```{r}
@@ -321,14 +334,114 @@ as.character(md_rendered)
 as.character(md_translated)
 ```
 
-My translation inserts unnecessary whitespace between the opening of the `<pre>` and the `<code>` tags. This results in a weird "indentation" on the first line of every code chunk. This didn't break the app's behavior but it was ugly, and I wasn't really sure why this was happening or how to fix it.
+My translation inserts unnecessary white space between the opening of the `<pre>` and the `<code>` tags. This results in a weird "indentation" on the first line of every code chunk. This didn't break the app's behavior but it was ugly, and I wasn't really sure why this was happening or how to fix it.
 
-Fortunately, [Iakov Davydov](https://github.com/idavydov) took notice of it and, in addition to fixing the translation, actually implemented the copy button mechanism in JS, superseeding my translation efforts. This person also wrote the original attempt at using the "Enter" key as an alternative to clicking the "Send" button. All of this was added in version 0.2.1 of the package, and my translation code had to be removed. This was bittersweet because it wasn't too easy to achieve, but I understood that it was for the better.
+Fortunately, [Iakov Davydov](https://github.com/idavydov) took notice of it and, in addition to fixing the translation, actually implemented the copy button mechanism in JS, super-seeding my translation efforts. This person also wrote the original attempt at using the "Enter" key as an alternative to clicking the "Send" button.
+
+With this, the app could be represented with the following flowchart:
+
+```{r}
+#| label: fig-process-copy-btn-in-js
+#| fig-cap: "Flowchart including JS process"
+#| echo: false
+knitr::include_graphics("process-copy-btn-in-js.svg")
+```
+
+Of course, this is a lot simpler. All of this was added in version 0.2.1 of the package, and my translation code had to be removed. This was bittersweet because it wasn't too easy to achieve, but I understood that it was for the better.
 
 ## Receiving a response shouldn't take too long
 
-At this point we had a better looking app with friendlier input controls. But rendering a response was s-l-o-w.
+At this point we had a better looking app with friendlier input controls. But rendering a response was s-l-o-w. The app had to wait for the whole answer before rendering it. If you look carefully at @fig-process-copy-btn-in-js you'll see that it represents a sequential flow. We need to wait for `ask_chatgpt()` to complete before doing anything with the response. But this is not the experience people have while using the original ChatGPT.
 
+In the web, you can see the response being generated in real time almost word by word with a typewriter-like *effect*. In fact, my first assumption was that the ChatGPT web app received its full response much faster than I did with my API requests because of my slow (Peruvian) connection, and that once it had the full response, it rendered it with a typewriter-like animation to ease the user's reading process.
+
+Well, I was totally wrong. It turns out that the API offers the option to *stream* the response. This means that you can get the response while it is being generated, chunk by chunk. So, the typewriter-like effect doesn't actually exist, the response is being constantly rendered while the chunks arrive.
+
+So, to get the same thing in `{gptstudio}` we should just activate the stream option right? Well, yes, but the flow described in @fig-process-copy-btn-in-js can't render the response while it is being streamed. This requires a two step solution that I'll describe now.
+
+### Read the stream in R
+
+At this point in time, I'm not aware of any R project that uses streaming for the OpenAI API. Making traditional http requests is rather straight forward with `{httr2}`. In fact, the internals of `{gptstudio}` where all based on `{httr}` functions that were later translated to `{httr2}`. So, how can we use streaming for this project?
+
+The API documentation provides a [guide](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb) on how to stream completions. EZ, you just need to use the `openai` python library! I imagine there are ways to wrap that library and access it from an app to be used as an addin in RStudio, but I also imagine it would make the setup much more harder than it needs to be.
+
+The OpenAI team also supports an [official Node.js library](https://github.com/openai/openai-node), but it's README file states that it doesn't natively support streaming. So, no easy way to stream chat completions from JS either. It is worth mentioning that setting up a Node.js package to be used in the app would've still been very hard for me (remember that all these begun with me being bad at writing JS code?). So R it is.
+
+As I mentioned before, we were using `{httr2}` for every API interaction. This package provides a [`req_stream()`](https://httr2.r-lib.org/reference/req_stream.html) function that aims to facilitate streaming and sounded really promising. But a problem arised quickly: the format of the streaming response was hard to process.
+
+To illustrate the problem, let's consider prompting "Count from 1 to 5" and receiving a chat completion response without streaming. After after assigning it to the `resp_example` object, it would look like this:
+
+```{r}
+#| echo: false
+resp_example <- list(
+  metadata = "some-metadata",
+  choices = list(
+    list(
+      message = list(
+        role = "assistant", 
+        content = "1, 2, 3, 4, 5"
+      )
+    )
+  ),
+  `other-metadata` = "more-metadata"
+) |> 
+  jsonlite::toJSON(auto_unbox = TRUE, pretty = TRUE)
+```
+
+```{r}
+resp_example
+```
+
+The real content of the response is located inside `resp_example$choices[[1]]$message$content` (markdown). The length of this string is directly proportional to the time it takes to receive the response. This operation is located in the `ask_chatgpt()` process in @fig-process-copy-btn-in-js.
+
+When we use `httr2::req_stream()` we receive the full **response** in chunks while they stream. If we provide the print function as a callback (to be applied at every chunk while it arrives) it would look like the following:
+
+```{r}
+#| echo: false
+chunk_string <- function(x, n) {
+  substrings <- substring(x, seq(1, nchar(x), n), seq(n, nchar(x), n))
+  return(substrings)
+}
+
+resp_example |> 
+  chunk_string(7) |> 
+  purrr::walk(print)
+```
+
+I assumed that was good enough. You can process the chunks as they arrive and apply some clever logic to pull out just the content of the response. This send me down a rabbit hole to get to that clever logic, and it turns out that processing an incomplete JSON with regular expressions is as fun as it sounds. Never forget this legendary quote:
+
+> Some people, when confronted with a problem, think "I know, I'll use regular expressions." Now they have two problems.
+>
+> Jamie Zawinski
+
+Looking for an alternative, I checked the OpenAI guide again, and I realized that the python library returns not the full **response** in chunks, but just the **content** in chunks that individually can be treated as JSON text. How do they do it?
+
+Another rabbit hole looking at the guts of the [`openai`](https://github.com/openai/openai-python) python library. Nothing there suggests that they are doing anything extraordinary to read the stream in chunks of the **content**. But a nice thing in a python script (even if it is located inside a library) is that you can see the packages it imports. [There](https://github.com/openai/openai-python/blob/fe3abd16b582ae784d8a73fd249bcdfebd5752c9/openai/api_requestor.py#L22) I found the [`requests`](https://requests.readthedocs.io/en/latest/) library being imported, which pointed me to the very low level [`urllib3`](https://urllib3.readthedocs.io/en/stable/) library.
+
+Well, what if we do the make that exploration for R? `{gptstudio}` depends on `{httr2}`, which in turn depends on `{curl}`, which has `libcurl` as system requirement. Can `libcurl` do for `{gptstudio}` the same that `urllib3` does for the `openai` python library? The answer is YES!!! I tried the curl example from the OpenAI docs with stream activated directly in the terminal.
+
+```
+curl https://api.openai.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Count from 1 to 5"}],
+    "stream": "true"
+  }'
+```
+
+And boom! It worked in the first try! And it gets better. It turns out that `{curl}` already provides the `curl_fetch_stream()` function to avoid messing directly with `libcurl` in the terminal. In fact, `httr2::req_stream()` makes use of that function, with the caveat that for some reason it streams the full **response** instead of the **content**, as I explained before.
+
+<!-- Incorpore the streamed chunks as example -->
+
+
+And it gets better.
+
+It turns out that `{curl}`, the powerhouse of `{httr2}`, provides 
+
+
+
+### Render the stream without reactivity
 
 ## Final thoughts
-
