@@ -9,7 +9,7 @@
 <link>https://calderonsamuel.github.io/web/posts/index.html</link>
 <atom:link href="https://calderonsamuel.github.io/web/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description>Web de Samuel Calderon</description>
-<generator>quarto-1.3.353</generator>
+<generator>quarto-1.3.361</generator>
 <lastBuildDate>Fri, 19 May 2023 00:00:00 GMT</lastBuildDate>
 <item>
   <title>On updating a chat assistant for the RStudio IDE</title>
@@ -124,10 +124,21 @@ font-style: inherit;">$</span>send)</span>
 background-color: null;
 font-style: inherit;">shinyApp</span>(ui, server)</span></code></pre></div>
 </div>
+<p>A flowchart representing this app would look like this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-process-minimal" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2023-05-19-updating-gptstudio/process-minimal.svg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Flowchart of a minimal chat app</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>This receives a response, converts it to HTML, and sends it to the browser to be displayed. Every code chunk present would be wrapped inside a <code>&lt;pre&gt;</code> HTML tag, and because we aim to prepend a copy button to them, this tag should be the <em>selector</em> for any future manipulation.</p>
 <p>Now, we need to decide whether to do it in R or in JS. My first instinct was to do it via JS once the full answer was rendered. I would need a listener for a render event on any <code>&lt;pre&gt;</code> tag. This was my first attempt:</p>
 <div id="lst-js-first-attempt" class="cell" data-caption="First attempt in JS" data-eval="false">
-<div class="sourceCode cell-code" id="cb1" data-startfrom="94" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 93;"><span id="cb1-94"><span class="fu" style="color: #4758AB;
+<div class="sourceCode cell-code" id="cb1" data-startfrom="100" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 99;"><span id="cb1-100"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">$</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -138,7 +149,7 @@ background-color: null;
 font-style: inherit;">each</span>(<span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">function</span>() {</span>
-<span id="cb1-95">  <span class="kw" style="color: #003B4F;
+<span id="cb1-101">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> $codeChunk <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -149,7 +160,7 @@ background-color: null;
 font-style: inherit;">this</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-96">  <span class="kw" style="color: #003B4F;
+<span id="cb1-102">  <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> $copyButton <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -166,15 +177,15 @@ background-color: null;
 font-style: inherit;">'Copy'</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-97">  $codeChunk<span class="op" style="color: #5E5E5E;
+<span id="cb1-103">  $codeChunk<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">prepend</span>($copyButton)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-98"></span>
-<span id="cb1-99">  $copyButton<span class="op" style="color: #5E5E5E;
+<span id="cb1-104"></span>
+<span id="cb1-105">  $copyButton<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -185,7 +196,7 @@ background-color: null;
 font-style: inherit;">,</span> <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">function</span>() {</span>
-<span id="cb1-100">    <span class="kw" style="color: #003B4F;
+<span id="cb1-106">    <span class="kw" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">const</span> codeText <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -196,7 +207,7 @@ background-color: null;
 font-style: inherit;">text</span>()<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-101">    <span class="bu" style="color: null;
+<span id="cb1-107">    <span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">navigator</span><span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -209,10 +220,10 @@ background-color: null;
 font-style: inherit;">writeText</span>(codeText)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-102">  })<span class="op" style="color: #5E5E5E;
+<span id="cb1-108">  })<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
-<span id="cb1-103">})<span class="op" style="color: #5E5E5E;
+<span id="cb1-109">})<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span></code></pre></div>
 <div class="cell-output cell-output-display">
@@ -1017,6 +1028,17 @@ font-style: inherit;">tagQuery</span>(md_translated)</span>
 </div>
 </div>
 <p>This meant that I was able to use <code>tagQuery()</code>! With this, prepending a copy button is not so difficult. You just need a combination of <code>htmltools::tags$button()</code> and <code>tq$children('pre')$before()</code>. Of course, you also need to handle the copy action in JS, which was already done in the first attempt. So, all of this was integrated into version 0.2.0 of <code>{gptstudio}</code>.</p>
+<p>At this point, the flowchart of the app would look like this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-process-html-to-r" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2023-05-19-updating-gptstudio/process-html-to-r.svg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Flowchart including translation to shiny.tag</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>Now, let’s take a look at what happens when we compare the character contents of <code>md_rendered</code> and <code>md_translated</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
@@ -1032,13 +1054,98 @@ font-style: inherit;">as.character</span>(md_translated)</span></code></pre></di
 <pre class="text-muted"><code>#&gt; [1] "&lt;h1&gt;Title&lt;/h1&gt;\n&lt;p&gt;Some paragraph content.&lt;/p&gt;\n&lt;pre&gt;\n  &lt;code&gt;# some code content\n&lt;/code&gt;\n&lt;/pre&gt;"</code></pre>
 </div>
 </div>
-<p>My translation inserts unnecessary whitespace between the opening of the <code>&lt;pre&gt;</code> and the <code>&lt;code&gt;</code> tags. This results in a weird “indentation” on the first line of every code chunk. This didn’t break the app’s behavior but it was ugly, and I wasn’t really sure why this was happening or how to fix it.</p>
-<p>Fortunately, <a href="https://github.com/idavydov">Iakov Davydov</a> took notice of it and, in addition to fixing the translation, actually implemented the copy button mechanism in JS, superseeding my translation efforts. This person also wrote the original attempt at using the “Enter” key as an alternative to clicking the “Send” button. All of this was added in version 0.2.1 of the package, and my translation code had to be removed. This was bittersweet because it wasn’t too easy to achieve, but I understood that it was for the better.</p>
+<p>My translation inserts unnecessary white space between the opening of the <code>&lt;pre&gt;</code> and the <code>&lt;code&gt;</code> tags. This results in a weird “indentation” on the first line of every code chunk. This didn’t break the app’s behavior but it was ugly, and I wasn’t really sure why this was happening or how to fix it.</p>
+<p>Fortunately, <a href="https://github.com/idavydov">Iakov Davydov</a> took notice of it and, in addition to fixing the translation, actually implemented the copy button mechanism in JS, super-seeding my translation efforts. This person also wrote the original attempt at using the “Enter” key as an alternative to clicking the “Send” button.</p>
+<p>With this, the app could be represented with the following flowchart:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-process-copy-btn-in-js" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2023-05-19-updating-gptstudio/process-copy-btn-in-js.svg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Flowchart including JS process</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Of course, this is a lot simpler. All of this was added in version 0.2.1 of the package, and my translation code had to be removed. This was bittersweet because it wasn’t too easy to achieve, but I understood that it was for the better.</p>
 </section>
 </section>
 <section id="receiving-a-response-shouldnt-take-too-long" class="level2">
 <h2 class="anchored" data-anchor-id="receiving-a-response-shouldnt-take-too-long">Receiving a response shouldn’t take too long</h2>
-<p>At this point we had a better looking app with friendlier input controls. But rendering a response was s-l-o-w.</p>
+<p>At this point we had a better looking app with friendlier input controls. But rendering a response was s-l-o-w. The app had to wait for the whole answer before rendering it. If you look carefully at Figure&nbsp;3 you’ll see that it represents a sequential flow. We need to wait for <code>ask_chatgpt()</code> to complete before doing anything with the response. But this is not the experience people have while using the original ChatGPT.</p>
+<p>In the web, you can see the response being generated in real time almost word by word with a typewriter-like <em>effect</em>. In fact, my first assumption was that the ChatGPT web app received its full response much faster than I did with my API requests because of my slow (Peruvian) connection, and that once it had the full response, it rendered it with a typewriter-like animation to ease the user’s reading process.</p>
+<p>Well, I was totally wrong. It turns out that the API offers the option to <em>stream</em> the response. This means that you can get the response while it is being generated, chunk by chunk. So, the typewriter-like effect doesn’t actually exist, the response is being constantly rendered while the chunks arrive.</p>
+<p>So, to get the same thing in <code>{gptstudio}</code> we should just activate the stream option right? Well, yes, but the flow described in Figure&nbsp;3 can’t render the response while it is being streamed. This requires a two step solution that I’ll describe now.</p>
+<section id="read-the-stream-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="read-the-stream-in-r">Read the stream in R</h3>
+<p>At this point in time, I’m not aware of any R project that uses streaming for the OpenAI API. Making traditional http requests is rather straight forward with <code>{httr2}</code>. In fact, the internals of <code>{gptstudio}</code> where all based on <code>{httr}</code> functions that were later translated to <code>{httr2}</code>. So, how can we use streaming for this project?</p>
+<p>The API documentation provides a <a href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb">guide</a> on how to stream completions. EZ, you just need to use the <code>openai</code> python library! I imagine there are ways to wrap that library and access it from an app to be used as an addin in RStudio, but I also imagine it would make the setup much more harder than it needs to be.</p>
+<p>The OpenAI team also supports an <a href="https://github.com/openai/openai-node">official Node.js library</a>, but it’s README file states that it doesn’t natively support streaming. So, no easy way to stream chat completions from JS either. It is worth mentioning that setting up a Node.js package to be used in the app would’ve still been very hard for me (remember that all these begun with me being bad at writing JS code?). So R it is.</p>
+<p>As I mentioned before, we were using <code>{httr2}</code> for every API interaction. This package provides a <a href="https://httr2.r-lib.org/reference/req_stream.html"><code>req_stream()</code></a> function that aims to facilitate streaming and sounded really promising. But a problem arised quickly: the format of the streaming response was hard to process.</p>
+<p>To illustrate the problem, let’s consider prompting “Count from 1 to 5” and receiving a chat completion response without streaming. After after assigning it to the <code>resp_example</code> object, it would look like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">resp_example</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; {
+#&gt;   "metadata": "some-metadata",
+#&gt;   "choices": [
+#&gt;     {
+#&gt;       "message": {
+#&gt;         "role": "assistant",
+#&gt;         "content": "1, 2, 3, 4, 5"
+#&gt;       }
+#&gt;     }
+#&gt;   ],
+#&gt;   "other-metadata": "more-metadata"
+#&gt; }</code></pre>
+</div>
+</div>
+<p>The real content of the response is located inside <code>resp_example$choices[[1]]$message$content</code> (markdown). The length of this string is directly proportional to the time it takes to receive the response. This operation is located in the <code>ask_chatgpt()</code> process in Figure&nbsp;3.</p>
+<p>When we use <code>httr2::req_stream()</code> we receive the full <strong>response</strong> in chunks while they stream. If we provide the print function as a callback (to be applied at every chunk while it arrives) it would look like the following:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; [1] "{\n  \"me"
+#&gt; [1] "tadata\""
+#&gt; [1] ": \"some"
+#&gt; [1] "-metada"
+#&gt; [1] "ta\",\n  "
+#&gt; [1] "\"choice"
+#&gt; [1] "s\": [\n "
+#&gt; [1] "   {\n  "
+#&gt; [1] "    \"me"
+#&gt; [1] "ssage\":"
+#&gt; [1] " {\n    "
+#&gt; [1] "    \"ro"
+#&gt; [1] "le\": \"a"
+#&gt; [1] "ssistan"
+#&gt; [1] "t\",\n   "
+#&gt; [1] "     \"c"
+#&gt; [1] "ontent\""
+#&gt; [1] ": \"1, 2"
+#&gt; [1] ", 3, 4,"
+#&gt; [1] " 5\"\n   "
+#&gt; [1] "   }\n  "
+#&gt; [1] "  }\n  ]"
+#&gt; [1] ",\n  \"ot"
+#&gt; [1] "her-met"
+#&gt; [1] "adata\":"
+#&gt; [1] " \"more-"
+#&gt; [1] "metadat"
+#&gt; [1] ""</code></pre>
+</div>
+</div>
+<p>I assumed that was good enough. You can process the chunks as they arrive and apply some clever logic to pull out just the content of the response. This send me down a rabbit hole to get to that clever logic, and it turns out that processing an incomplete JSON with regular expressions is as fun as it sounds. Never forget this legendary quote:</p>
+<blockquote class="blockquote">
+<p>Some people, when confronted with a problem, think “I know, I’ll use regular expressions.” Now they have two problems.</p>
+<p>Jamie Zawinski</p>
+</blockquote>
+<p>Looking for an alternative, I checked the OpenAI guide again, and I realized that the python library returns not the full <strong>response</strong> in chunks, but just the <strong>content</strong> in chunks that individually can be treated as JSON text. How do they do it?</p>
+<p>Another rabbit hole looking at the guts of the <a href="https://github.com/openai/openai-python"><code>openai</code></a> python library. Nothing there suggests that they are doing anything extraordinary to read the stream in chunks of the <strong>content</strong>. But a nice thing in a python script (even if it is located inside a library) is that you can see the packages it imports. <a href="https://github.com/openai/openai-python/blob/fe3abd16b582ae784d8a73fd249bcdfebd5752c9/openai/api_requestor.py#L22">There</a> I found the <a href="https://requests.readthedocs.io/en/latest/"><code>requests</code></a> library being imported, which pointed me to the very low level <a href="https://urllib3.readthedocs.io/en/stable/"><code>urllib3</code></a> library.</p>
+<p>Well, what if we do the make that exploration for R? <code>{gptstudio}</code> depends on <code>{httr2}</code>, which in turn depends on <code>{curl}</code>, which has <code>libcurl</code> as system requirement. Can <code>libcurl</code> do for <code>{gptstudio}</code> the same that <code>urllib3</code> does for the <code>openai</code> python library? The answer is YES!!!</p>
+</section>
+<section id="render-the-stream-without-reactivity" class="level3">
+<h3 class="anchored" data-anchor-id="render-the-stream-without-reactivity">Render the stream without reactivity</h3>
+</section>
 </section>
 <section id="final-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h2>
