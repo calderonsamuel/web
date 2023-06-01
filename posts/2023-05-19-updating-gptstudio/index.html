@@ -75,6 +75,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -495,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 #&gt; `$selectedTags()`: `$allTags()`</code></pre>
 </div>
 </div>
-<p>This meant that I was able to use <code>tagQuery()</code>! With this, prepending a copy button is not so difficult. You just need a combination of <code>htmltools::tags$button()</code> and <code>tq$children('pre')$before()</code>. Of course, you also need to handle the copy action in JS, which was already done in the <a href="#lst-js-first-attempt">first attempt</a>. So, all of this was integrated into version 0.2.0 of <code>{gptstudio}</code>.</p>
+<p>This meant that I was able to use <code>tagQuery()</code>! With this, prepending a copy button is not so difficult. You just need a combination of <code>htmltools::tags$button()</code> and <code>tq$children('pre')$before()</code>. Of course, you also need to handle the copy action in JS, which was already done in the <a href="#lst-js-first-attempt">first attempt</a>. So, all of this was integrated into the development version of <code>{gptstudio}</code>.</p>
 <p>At this point, the flowchart of the app would look like this:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -531,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Of course, this is a lot simpler. All of this was added in version 0.2.1 of the package, and my translation code had to be removed. This was bittersweet because it wasn’t too easy to achieve, but I understood that it was for the better.</p>
+<p>Of course, this is a lot simpler. All of this was added in the development version of the package, and my translation code had to be removed. This was bittersweet because it wasn’t too easy to achieve, but I understood that it was for the better.</p>
 </section>
 </section>
 <section id="receiving-a-response-shouldnt-take-too-long" class="level2">
@@ -540,9 +542,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the web, you can see the response being generated in real time almost word by word with a typewriter-like <em>effect</em>. In fact, my first assumption was that the ChatGPT web app received its full response much faster than I did with my API requests because of my slow (Peruvian) connection, and that once it had the full response, it rendered it with a typewriter-like animation to ease the user’s reading process.</p>
 <p>Well, I was totally wrong. It turns out that the API offers the option to <em>stream</em> the response. This means that you can get the response while it is being generated, chunk by chunk. So, the typewriter-like effect doesn’t actually exist, the response is being constantly rendered while the chunks arrive.</p>
 <p>So, to get the same thing in <code>{gptstudio}</code> we should just activate the stream option right? Well, yes, but the flow described in <a href="#fig-process-copy-btn-in-js">Figure&nbsp;3</a> can’t render the response while it is being streamed. This requires a two step solution that I’ll describe now.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you continue reading this section, I want to say that what comes can be hard to understand. I’m focusing on providing <em>clear</em> explanations rather than <em>precise</em> ones. There are some additional processes going on in the chat app that I don’t talk about to avoid distractions.</p>
+<p>In addition, I’m a Peruvian political scientist turned self-taught data analyst, not a computer scientist or a software engineer. So, be patient with me if I happen to have gaps in my programming knowledge, or if I don’t use technical terms with precision, or even if I don’t use English correctly. Having that clear, let’s continue.</p>
+</div>
+</div>
 <section id="read-the-stream-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="read-the-stream-in-r">Read the stream in R</h3>
-<p>At this point in time, I’m not aware of any R project that uses streaming for the OpenAI API. Making traditional http requests is rather straight forward with <code>{httr2}</code>. In fact, the internals of <code>{gptstudio}</code> where all based on <code>{httr}</code> functions that were later translated to <code>{httr2}</code>. So, how can we use streaming for this project?</p>
+<p>At this point in time, I’m not aware of any R project that uses streaming for the OpenAI API. Making <em>traditional</em> http requests is rather straight forward with <code>{httr2}</code>. In fact, the internals of <code>{gptstudio}</code> where all based on <code>{httr}</code> functions that were later translated to <code>{httr2}</code>. So, how can we use streaming for this project?</p>
 <p>The API documentation provides a <a href="https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb">guide</a> on how to stream completions. EZ, you just need to use the <code>openai</code> python library! I imagine there are ways to wrap that library and access it from an app to be used as an addin in RStudio, but I also imagine it would make the setup much more harder than it needs to be.</p>
 <p>The OpenAI team also supports an <a href="https://github.com/openai/openai-node">official Node.js library</a>, but it’s README file states that it doesn’t natively support streaming. So, no easy way to stream chat completions from JS either. It is worth mentioning that setting up a Node.js package to be used in the app would’ve still been very hard for me (remember that all these begun with me being bad at writing JS code?). So R it is.</p>
 <p>As I mentioned before, we were using <code>{httr2}</code> for every API interaction. This package provides a <a href="https://httr2.r-lib.org/reference/req_stream.html"><code>req_stream()</code></a> function that aims to facilitate streaming and sounded really promising. But a problem arised quickly: the format of the streaming response was hard to process.</p>
@@ -604,15 +620,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Jamie Zawinski</p>
 </blockquote>
 <p>Looking for an alternative, I checked the OpenAI guide again, and I realized that the python library returns not the full <strong>response</strong> in chunks, but just the <strong>content</strong> in chunks that individually can be treated as JSON text. How do they do it?</p>
-<p>Another rabbit hole looking at the guts of the <a href="https://github.com/openai/openai-python"><code>openai</code></a> python library. Nothing there suggests that they are doing anything extraordinary to read the stream in chunks of the <strong>content</strong>. But a nice thing in a python script (even if it is located inside a library) is that you can see the packages it imports. <a href="https://github.com/openai/openai-python/blob/fe3abd16b582ae784d8a73fd249bcdfebd5752c9/openai/api_requestor.py#L22">There</a> I found the <a href="https://requests.readthedocs.io/en/latest/"><code>requests</code></a> library being imported, which pointed me to the very low level <a href="https://urllib3.readthedocs.io/en/stable/"><code>urllib3</code></a> library.</p>
-<p>Well, what if we do the make that exploration for R? <code>{gptstudio}</code> depends on <code>{httr2}</code>, which in turn depends on <code>{curl}</code>, which has <code>libcurl</code> as system requirement. Can <code>libcurl</code> do for <code>{gptstudio}</code> the same that <code>urllib3</code> does for the <code>openai</code> python library? The answer is YES!!!</p>
+<p>Another rabbit hole looking at the guts of the <a href="https://github.com/openai/openai-python"><code>openai</code></a> python library. Nothing there suggests that they are doing anything extraordinary to read the stream in chunks of the <strong>content</strong>. But a nice thing in a python script (even if it is located inside a library) is that you can always see directly the packages it imports. <a href="https://github.com/openai/openai-python/blob/fe3abd16b582ae784d8a73fd249bcdfebd5752c9/openai/api_requestor.py#L22">There</a> I found the <a href="https://requests.readthedocs.io/en/latest/"><code>requests</code></a> library being imported, which pointed me to the very low level <a href="https://urllib3.readthedocs.io/en/stable/"><code>urllib3</code></a> library.</p>
+<p>What if we do the same exploration for R? <code>{gptstudio}</code> depends on <code>{httr2}</code>, which in turn depends on <code>{curl}</code>, which has <code>libcurl</code> as system requirement. Can <code>libcurl</code> do for <code>{gptstudio}</code> the same that <code>urllib3</code> does for the <code>openai</code> python library? The answer is YES!!! I tried the curl example from the OpenAI docs with stream activated directly in the terminal.</p>
+<pre><code>curl https://api.openai.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Count from 1 to 5"}],
+    "stream": "true"
+  }'</code></pre>
+<p>And boom! It worked in the first try! And it gets better. It turns out that <code>{curl}</code> already provides the <code>curl_fetch_stream()</code> function to avoid messing directly with <code>libcurl</code> in the terminal. In fact, <code>httr2::req_stream()</code> makes use of that function, with the caveat that for some reason it streams the full <strong>response</strong> instead of the <strong>content</strong>, as I explained before.</p>
+<p>Now, if we just pass the print method as a callback for <code>curl_fetch_stream()</code>, the streaming chunks look like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; {
+#&gt;   "choices": [
+#&gt;     {
+#&gt;       "delta": {
+#&gt;         "content": "1, "
+#&gt;       }
+#&gt;     }
+#&gt;   ],
+#&gt;   "metadata": "some-metadata",
+#&gt;   "other-metadata": "more-metadata"
+#&gt; } 
+#&gt; {
+#&gt;   "choices": [
+#&gt;     {
+#&gt;       "delta": {
+#&gt;         "content": "2,"
+#&gt;       }
+#&gt;     }
+#&gt;   ],
+#&gt;   "metadata": "some-metadata",
+#&gt;   "other-metadata": "more-metadata"
+#&gt; } 
+#&gt; {
+#&gt;   "choices": [
+#&gt;     {
+#&gt;       "delta": {
+#&gt;         "content": " 3, "
+#&gt;       }
+#&gt;     }
+#&gt;   ],
+#&gt;   "metadata": "some-metadata",
+#&gt;   "other-metadata": "more-metadata"
+#&gt; } 
+#&gt; {
+#&gt;   "choices": [
+#&gt;     {
+#&gt;       "delta": {
+#&gt;         "content": "4, "
+#&gt;       }
+#&gt;     }
+#&gt;   ],
+#&gt;   "metadata": "some-metadata",
+#&gt;   "other-metadata": "more-metadata"
+#&gt; } 
+#&gt; {
+#&gt;   "choices": [
+#&gt;     {
+#&gt;       "delta": {
+#&gt;         "content": "5"
+#&gt;       }
+#&gt;     }
+#&gt;   ],
+#&gt;   "metadata": "some-metadata",
+#&gt;   "other-metadata": "more-metadata"
+#&gt; }</code></pre>
+</div>
+</div>
+<p>As you can see, every chunk is the same, except for the <code>content</code> field. From this, is just a matter of reading each chunk as JSON and doing whatever we want with the content from the callback passed to <code>curl_fetch_stream()</code>. We can wrap that functionality in a <code>stream_chatgpt()</code> function to slightly modify the current flow of the app.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-process-stream" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="process-basic-stream.svg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Flowchart including stream</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Even though we are able to read the <strong>content</strong> chunk by chunk, we are still waiting for the whole <strong>content</strong> to arrive before rendering something to the browser. That’s that we need to tackle next.</p>
 </section>
 <section id="render-the-stream-without-reactivity" class="level3">
 <h3 class="anchored" data-anchor-id="render-the-stream-without-reactivity">Render the stream without reactivity</h3>
+<p>Now that we can receive the response as a stream, we need to talk about reactivity. There is no better explanation about this topic that the one Hadley Wickham provides in <a href="https://mastering-shiny.org/index.html">Mastering Shiny</a>. The chapter about <a href="https://mastering-shiny.org/reactive-graph.html">the reactive graph</a> made me feel like I was unlocking a superpower, and I encourage everyone to give it a try.</p>
+<p>In short, it explains how your inputs, reactive expressions and outputs are part of a big and clever reactive process (represented in the reactive graph) that dinamycally updates the data used in your app whenever a change is observed. However, we must have in mind that this process executes <strong>sequentially</strong>, meaning that R needs to complete one task before starting to work in a new one, as it happens in the flow represented by <a href="#fig-process-stream">Figure&nbsp;4</a>.</p>
+<p>So we need to render the chunks as they arrive while the reactive process is blocked by the unfinished stream. Having the R process blocked means that we can’t rely on reactives or observers to handle changes in the data present in our app or render the content of the streaming chunks.</p>
+<p>Luckily, the <code>session</code> object present in every server of a shiny app provides the <code>sendCustomMessage()</code> method to communicate with the browser. This means that we need to use that method inside of the callback provided to <code>curl_fetch_stream()</code> running inside <code>stream_chatgpt()</code>, and send to the browser the accumulated <strong>content</strong> that keeps arriving as individual chunks.</p>
+<p>I hope you can understand that tongue-twister better with the following figure:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-process-stream-wrapper" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="process-stream-wrapper.svg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Flowchart with communication concurrent to stream</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, we do the same thing that we did before, it just happens that now we do it chunk by chunk as they arrive. The copy button is still handled at the very end because there is really no need to do it chunk by chunk.</p>
+<p>And with this, you have a better looking chat app, with a copy button, that renders responses in real time.</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="sample.mp4"></video></div>
 </section>
 </section>
 <section id="final-thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="final-thoughts">Final thoughts</h2>
+<p>All this begun with an open issue in the package’s Github repository.</p>
 
 
 </section>
@@ -863,6 +979,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 
