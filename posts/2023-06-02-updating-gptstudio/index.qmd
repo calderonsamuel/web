@@ -1,5 +1,5 @@
 ---
-title: On updating a chat assistant for the RStudio IDE
+title: On updating a chat assistant app for the RStudio IDE
 author: Samuel Calderon
 date: '2023-06-02'
 categories:
