@@ -4,6 +4,7 @@ author: Samuel Calderon
 date: '2023-05-19'
 categories:
   - "rweekly"
+image: chat-example.png
 knitr: 
   opts_chunk: 
     comment: "#>"
@@ -19,9 +20,12 @@ As I'm not well versed with JS (or VSCode), I was requesting a lot of help from 
 
 It turns out, I wasn't the only one who had this idea. Version 0.1.0 of `{gptstudio}` was already on CRAN, so I decided to give its ChatGPT addin a try. To my surprise, it exceeded my expectations, and I was intrigued to explore it further. I enthusiastically checked out its GitHub repository and couldn't resist giving it a well-deserved star. As I dug deeper, I made an unexpected discovery---an open issue with a `help wanted` label.
 
+![](issue-64.png)
+
 ## Run Shiny App in Background - issue [#64](https://github.com/MichelNivard/gptstudio/issues/64)
 
-*Isn't that the guy from the R4DS slack channel? Also, I agree with him*
+> *Isn't that the guy from the R4DS slack channel? Also, I agree with him*
+
 
 This was the perfect issue to try to solve. Just a few days prior, I had watched a video discussing RStudio jobs for shiny apps. Although I couldn't locate the video at the time of writing this, I did find a [README file](https://github.com/sol-eng/background-jobs/tree/main/shiny-job#viewing-the-app) containing the relevant information.
 
@@ -37,11 +41,11 @@ Even though at the moment you were able to have your chat assistant, the UI was 
 
 In the end, the small contribution I intended to make was [59 commits long](https://github.com/MichelNivard/gptstudio/pull/78), and I won't even say how many files were affected. I was very hesitant to make a pull request for something nobody had asked for, so I went for the "Discussions" tab.
 
-*Me: Hey guys, I did this. I haven't done a PR yet because no one really asked for this...*
+> *Me: Hey guys, I did this. I haven't done a PR yet because no one really asked for this...*
 
-*JamesHWade: This is fantastic! I would very much welcome a PR. Great work!!!*
+> *JamesHWade: This is fantastic! I would very much welcome a PR. Great work!!!*
 
-*MichelNivard: Amazing! Yes, please submit a PR. I would love this!*
+> *MichelNivard: Amazing! Yes, please submit a PR. I would love this!*
 
 Okay then. Pull request merged!! So, what was the difficult part? Here comes the code.
 
@@ -373,7 +377,7 @@ At this point in time, I'm not aware of any R project that uses streaming for th
 
 The API documentation provides a [guide](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_stream_completions.ipynb) on how to stream completions. EZ, you just need to use the `openai` python library! I imagine there are ways to wrap that library and access it from an app to be used as an addin in RStudio, but I also imagine it would make the setup much more harder than it needs to be.
 
-The OpenAI team also supports an [official Node.js library](https://github.com/openai/openai-node), but it's README file states that it doesn't natively support streaming. So, no easy way to stream chat completions from JS either. It is worth mentioning that setting up a Node.js package to be used in the app would've still been very hard for me (remember that all these begun with me being bad at writing JS code?). So R it is.
+The OpenAI team also supports an [official Node.js library](https://github.com/openai/openai-node), but it's README file states that it doesn't natively support streaming. So, no easy way to stream chat completions from JS either. It is worth mentioning that setting up a Node.js package to be used in the app would've still been very hard for me (remember that all these began with me being bad at writing JS code?). So R it is.
 
 As I mentioned before, we were using `{httr2}` for every API interaction. This package provides a [`req_stream()`](https://httr2.r-lib.org/reference/req_stream.html) function that aims to facilitate streaming and sounded really promising. But a problem arised quickly: the format of the streaming response was hard to process.
 
@@ -497,8 +501,20 @@ As you can see, we do the same thing that we did before, it just happens that no
 
 And with this, you have a better looking chat app, with a copy button, that renders responses in real time.
 
-{{< video sample.mp4 autoplay="true" loop="true" >}}
+{{< video sample.mp4 >}}
 
 ## Final thoughts
 
-All this begun with an open issue in the package's Github repository. If you are developing a project that you think could use some help from the public, going open source and announcing that you need help will drastically 
+All of this began with an open issue in the package's GitHub repository. If you are developing a project that you think could use some help from the public, going open source and announcing that you need help will drastically improve the chances of, well, getting help. Not only that, an open-source project has better chances of receiving feedback such as bug reports or feature requests.
+
+On the other hand, don't be afraid of forking an open-source project and trying to make changes to it. At the very least, you can put into practice the knowledge you already have by attempting to fix some of its issues, and in the best-case scenario, you will also learn a lot of new things while challenging yourself to extend the project's features. While not everything you try will necessarily end up being used for the project, the practice and learning will remain with you for your future projects.
+
+Feel free to give it a try with:
+
+```{r}
+#| eval: false
+install.packages("gptstudio")
+```
+
+
+Any feedback on the [Github repo](https://github.com/MichelNivard/gptstudio) will be greatly appreciated.
