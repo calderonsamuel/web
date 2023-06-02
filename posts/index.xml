@@ -1266,7 +1266,8 @@ Warning
 </div>
 <p>As you can see, we do the same thing that we did before, it just happens that now we do it chunk by chunk as they arrive. The copy button is still handled at the very end because there is really no need to do it chunk by chunk.</p>
 <p>And with this, you have a better looking chat app, with a copy button, that renders responses in real time.</p>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="sample.mp4"></video></div>
+<!--  -->
+<p><img src="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/gptstudio-sample.gif" class="img-fluid"></p>
 </section>
 </section>
 <section id="final-thoughts" class="level2">
