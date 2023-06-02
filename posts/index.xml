@@ -5,7 +5,7 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>web</title>
+<title>Samuel Calderon</title>
 <link>https://calderonsamuel.github.io/web/posts/index.html</link>
 <atom:link href="https://calderonsamuel.github.io/web/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description>Web de Samuel Calderon</description>
