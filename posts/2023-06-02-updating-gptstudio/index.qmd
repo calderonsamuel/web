@@ -501,7 +501,9 @@ As you can see, we do the same thing that we did before, it just happens that no
 
 And with this, you have a better looking chat app, with a copy button, that renders responses in real time.
 
-{{< video sample.mp4 >}}
+<!-- {{< video sample.mp4 >}} -->
+
+![](gptstudio-sample.gif)
 
 ## Final thoughts
 
