@@ -1,5 +1,6 @@
 ---
 title: "Paquetes para R"
+image: Rlogo.png
 description: "Una colección de paquetes creados por mí"
 listing:
   contents: "."

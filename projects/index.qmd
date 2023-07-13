@@ -1,7 +1,9 @@
 ---
 title: "Proyectos"
 listing:
-  contents: "."
+  contents: 
+    - "packages/index.qmd"
+    - "calculadora-renacyt/index.qmd"
   sort: "date desc"
   type: grid
   fields: [image, title, description]
