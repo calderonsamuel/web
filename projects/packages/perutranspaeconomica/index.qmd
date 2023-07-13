@@ -1,0 +1,7 @@
+---
+title: "perutranspaeconomica"
+description: "Obtener datos del Portal de Transparencia Económica Perú desde R, con una interfaz de programación consistente y clara."
+image: captura.png
+---
+
+<script>window.location.replace("https://perutranspaeconomica.samuelenrique.com/");</script>

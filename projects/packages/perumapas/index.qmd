@@ -1,0 +1,7 @@
+---
+title: "perumapas"
+description: "Grafica mapas peruanos fácilmente con ggplot2."
+image: captura.png
+---
+
+<script>window.location.replace("https://perumapas.samuelenrique.com/");</script>
