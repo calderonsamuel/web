@@ -2,13 +2,9 @@
   {
     "listing": "/projects/index.html",
     "items": [
-      "/projects/calculadora-renacyt/index.html",
-      "/projects/packages/index.html"
+      "/projects/packages/index.html",
+      "/projects/calculadora-renacyt/index.html"
     ]
-  },
-  {
-    "listing": "/projects/packages/index.html",
-    "items": []
   },
   {
     "listing": "/posts/index.html",
@@ -26,5 +22,9 @@
       "/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index.html",
       "/posts/2020-01-13-inicios/index.html"
     ]
+  },
+  {
+    "listing": "/projects/packages/index.html",
+    "items": []
   }
 ]
