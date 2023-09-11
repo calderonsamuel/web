@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Samuel Calderon">
+<meta name="dcterms.date" content="2023-09-11">
+
+<title>Samuel Calderon - Strengthen your no-code apps with R code: appsheet 0.1.0</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1YGT1Y5480"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
+</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Samuel Calderon</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Acerca de mí</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html" rel="" target="">
+ <span class="menu-text">Proyectos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../posts/index.html" rel="" target="">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/samucalse" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/calderonsamuel" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-no-code-apps" id="toc-why-no-code-apps" class="nav-link active" data-scroll-target="#why-no-code-apps">Why no-code apps?</a></li>
+  <li><a href="#why-r-with-no-code-apps" id="toc-why-r-with-no-code-apps" class="nav-link" data-scroll-target="#why-r-with-no-code-apps">Why R with no-code apps</a></li>
+  <li><a href="#operations" id="toc-operations" class="nav-link" data-scroll-target="#operations">The four basic operations</a>
+  <ul class="collapse">
+  <li><a href="#read-a-table" id="toc-read-a-table" class="nav-link" data-scroll-target="#read-a-table">Read a table</a></li>
+  <li><a href="#add-records-to-a-table" id="toc-add-records-to-a-table" class="nav-link" data-scroll-target="#add-records-to-a-table">Add records to a table</a></li>
+  <li><a href="#update-records-from-a-table" id="toc-update-records-from-a-table" class="nav-link" data-scroll-target="#update-records-from-a-table">Update records from a table</a></li>
+  <li><a href="#delete-records-from-a-table" id="toc-delete-records-from-a-table" class="nav-link" data-scroll-target="#delete-records-from-a-table">Delete records from a table</a></li>
+  </ul></li>
+  <li><a href="#automate-reporting-with-github-actions" id="toc-automate-reporting-with-github-actions" class="nav-link" data-scroll-target="#automate-reporting-with-github-actions">Automate reporting with Github actions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Strengthen your no-code apps with R code: appsheet 0.1.0</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">rweekly</div>
+    <div class="quarto-category">package</div>
+    <div class="quarto-category">no-code</div>
+    <div class="quarto-category">appsheet</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Samuel Calderon </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 11, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This blog post announces the release of <a href="https://calderonsamuel.github.io/appsheet/"><code>{appsheet}</code></a> 0.1.0 to the world. It allows to interact with Google’s Appsheet API to read, add, edit and delete data from AppSheet tables.</p>
+<p>Here, I’ll explain the core functionality. But first, let’s understand why no-code apps might be important for an R user.</p>
+<section id="why-no-code-apps" class="level1">
+<h1>Why no-code apps?</h1>
+<p>Maybe the first thing that comes to your mind as an R user/developer when talking about app development is, naturally, <a href="https://www.rstudio.com/products/shiny/">shiny</a>. It is true that the shiny ecosystem is big, keeps growing, and offers a wide variety of customization for your apps/dashboards, but for small to medium-sized businesses, it might not be the cheapest or easiest option.</p>
+<p>In those types of businesses, you’ll often find data stored in spreadsheets that get fed manually (row by row) or by some kind of digital form. This is true not just for these kinds of businesses but for small offices in big organizations too, especially outside the tech world. When attempting to upgrade the data collection flow, many of these organizations opt for no-code alternatives. While I consider this a pretty good solution for data collection and data storage, I believe that the data analysis process might benefit from using our favorite programming language: R.</p>
+<p>To be 100% transparent, the creation of this package comes from my experience in a big governmental organization, where the IT department didn’t want to deploy a custom-made shiny app and didn’t even allow my team to deploy it on a shinyapps.io free-tier instance. Hey, that’s life. So, for new projects, I decided to use a no-code alternative that took advantage of the cloud storage provided for the email service: Google’s Appsheet.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="iq.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Sometimes, easier is easier</figcaption>
+</figure>
+</div>
+<p>Appsheet allows you to build apps pretty fast based on data you already have. You can feed it a Google Sheet (and other data storage formats) and it will generate Views and Forms for your app users to interact with. With some knowledge of relational databases, you can get a pretty decent looking app for desktop and mobile devices that you can customize in just a few hours of work.</p>
+</section>
+<section id="why-r-with-no-code-apps" class="level1">
+<h1>Why R with no-code apps</h1>
+<p>Where it still has plenty of room to grow is in the data analysis space. While it is possible to have tables, histograms, pie charts, donut charts, column plots, scatter plots, and even maps, the only aggregation options are count, average, min and max. If you want to see the value of a specific column, you <strong>have</strong> to hover on it.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="hover.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">In this plot you can only see the value of the “Devuelto” column</figcaption>
+</figure>
+</div>
+<p>What if instead of a plot you want a table that shows the same information (count based on a column)? You can’t have it. I mean, you can have it if you implement <a href="https://www.googlecloudcommunity.com/gc/AppSheet-Q-A/Creating-a-summary-table/m-p/234056#M16542">some ultra complicated automation workflow</a>, but at that point, why don’t you just use R?</p>
+<p>That’s why this package is created. I wanted a way to interact with Appsheet’s API with my favorite language, taking advantage of the power of Quarto and the tidyverse for data cleaning, visualization and reporting. Now, anyone who wants to do the same thing doesn’t need to start from scratch.</p>
+</section>
+<section id="operations" class="level1">
+<h1>The four basic operations</h1>
+<p>The first step is to <a href="https://support.google.com/appsheet/answer/10105769?hl=en&amp;ref_topic=10105767&amp;sjid=7476345061548698748-SA">Enable the API for cloud-based service communication</a>. Once this is done you should have:</p>
+<ol type="1">
+<li>The App ID. Use it in the <code>appId</code> argument of <code>appsheet()</code> or via the <code>APPSHEET_APP_ID</code> environmental variable.</li>
+<li>The Application Access Key. Use it in the <code>access_key</code> argument of <code>appsheet()</code> or via the <code>APPSHEET_APP_ACCESS_KEY</code> environmental variable.</li>
+</ol>
+<p>The <code>appsheet()</code> function looks for both environmental variables by default.</p>
+<p>The API only exposes really basic operations: read, add, edit and remove table records. It all starts with loading the package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(appsheet)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="read-a-table" class="level2">
+<h2 class="anchored" data-anchor-id="read-a-table">Read a table</h2>
+<p>The first argument of <code>appsheet()</code> is a table name. By default, <code>appsheet()</code> will use the “Find” action, which reads all the rows. The following code is the equivalent of using <code>appsheet(tableName = "Driver", Action = "Find")</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">appsheet</span>(<span class="st">"Driver"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; # A tibble: 7 × 7
+#&gt;   `_RowNumber` Key      `Driver Name` Photo           Email `Phone Number` Jobs 
+#&gt;   &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;
+#&gt; 1 2            70608c66 Driver 1      Driver_Images/… driv… 1-206-555-1000 db9e…
+#&gt; 2 3            261fadec Driver 2      Driver_Images/… driv… 1-206-555-1001 36a4…
+#&gt; 3 4            525982c5 Driver 3      Driver_Images/… driv… 1-206-555-1002 1db9…
+#&gt; 4 5            90eb1244 Driver 4      Driver_Images/… driv… 1-206-555-1003 e367…
+#&gt; 5 6            ddb26f78 Driver 5      Driver_Images/… driv… 1-206-555-1004 5420…
+#&gt; 6 7            29671cfb Driver 6      Driver_Images/… driv… 1-206-555-1005 98ed…
+#&gt; 7 8            7a6fafca Driver 7      Driver_Images/… driv… 1-206-555-1006 0b64…</code></pre>
+</div>
+</div>
+<p>When the action is “Find”, you can take advantage of the <code>Selector</code> argument of <code>ash_properties()</code>, which can use some AppSheet internal functions to narrow the output.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">appsheet</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">tableName =</span> <span class="st">"Driver"</span>, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Properties =</span> <span class="fu">ash_properties</span>(<span class="at">Selector =</span> <span class="st">'Filter(Driver, [Key] = "70608c66")'</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; # A tibble: 1 × 7
+#&gt;   `_RowNumber` Key      `Driver Name` Photo           Email `Phone Number` Jobs 
+#&gt;   &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;           &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;
+#&gt; 1 2            70608c66 Driver 1      Driver_Images/… driv… 1-206-555-1000 db9e…</code></pre>
+</div>
+</div>
+<p>The “Find” action is probably the one you’ll find yourself spending most time with</p>
+</section>
+<section id="add-records-to-a-table" class="level2">
+<h2 class="anchored" data-anchor-id="add-records-to-a-table">Add records to a table</h2>
+<p>The “Add” action allows to add one or multiple records to a table. You must provide <code>Rows</code>, which can be a dataframe with the same column names as the specified table. You don’t need to provide all the columns to be successful, but can’t exclude the ones <em>required</em> by your app. Also, don’t try to add the <code>_RowNumber</code>(or <code>Row ID</code> when using an AppsSheet database), as it is generated internally.</p>
+<p>An “Add” action returns a data.frame with the added rows when successful.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>row_key <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">sample</span>(letters, <span class="dv">8</span>), <span class="at">collapse =</span> <span class="st">""</span>) <span class="co"># to be reused </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">appsheet</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">tableName =</span> <span class="st">"Driver"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Action =</span> <span class="st">"Add"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Rows =</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">Key =</span> row_key, <span class="co"># required in app logic</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">Email</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"driverXX@company.com"</span> <span class="co"># required in app logic</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ) </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; # A tibble: 1 × 7
+#&gt;   `_RowNumber` Key      `Driver Name` Photo Email           `Phone Number` Jobs 
+#&gt;   &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;
+#&gt; 1 9            dkcrovhw ""            ""    driverXX@compa… ""             ""</code></pre>
+</div>
+</div>
+</section>
+<section id="update-records-from-a-table" class="level2">
+<h2 class="anchored" data-anchor-id="update-records-from-a-table">Update records from a table</h2>
+<p>The “Edit” action allow to update values from one or multiple records from a table, it also can target multiple columns. This one also requires the <code>Rows</code> argument. Again, you can’t use the <code>_RowNumber</code> column (but in this one you can use the <code>Row ID</code> generated by an Appsheet database).</p>
+<p>An “Edit” action returns a data.frame with the whole content of the updated rows when successful.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">appsheet</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">tableName =</span> <span class="st">"Driver"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Action =</span> <span class="st">"Edit"</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Rows =</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">Key =</span> row_key,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">`</span><span class="at">Driver Name</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"Some name"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">Photo =</span> <span class="st">"some/path.jpg"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    ) </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; # A tibble: 1 × 7
+#&gt;   `_RowNumber` Key      `Driver Name` Photo         Email   `Phone Number` Jobs 
+#&gt;   &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;
+#&gt; 1 9            dkcrovhw Some name     some/path.jpg driver… ""             ""</code></pre>
+</div>
+</div>
+</section>
+<section id="delete-records-from-a-table" class="level2">
+<h2 class="anchored" data-anchor-id="delete-records-from-a-table">Delete records from a table</h2>
+<p>The “Delete” action allows to delete one or multiple records from a table. This one also requires the <code>Rows</code> argument. Again, you can’t use the <code>_RowNumber</code> column (but in this one you can use the <code>Row ID</code> generated by an Appsheet database).</p>
+<p>A “Delete” action returns a data.frame with the deleted rows when successful.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">appsheet</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">tableName =</span> <span class="st">"Driver"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Action =</span> <span class="st">"Delete"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Rows =</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">Key =</span> row_key</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    ) </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; # A tibble: 1 × 7
+#&gt;   `_RowNumber` Key      `Driver Name` Photo         Email   `Phone Number` Jobs 
+#&gt;   &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;
+#&gt; 1 9            dkcrovhw Some name     some/path.jpg driver… ""             ""</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="automate-reporting-with-github-actions" class="level1">
+<h1>Automate reporting with Github actions</h1>
+<p>To take the advantage of the API, you can automate the creation of your reports. <a href="https://github.com/features/actions">Github Actions</a> is a pretty popular choice to set a temporary computing environment for different tasks. Here, I show you just the necessary for you to create your report with Quarto and send it via email. At this point you should already have your <a href="#operations">Appsheet enviromental variables</a>.</p>
+<p>The next thing you need is to have your project set up as a Github repo. If you don’t know how to do this, you can check the following chapter in <a href="https://happygitwithr.com/existing-github-last">Happy Git and Github for the useR</a>. To be extra safe, you can configure your project to use <a href="https://rstudio.github.io/renv/articles/renv.html"><code>{renv}</code></a> for a reproducible environment.</p>
+<p>Next, you need a quarto document with the contents of your report to be rendered. Inside this report is where you should use <code>{appsheet}</code> and your favorite cleaning and visualization packages.</p>
+<p>At the same directory level, you can have an R script where you render the report (<code>quarto::render()</code> ftw) and send it via email with <code>{blastula}</code>. For that, be sure to check the article on <a href="https://pkgs.rstudio.com/blastula/articles/sending_using_smtp.html">Sending Email Using SMTP</a>.</p>
+<p>Finally, you should set up a workflow YAML file in the <code>.github/workflows/</code> directory in your repository. Here you have a simplified example when your script is called <code>script.R</code>:</p>
+<pre><code>on: workflow_dispatch
+name: Generate and send report
+
+jobs:
+  
+  reporting:
+    
+    runs-on: ubuntu-latest
+    
+    env:
+      # Environmental variables
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      APPSHEET_APP_ID: ${{ secrets.APPSHEET_APP_ID }}
+      APPSHEET_APP_ACCESS_KEY: ${{ secrets.APPSHEET_APP_ACCESS_KEY }}
+      BLASTULA_EMAIL_CREDS: ${{ secrets.BLASTULA_EMAIL_CREDS }}
+    
+    steps:
+      
+      # Checkout the git repo
+      - uses: actions/checkout@v3
+      
+      # Set up pandoc - I just keep it to be safe
+      - uses: r-lib/actions/setup-pandoc@v2
+      
+      # Install R
+      - uses: r-lib/actions/setup-r@v2
+      
+      # Install quarto    
+      - uses: quarto-dev/quarto-actions/setup@v2
+      
+      # Install the necessary packages with renv
+      - uses: r-lib/actions/setup-renv@v2
+      
+      - name: Run rendering script
+        run: |
+          Rscript script.R</code></pre>
+<p>Of course, there are ways of optimizing your workflow file and to strengthen the security of your script. Another thing to consider is that you have a limit of 2000 minutes a month of compute time for private repos in the free version (no limit on public repos).</p>
+<p>Here you have a repo where I set up an automatic reporting schedule with all the steps described before: <a href="https://github.com/ddc-research/auto-pronabi" class="uri">https://github.com/ddc-research/auto-pronabi</a>. It takes around 2 minutes for the job to complete and it’s totally free and safe.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

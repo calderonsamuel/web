@@ -9,7 +9,7 @@
 <link>https://calderonsamuel.github.io/web/posts/index.html</link>
 <atom:link href="https://calderonsamuel.github.io/web/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description>Web de Samuel Calderon</description>
-<generator>quarto-1.3.433</generator>
+<generator>quarto-1.3.450</generator>
 <lastBuildDate>Fri, 02 Jun 2023 00:00:00 GMT</lastBuildDate>
 <item>
   <title>On updating a chat assistant app for the RStudio IDE</title>

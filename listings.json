@@ -1,5 +1,12 @@
 [
   {
+    "listing": "/projects/packages/index.html",
+    "items": [
+      "/projects/packages/perumapas/index.html",
+      "/projects/packages/perutranspaeconomica/index.html"
+    ]
+  },
+  {
     "listing": "/projects/index.html",
     "items": [
       "/projects/packages/index.html",
@@ -21,13 +28,6 @@
       "/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index.html",
       "/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index.html",
       "/posts/2020-01-13-inicios/index.html"
-    ]
-  },
-  {
-    "listing": "/projects/packages/index.html",
-    "items": [
-      "/projects/packages/perumapas/index.html",
-      "/projects/packages/perutranspaeconomica/index.html"
     ]
   }
 ]
