@@ -2,7 +2,6 @@
 title: "Strengthen your no-code apps with R code: appsheet 0.1.0"
 author: Samuel Calderon
 date: '2023-09-11'
-draft: true
 categories:
   - "rweekly"
   - "package"
@@ -15,9 +14,12 @@ knitr:
     class-error: "text-danger"
 ---
 
-This blog post announces the release of [`{appsheet}`](https://calderonsamuel.github.io/appsheet/) 0.1.0 to the world. It allows to interact with Google's Appsheet API to read, add, edit and delete data from AppSheet tables.
+This blog post serves two purposes: 
 
-Here, I'll explain the core functionality. But first, let's understand why no-code apps might be important for an R user.
+1. To explain why no-code apps might be useful to you.
+2. To announce the release of [`{appsheet}`](https://calderonsamuel.github.io/appsheet/) 0.1.0 to the world. It allows to interact with Google's Appsheet API to read, add, edit and delete data from AppSheet tables.
+
+So, let's understand why no-code apps might be important for an R user.
 
 # Why no-code apps?
 
@@ -39,7 +41,7 @@ Where it still has plenty of room to grow is in the data analysis space. While i
 
 What if instead of a plot you want a table that shows the same information (count based on a column)? You can't have it. I mean, you can have it if you implement [some ultra complicated automation workflow](https://www.googlecloudcommunity.com/gc/AppSheet-Q-A/Creating-a-summary-table/m-p/234056#M16542), but at that point, why don't you just use R?
 
-That's why this package is created. I wanted a way to interact with Appsheet's API with my favorite language, taking advantage of the power of Quarto and the tidyverse for data cleaning, visualization and reporting. Now, anyone who wants to do the same thing doesn't need to start from scratch.
+That's why I created this package. I wanted a way to interact with Appsheet's API with my favorite language, taking advantage of the power of Quarto and the tidyverse for data cleaning, visualization and reporting. Now, anyone who wants to do the same thing doesn't need to start from scratch.
 
 # The four basic operations {#operations}
 
@@ -136,13 +138,13 @@ To take the advantage of the API, you can automate the creation of your reports.
 
 The next thing you need is to have your project set up as a Github repo. If you don't know how to do this, you can check the following chapter in [Happy Git and Github for the useR](https://happygitwithr.com/existing-github-last). To be extra safe, you can configure your project to use [`{renv}`](https://rstudio.github.io/renv/articles/renv.html) for a reproducible environment. 
 
-Next, you need a quarto document with the contents of your report to be rendered. Inside this report is where you should use `{appsheet}` and your favorite cleaning and visualization packages. 
+Next, you need a quarto document with the contents of your report to be rendered. Inside this report is where you should use `{appsheet}` and your favorite data processing and visualization packages. 
 
 At the same directory level, you can have an R script where you render the report (`quarto::render()` ftw) and send it via email with `{blastula}`. For that, be sure to check the article on [Sending Email Using SMTP](https://pkgs.rstudio.com/blastula/articles/sending_using_smtp.html). 
 
 Finally, you should set up a workflow YAML file in the `.github/workflows/` directory in your repository. Here you have a simplified example when your script is called `script.R`:
 
-```
+```yaml
 on: workflow_dispatch
 name: Generate and send report
 
