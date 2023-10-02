@@ -214,8 +214,12 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 
 </header>
 
-<p>This blog post announces the release of <a href="https://calderonsamuel.github.io/appsheet/"><code>{appsheet}</code></a> 0.1.0 to the world. It allows to interact with Google’s Appsheet API to read, add, edit and delete data from AppSheet tables.</p>
-<p>Here, I’ll explain the core functionality. But first, let’s understand why no-code apps might be important for an R user.</p>
+<p>This blog post serves two purposes:</p>
+<ol type="1">
+<li>To explain why no-code apps might be useful to you.</li>
+<li>To announce the release of <a href="https://calderonsamuel.github.io/appsheet/"><code>{appsheet}</code></a> 0.1.0 to the world. It allows to interact with Google’s Appsheet API to read, add, edit and delete data from AppSheet tables.</li>
+</ol>
+<p>So, let’s understand why no-code apps might be important for an R user.</p>
 <section id="why-no-code-apps" class="level1">
 <h1>Why no-code apps?</h1>
 <p>Maybe the first thing that comes to your mind as an R user/developer when talking about app development is, naturally, <a href="https://www.rstudio.com/products/shiny/">shiny</a>. It is true that the shiny ecosystem is big, keeps growing, and offers a wide variety of customization for your apps/dashboards, but for small to medium-sized businesses, it might not be the cheapest or easiest option.</p>
@@ -239,7 +243,7 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 </figure>
 </div>
 <p>What if instead of a plot you want a table that shows the same information (count based on a column)? You can’t have it. I mean, you can have it if you implement <a href="https://www.googlecloudcommunity.com/gc/AppSheet-Q-A/Creating-a-summary-table/m-p/234056#M16542">some ultra complicated automation workflow</a>, but at that point, why don’t you just use R?</p>
-<p>That’s why this package is created. I wanted a way to interact with Appsheet’s API with my favorite language, taking advantage of the power of Quarto and the tidyverse for data cleaning, visualization and reporting. Now, anyone who wants to do the same thing doesn’t need to start from scratch.</p>
+<p>That’s why I created this package. I wanted a way to interact with Appsheet’s API with my favorite language, taking advantage of the power of Quarto and the tidyverse for data cleaning, visualization and reporting. Now, anyone who wants to do the same thing doesn’t need to start from scratch.</p>
 </section>
 <section id="operations" class="level1">
 <h1>The four basic operations</h1>
@@ -305,7 +309,7 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <pre class="text-muted"><code>#&gt; # A tibble: 1 × 7
 #&gt;   `_RowNumber` Key      `Driver Name` Photo Email           `Phone Number` Jobs 
 #&gt;   &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;
-#&gt; 1 9            dkcrovhw ""            ""    driverXX@compa… ""             ""</code></pre>
+#&gt; 1 9            lcyieurm ""            ""    driverXX@compa… ""             ""</code></pre>
 </div>
 </div>
 </section>
@@ -327,7 +331,7 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <pre class="text-muted"><code>#&gt; # A tibble: 1 × 7
 #&gt;   `_RowNumber` Key      `Driver Name` Photo         Email   `Phone Number` Jobs 
 #&gt;   &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;
-#&gt; 1 9            dkcrovhw Some name     some/path.jpg driver… ""             ""</code></pre>
+#&gt; 1 9            lcyieurm Some name     some/path.jpg driver… ""             ""</code></pre>
 </div>
 </div>
 </section>
@@ -347,7 +351,7 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <pre class="text-muted"><code>#&gt; # A tibble: 1 × 7
 #&gt;   `_RowNumber` Key      `Driver Name` Photo         Email   `Phone Number` Jobs 
 #&gt;   &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;
-#&gt; 1 9            dkcrovhw Some name     some/path.jpg driver… ""             ""</code></pre>
+#&gt; 1 9            lcyieurm Some name     some/path.jpg driver… ""             ""</code></pre>
 </div>
 </div>
 </section>
@@ -356,45 +360,45 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <h1>Automate reporting with Github actions</h1>
 <p>To take the advantage of the API, you can automate the creation of your reports. <a href="https://github.com/features/actions">Github Actions</a> is a pretty popular choice to set a temporary computing environment for different tasks. Here, I show you just the necessary for you to create your report with Quarto and send it via email. At this point you should already have your <a href="#operations">Appsheet enviromental variables</a>.</p>
 <p>The next thing you need is to have your project set up as a Github repo. If you don’t know how to do this, you can check the following chapter in <a href="https://happygitwithr.com/existing-github-last">Happy Git and Github for the useR</a>. To be extra safe, you can configure your project to use <a href="https://rstudio.github.io/renv/articles/renv.html"><code>{renv}</code></a> for a reproducible environment.</p>
-<p>Next, you need a quarto document with the contents of your report to be rendered. Inside this report is where you should use <code>{appsheet}</code> and your favorite cleaning and visualization packages.</p>
+<p>Next, you need a quarto document with the contents of your report to be rendered. Inside this report is where you should use <code>{appsheet}</code> and your favorite data processing and visualization packages.</p>
 <p>At the same directory level, you can have an R script where you render the report (<code>quarto::render()</code> ftw) and send it via email with <code>{blastula}</code>. For that, be sure to check the article on <a href="https://pkgs.rstudio.com/blastula/articles/sending_using_smtp.html">Sending Email Using SMTP</a>.</p>
 <p>Finally, you should set up a workflow YAML file in the <code>.github/workflows/</code> directory in your repository. Here you have a simplified example when your script is called <code>script.R</code>:</p>
-<pre><code>on: workflow_dispatch
-name: Generate and send report
-
-jobs:
-  
-  reporting:
-    
-    runs-on: ubuntu-latest
-    
-    env:
-      # Environmental variables
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      APPSHEET_APP_ID: ${{ secrets.APPSHEET_APP_ID }}
-      APPSHEET_APP_ACCESS_KEY: ${{ secrets.APPSHEET_APP_ACCESS_KEY }}
-      BLASTULA_EMAIL_CREDS: ${{ secrets.BLASTULA_EMAIL_CREDS }}
-    
-    steps:
-      
-      # Checkout the git repo
-      - uses: actions/checkout@v3
-      
-      # Set up pandoc - I just keep it to be safe
-      - uses: r-lib/actions/setup-pandoc@v2
-      
-      # Install R
-      - uses: r-lib/actions/setup-r@v2
-      
-      # Install quarto    
-      - uses: quarto-dev/quarto-actions/setup@v2
-      
-      # Install the necessary packages with renv
-      - uses: r-lib/actions/setup-renv@v2
-      
-      - name: Run rendering script
-        run: |
-          Rscript script.R</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> workflow_dispatch</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Generate and send report</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">reporting</span><span class="kw">:</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">      # Environmental variables</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">GITHUB_PAT</span><span class="kw">:</span><span class="at"> ${{ secrets.GITHUB_TOKEN }}</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">APPSHEET_APP_ID</span><span class="kw">:</span><span class="at"> ${{ secrets.APPSHEET_APP_ID }}</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">APPSHEET_APP_ACCESS_KEY</span><span class="kw">:</span><span class="at"> ${{ secrets.APPSHEET_APP_ACCESS_KEY }}</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">BLASTULA_EMAIL_CREDS</span><span class="kw">:</span><span class="at"> ${{ secrets.BLASTULA_EMAIL_CREDS }}</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co">      # Checkout the git repo</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v3</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">      # Set up pandoc - I just keep it to be safe</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-pandoc@v2</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">      # Install R</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r@v2</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co">      # Install quarto    </span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/setup@v2</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co">      # Install the necessary packages with renv</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-renv@v2</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run rendering script</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>          Rscript script.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Of course, there are ways of optimizing your workflow file and to strengthen the security of your script. Another thing to consider is that you have a limit of 2000 minutes a month of compute time for private repos in the free version (no limit on public repos).</p>
 <p>Here you have a repo where I set up an automatic reporting schedule with all the steps described before: <a href="https://github.com/ddc-research/auto-pronabi" class="uri">https://github.com/ddc-research/auto-pronabi</a>. It takes around 2 minutes for the job to complete and it’s totally free and safe.</p>
 
