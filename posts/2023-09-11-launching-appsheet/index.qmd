@@ -1,7 +1,7 @@
 ---
 title: "Strengthen your no-code apps with R code: appsheet 0.1.0"
 author: Samuel Calderon
-date: '2023-09-11'
+date: '2023-10-02'
 categories:
   - "rweekly"
   - "package"
@@ -14,10 +14,9 @@ knitr:
     class-error: "text-danger"
 ---
 
-This blog post serves two purposes: 
+This blog post serves two purposes: 1) To explain why no-code apps might be useful to you, 2) To announce the release of [`{appsheet}`](https://calderonsamuel.github.io/appsheet/) 0.1.0 to the world. 
 
-1. To explain why no-code apps might be useful to you.
-2. To announce the release of [`{appsheet}`](https://calderonsamuel.github.io/appsheet/) 0.1.0 to the world. It allows to interact with Google's Appsheet API to read, add, edit and delete data from AppSheet tables.
+This new package allows you to interact with Google's Appsheet API to read, add, edit and delete data from AppSheet tables. 
 
 So, let's understand why no-code apps might be important for an R user.
 
