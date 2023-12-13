@@ -1,5 +1,19 @@
 [
   {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/packages/index.html",
+      "/projects/calculadora-renacyt/index.html"
+    ]
+  },
+  {
+    "listing": "/projects/packages/index.html",
+    "items": [
+      "/projects/packages/perumapas/index.html",
+      "/projects/packages/perutranspaeconomica/index.html"
+    ]
+  },
+  {
     "listing": "/posts/index.html",
     "items": [
       "/posts/2023-09-11-launching-appsheet/index.html",
@@ -15,20 +29,6 @@
       "/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index.html",
       "/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index.html",
       "/posts/2020-01-13-inicios/index.html"
-    ]
-  },
-  {
-    "listing": "/projects/packages/index.html",
-    "items": [
-      "/projects/packages/perutranspaeconomica/index.html",
-      "/projects/packages/perumapas/index.html"
-    ]
-  },
-  {
-    "listing": "/projects/index.html",
-    "items": [
-      "/projects/packages/index.html",
-      "/projects/calculadora-renacyt/index.html"
     ]
   }
 ]
