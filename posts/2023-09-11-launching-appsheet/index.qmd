@@ -3,7 +3,7 @@ title: "Strengthen your no-code apps with R code: appsheet 0.1.0"
 author: Samuel Calderon
 date: '2023-10-02'
 categories:
-  - "rweekly"
+  # - "rweekly"
   - "package"
   - "no-code"
   - "appsheet"
