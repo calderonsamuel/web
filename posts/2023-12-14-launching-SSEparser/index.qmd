@@ -1,0 +1,140 @@
+---
+title: "Patience is overrated – embrace the thrill of parsing streaming data as it arrives!"
+author: Samuel Calderon
+date: "2023-12-14"
+draft: true
+knitr:
+  opts_chunk:
+    comment: "#>"
+    class-output: "text-muted"
+    class-error: "text-danger"
+---
+
+One year ago, with the launch of [ChatGPT](https://chat.openai.com/chat), the world found itself astonished by the profound impact this conversational AI model had made across various domains. The tech community was particularly surprised by the model's versatility, successfully powering chatbots, virtual assistants, and aiding developers in diverse applications. How did the R community take advantage of this?
+
+## LLMs for the R developer's workflow
+
+Once OpenAI allowed developers to use its API, the R community started to see different initiatives for incorporating this service, and similar ones, into their workflows. OpenAI lists the [`{rgpt3`}](https://github.com/ben-aaron188/rgpt3) package in its community library page, but we can also find the [`{openai}`](https://github.com/irudnyts/openai/) package which supports more recent endpoints. There is also the [`{chatgpt}`](https://github.com/jcrodriguez1989/chatgpt) package, which provides a chat interface that runs in the R console itself.
+
+For VSCode users, the [Genie extension](https://github.com/ai-genie/chatgpt-vscode) provides lots of features integrating the OpenAI service using the contents of the files in your projects, and providing a UI where you can interact with the AI models exactly as you would do using ChatGPT. For Docker enthusiasts, you can use [chatbot-ui](https://github.com/mckaywrigley/chatbot-ui) to easily host your own chat UI using OpenAI's API under the hood.
+
+All the services mentioned above require you to have an OpenAI account and a valid API key, that allows the AI giant to charge you for its usage.
+
+For Rstudio users, we have two packages providing similar functionality for using a chat interface without ever needing to leave the RStudio IDE itself. The [`{chattr}`](https://github.com/mlverse/chattr) package provides a chat interface that can be accessed in the "Viewer" pane of RStudio. You can also use the `chattr()` function *in source* to directly give instructions to the AI assistant. The package supports using the OpenAI API or a self hosted (free) LLamaGPT executable. Even though it is not yet in CRAN, having the Posit PBC as the copyright holder of the package, you can expect it to keep receiving updates.
+
+The second package is called [`{gptstudio}`](https://github.com/MichelNivard/gptstudio) and requires that I make a disclaimer: I'm one of the co-authors. This package also provides a chat interface as a Rstudio addin, but in this case it runs as a background job. This means that you don't have to close the chat when you need to use the R console. Sadly, currently this also means that you can't directly use your documents content as context for the chat assistant, as background jobs don't run in the same R session that the RStudio IDE uses.
+
+While we work on overcoming this challenge, we provide the following features:
+
+- Every code chunk produced by the AI assistant can be saved to the clipboard with a single click.
+- You can save your conversations to be continued later.
+- You can change the chat settings per session, or save a default configuration. All without leaving the chat UI.
+- You can add R help pages as chat context for every package you have installed locally. This is very useful to receive assistance in the latest trends in the R ecosystem instead of having to wait for AI giants to update the cutoff date of their models. Use a "package:object" string anywhere in your prompt to accomplish this (e.g. "Help me with dplyr::join_by").
+- The UI has support for internationalization. We currently support English, Spanish and German. We are open to receive more translations.
+- You can choose your model. While the default option is to use the OpenAI's "gpt-3.5-turbo" model, you can choose any of the current OpenAI models, such as "gpt-4" or "gpt-3.5-turbo-16k".
+- You can choose your service. While OpenAI offers many good models, we also support using "Huggingface", "Anthropic", "Azure OpenAI" and "Palm", each one of them provides many models. 
+
+We are also working on supporting self hosted services/models, such as [`{ollama}`](https://github.com/calderonsamuel/ollama). For all these services, we use R's functional OOP system, which I'm [currently reworking](https://github.com/calderonsamuel/skellm) to use the more explicit [S7 system](https://github.com/RConsortium/S7).
+
+Talk about lots of efforts ...
+
+Talk about the common pain...
+
+## SSEparser at the rescue
+
+I'm excited to announce the release of version 0.1.0 of the SSEparser R package, designed to provide robust functionality for parsing Server-Sent Events (SSE) and building upon them. This package is a valuable tool for data analysts and software engineers working with real-time streaming data, especially in scenarios like HTTP requests with MIME type "text/event-stream."
+
+### Installation
+
+You can easily install the SSEparser package from CRAN using the following command:
+
+```{r}
+#| eval: false
+install.packages("SSEparser")
+```
+
+For those who prefer to live on the bleeding edge, the development version can be installed with the pak package:
+
+```{r}
+#| eval: false
+pak::pak("calderonsamuel/SSEparser")
+```
+
+### Example Usage
+
+Let's delve into a simple example to showcase the power of the SSEparser package. The `parse_sse()` function takes a string containing a server-sent event and converts it into an R list. Check out the example below:
+
+```{r}
+library(SSEparser)
+
+event <- "data: test\nevent: message\nid: 123\n\n"
+
+parse_sse(event)
+```
+
+The package also handles comments in the event stream gracefully, ensuring they are not parsed.
+
+### Use in HTTP Requests
+
+SSEparser goes beyond simple event parsing; it seamlessly integrates with HTTP requests for real-time streaming data. The code snippet below demonstrates handling an HTTP request with MIME type "text/event-stream":
+
+```{r}
+parser <- SSEparser$new()
+
+response <- httr2::request("https://postman-echo.com/server-events/3") %>%
+    httr2::req_body_json(data = list(
+        event = "message",
+        request = "POST"
+    )) %>%
+    httr2::req_perform_stream(callback = \(x) {
+        event <- rawToChar(x)
+        parser$parse_sse(event)
+        TRUE
+    })
+
+str(parser$events)
+```
+
+This example illustrates parsing multiple events from a streaming data source.
+
+### Extending SSEparser
+
+One of the strengths of SSEparser is its extensibility. Suppose you want to parse the content of every data field into an R list instead of a JSON string. In that case, you can easily create a custom parser by inheriting from the SSEparser class. Here's an example:
+
+```{r}
+CustomParser <- R6::R6Class(
+    classname = "CustomParser",
+    inherit = SSEparser,
+    public = list(
+        initialize = function() {
+            super$initialize()
+        },
+        append_parsed_sse = function(parsed_event) {
+            parsed_event$data <- jsonlite::fromJSON(parsed_event$data)
+            self$events = c(self$events, list(parsed_event))
+            invisible(self)
+        }
+    )
+)
+```
+
+Now you can use your custom parser for streaming data with the same ease:
+
+```{r}
+parser <- CustomParser$new()
+
+response <- httr2::request("https://postman-echo.com/server-events/3") %>%
+    httr2::req_body_json(data = list(
+        event = "message",
+        request = "POST"
+    )) %>%
+    httr2::req_perform_stream(callback = \(x) {
+        event <- rawToChar(x)
+        parser$parse_sse(event)
+        TRUE
+    })
+
+str(parser$events)
+```
+
+With SSEparser v0.1.0, you have a powerful tool at your disposal for handling and parsing Server-Sent Events efficiently. Feel free to explore its features and enhance your real-time streaming data workflows.
