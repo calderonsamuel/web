@@ -9,9 +9,9 @@ knitr:
     class-error: "text-danger"
 ---
 
-This post has two objectives: present some projects that use "ChatGPT" technology to help R developers, and to present a package that can help all of them.
+This post has two objectives: to present some projects that use "ChatGPT" like technology to help R developers, and to present a package that can help all of them.
 
-One year ago, with the launch of [ChatGPT](https://chat.openai.com/chat), the world found itself astonished by the profound impact this conversational AI model had made across various domains. The tech community was particularly surprised by the model's versatility, successfully powering chatbots, virtual assistants, and aiding developers in diverse applications. How did the R community take advantage of this?
+One year ago, with the launch of [ChatGPT](https://chat.openai.com/chat), the world found itself astonished by the profound impact this conversational AI model started to make across various domains. The tech community was particularly surprised by the model's versatility, successfully powering chatbots, virtual assistants, and aiding developers in diverse applications. How did the R community take advantage of this?
 
 ## LLMs for the R developer's workflow
 
@@ -30,7 +30,7 @@ While we work on overcoming this challenge, we provide the following features:
 - Every code chunk produced by the AI assistant can be saved to the clipboard with a single click.
 - You can save your conversations to be continued later.
 - You can change the chat settings per session, or save a default configuration. All without leaving the chat UI.
-- You can add R help pages as chat context for every package you have installed locally. This is very useful to receive assistance in the latest trends in the R ecosystem instead of having to wait for AI giants to update the cutoff date of their models. Use a "package:object" string anywhere in your prompt to accomplish this (e.g. "Help me with dplyr::join_by").
+- You can add R help pages as chat context for every package you have installed locally. This is very useful to receive assistance in the latest trends in the R ecosystem instead of having to wait for AI giants to update the cutoff date of their models. Use a "package::object" string anywhere in your prompt to accomplish this (e.g. "Help me with dplyr::join_by").
 - The UI has support for internationalization. We currently support English, Spanish and German. We are open to receive more translations.
 - We support *streaming* messages, meaning you can start reading a response before it has fully arrived (just like in ChatGPT).
 - The chat UI inherits your RStudio IDE theme, to give a more "built-in" look. You can start the chat as an RStudio addin (even set up a custom keyboard shortcut).
@@ -99,17 +99,25 @@ The package also handles comments in the event stream gracefully, ensuring they 
 
 ### Use in HTTP Requests
 
-SSEparser goes beyond simple event parsing; it seamlessly integrates with HTTP requests for real-time streaming data. The code snippet below demonstrates handling an HTTP request with MIME type "text/event-stream":
+SSEparser goes beyond simple event parsing; it seamlessly integrates with HTTP requests for real-time streaming data. The code snippet below demonstrates creating an HTTP request for the stream, it will have a MIME type "text/event-stream". We ask for 3 events from the dummy API of [postman](https://www.postman.com/postman/workspace/published-postman-templates/documentation/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65?ctx=documentation).
+
+```{r}
+library(httr2)
+
+sse_request <- request("https://postman-echo.com/server-events/3") %>% 
+    req_body_json(data = list(
+        event = "message",
+        request = "POST"
+    ))
+```
+
+Now, we can use `SSEparser` inside the callback function of the stream. This example illustrates parsing multiple events from a streaming data source.
 
 ```{r}
 parser <- SSEparser$new()
 
-response <- httr2::request("https://postman-echo.com/server-events/3") %>%
-    httr2::req_body_json(data = list(
-        event = "message",
-        request = "POST"
-    )) %>%
-    httr2::req_perform_stream(callback = \(x) {
+response <- sse_request %>%
+    req_perform_stream(callback = \(x) {
         event <- rawToChar(x)
         parser$parse_sse(event)
         TRUE
@@ -118,7 +126,7 @@ response <- httr2::request("https://postman-echo.com/server-events/3") %>%
 str(parser$events)
 ```
 
-This example illustrates parsing multiple events from a streaming data source.
+Look at the data fields, they look like JSON strings. We should be able to parse them as they come too.
 
 ### Extending SSEparser
 
@@ -141,16 +149,12 @@ CustomParser <- R6::R6Class(
 )
 ```
 
-Now you can use your custom parser for streaming data with the same ease:
+Now you can use your custom parser for streaming data with the same ease. We re-use the same request that we used before.
 
 ```{r}
 parser <- CustomParser$new()
 
-response <- httr2::request("https://postman-echo.com/server-events/3") %>%
-    httr2::req_body_json(data = list(
-        event = "message",
-        request = "POST"
-    )) %>%
+response <- sse_request %>%
     httr2::req_perform_stream(callback = \(x) {
         event <- rawToChar(x)
         parser$parse_sse(event)
@@ -161,3 +165,77 @@ str(parser$events)
 ```
 
 With SSEparser v0.1.0, you have a powerful tool at your disposal for handling and parsing Server-Sent Events efficiently. Feel free to explore its features and enhance your real-time streaming data workflows.
+
+### Extending for OpenAI chat completions
+
+For OpenAI, the parser can't just convert every data field to an R list, because the last chunk is not a valid JSON string. So we need to slightly modify how we parse the data fields. We can also add a buffer to save just the actual content of the chat response, as this comes deeply nested inside every chunk.
+
+```{r}
+ChatParser <- R6::R6Class(
+  classname = "ChatParser",
+  inherit = SSEparser,
+  public = list(
+    chat_response = NULL, # this will be our buffer
+    initialize = function() {
+      self$chat_response <- ""
+      super$initialize()
+    },
+    append_parsed_sse = function(parsed_event) {
+      # ----- here you can do whatever you want with the event data -----
+      if (parsed_event$data == "[DONE]") return()
+      parsed_event$data <- jsonlite::fromJSON(parsed_event$data, simplifyDataFrame = FALSE)
+      
+      content <- parsed_event$data$choices[[1]]$delta$content
+      self$chat_response <- paste0(self$chat_response, content)
+      # ----- END ----
+      
+      self$events = c(self$events, list(parsed_event))
+      invisible(self)
+    }
+  )
+)
+```
+
+The next code chunk defines the request. We are just asking "What is 2 + 2", and specifying that we cant a streaming response.
+
+```{r}
+openai_chat_request <- request("https://api.openai.com/v1") %>% # base url
+  req_url_path_append("chat/completions") %>% # endpoint
+  req_auth_bearer_token(Sys.getenv("OPENAI_API_KEY")) %>%
+  req_body_json(data = list(
+    model = "gpt-3.5-turbo",
+    messages = list(
+      list(role = "user", content = "What is 2 + 2")
+    ),
+    stream = TRUE
+  ))
+```
+
+Now we can request the stream, just as we did before. In this case, we can access the chat response.
+
+```{r}
+parser <- ChatParser$new()
+
+response <- openai_chat_request %>%
+    httr2::req_perform_stream(callback = \(x) {
+        event <- rawToChar(x)
+        parser$parse_sse(event)
+        TRUE
+    })
+
+parser$chat_response
+```
+
+And just like that, you have a fully functional parser for OpenAI streaming requests.
+
+## Final words, very off topic
+
+2023 has been an amazing year, R-wise, for me. One of my resolutions at the start of the year was to go trough the process of sending my first package to CRAN. I had read [R packages](https://r-pkgs.org/) cover to cover, multiple times, in preparation for that moment. When I finally gathered the courage, I started polishing my in-development package to be ready from CRAN. 
+
+It was during that time that I stumbled upon the `{gptstudio}` project, whose version 0.1.0 was already on CRAN. I assisted the authors ([James Wade](https://github.com/JamesHWade) and [Michel Nivard](https://github.com/MichelNivard)) implementing the streaming functionality, running the app as a background job, and providing some CSS styling. For that effort, they decided to include me as a co-author when they submitted gptstudio v0.2.0 to CRAN. 
+
+I decided to write about this experience in a [blog post](https://samuelenrique.com/posts/2023-06-02-updating-gptstudio/), which marked my first time writing a post in English. I also chose to share it in the R weekly repository, and it was featured as a highlighted post on the web and the podcast! It was very amusing to hear [Eric Nantz](https://github.com/rpodcast) (someone I listen to every Thursday while I get ready for work) successfully pronouncing "Ministerio del Interior", the place where I work here in Peru.
+
+Around the same time, the [LatinR conference](https://latin-r.com/) call for papers was open, and I decided to send [2 projects](https://github.com/calderonsamuel/latinr). Both of them got approved and I found myself presenting R related work in Uruguay. Talking and hearing about R projects for three full days with many amazing people was a very refreshing experience. It was really an honor.
+
+I feel very thankful for everything the R community has provided me. Open source does really have the power to impact our lives in many unexpected ways. Looking forward to more growth and learning in the coming year.
