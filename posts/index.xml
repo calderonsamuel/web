@@ -10,7 +10,383 @@
 <atom:link href="https://calderonsamuel.github.io/web/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description>Web de Samuel Calderon</description>
 <generator>quarto-1.3.450</generator>
-<lastBuildDate>Mon, 02 Oct 2023 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 14 Dec 2023 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Patience is overrated – embrace the thrill of parsing streaming data as it arrives!</title>
+  <dc:creator>Samuel Calderon</dc:creator>
+  <link>https://calderonsamuel.github.io/web/posts/2023-12-14-launching-SSEparser/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<p>This post has two objectives: present some projects that use “ChatGPT” technology to help R developers, and to present a package that can help all of them.</p>
+<p>One year ago, with the launch of <a href="https://chat.openai.com/chat">ChatGPT</a>, the world found itself astonished by the profound impact this conversational AI model had made across various domains. The tech community was particularly surprised by the model’s versatility, successfully powering chatbots, virtual assistants, and aiding developers in diverse applications. How did the R community take advantage of this?</p>
+<section id="llms-for-the-r-developers-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="llms-for-the-r-developers-workflow">LLMs for the R developer’s workflow</h2>
+<p>Once OpenAI allowed developers to use its API, the R community started to see different initiatives for incorporating this service, and similar ones, into their workflows. OpenAI lists the <a href="https://github.com/ben-aaron188/rgpt3"><code>{rgpt3</code>}</a> package in its community library page, but we can also find the <a href="https://github.com/irudnyts/openai/"><code>{openai}</code></a> package which supports more recent endpoints. There is also the <a href="https://github.com/jcrodriguez1989/chatgpt"><code>{chatgpt}</code></a> package, which provides a chat interface that runs in the R console itself.</p>
+<p>For VSCode users, the <a href="https://github.com/ai-genie/chatgpt-vscode">Genie extension</a> provides lots of features integrating the OpenAI service using the contents of the files in your projects, and providing a UI where you can interact with the AI models exactly as you would do using ChatGPT. For Docker enthusiasts, you can use <a href="https://github.com/mckaywrigley/chatbot-ui">chatbot-ui</a> to easily host your own chat UI using OpenAI’s API under the hood.</p>
+<p>All the services mentioned above require you to have an OpenAI account and a valid API key, that allows the AI giant to charge you for its usage.</p>
+<p>For Rstudio users, we have two packages providing similar functionality for using a chat interface without ever needing to leave the RStudio IDE itself. The <a href="https://github.com/mlverse/chattr"><code>{chattr}</code></a> package provides a chat interface that can be accessed in the “Viewer” pane of RStudio. You can also use the <code>chattr()</code> function <em>in source</em> to directly give instructions to the AI assistant. The package supports using the OpenAI API or a self hosted (free) LLamaGPT executable. Even though it is not yet in CRAN, having the Posit PBC as the copyright holder of the package, you can expect it to keep receiving updates.</p>
+<p>The second package is called <a href="https://github.com/MichelNivard/gptstudio"><code>{gptstudio}</code></a> and requires that I make a disclaimer: I’m one of the co-authors. This package also provides a chat interface as a Rstudio addin, but in this case it runs as a background job. This means that you don’t have to close the chat when you need to use the R console. Sadly, currently this also means that you can’t directly use your documents content as context for the chat assistant, as background jobs don’t run in the same R session that the RStudio IDE uses.</p>
+<p>While we work on overcoming this challenge, we provide the following features:</p>
+<ul>
+<li>Every code chunk produced by the AI assistant can be saved to the clipboard with a single click.</li>
+<li>You can save your conversations to be continued later.</li>
+<li>You can change the chat settings per session, or save a default configuration. All without leaving the chat UI.</li>
+<li>You can add R help pages as chat context for every package you have installed locally. This is very useful to receive assistance in the latest trends in the R ecosystem instead of having to wait for AI giants to update the cutoff date of their models. Use a “package:object” string anywhere in your prompt to accomplish this (e.g.&nbsp;“Help me with dplyr::join_by”).</li>
+<li>The UI has support for internationalization. We currently support English, Spanish and German. We are open to receive more translations.</li>
+<li>We support <em>streaming</em> messages, meaning you can start reading a response before it has fully arrived (just like in ChatGPT).</li>
+<li>The chat UI inherits your RStudio IDE theme, to give a more “built-in” look. You can start the chat as an RStudio addin (even set up a custom keyboard shortcut).</li>
+<li>You can choose your model. While the default option is to use the OpenAI’s “gpt-3.5-turbo” model, you can choose any of the current OpenAI models, such as “gpt-4” or “gpt-3.5-turbo-16k”.</li>
+<li>You can choose your service. While OpenAI offers many good models, we also support using “Huggingface”, “Anthropic”, “Azure OpenAI” and “Palm”, each one of them provides many models.</li>
+</ul>
+<p>We are also working on supporting self hosted services/models, such as <a href="https://github.com/calderonsamuel/ollama"><code>{ollama}</code></a>. For all these services, we use R’s functional OOP system, which I’m <a href="https://github.com/calderonsamuel/skellm">currently reworking</a> to use the more explicit <a href="https://github.com/RConsortium/S7">S7 system</a>.</p>
+<p>Each one of these features has meant great effort on our side, so we hope they help your workflow. We also hope you can let us know if you find any issue or bug.</p>
+</section>
+<section id="addressing-a-small-but-common-pain" class="level2">
+<h2 class="anchored" data-anchor-id="addressing-a-small-but-common-pain">Addressing a small, but common pain</h2>
+<p>Using APIs means that you have to use HTTP requests. Expecting to receive streaming data adds complexity to this, as you need to do something with the incoming data before it fully arrives. OpenAI uses Server-Sent Events communication (SSE) for streaming responses, enabling a unidirectional communication channel based on a single, long-lived HTTP connection that allows the server to send periodic updates to the connected clients.</p>
+<p>Server-Sent Events come in <em>chunks</em>, here you have an example:</p>
+<pre><code>data: This is the first chunk, it has one line
+
+data: This is the second chunk
+extra: It has two lines
+
+data: This is the third chunk, it has an id field. This is common.
+id: 123
+
+: Lines that start with a colon are comments, they don't hold data
+data: This is the forth chunk, it has a comment
+
+data: This is the fifth chunk. Normally you will receive a data field
+custom: But the server can send custom field names.</code></pre>
+<p>You can imagine that in order to use the incoming data, we need to parse the text received. While this might seem trivial, until now each package that streams data from OpenAI has implemeted its own way of parsing the incoming chunks. There should be a standard way. In fact, Server-Sent Events date back to at least 2006, and there is a <a href="https://html.spec.whatwg.org/multipage/server-sent-events.html#parsing-an-event-stream">HTML specification</a> that provides instructions for browsers and other clients on how to parse them.</p>
+<p>After taking into account those instructions, I’m excited to announce the release of version 0.1.0 of the SSEparser R package, designed to provide robust functionality for parsing Server-Sent Events (SSE) and building upon them. This package is a valuable tool for data analysts and software engineers working with real-time streaming data.</p>
+<section id="installation" class="level3">
+<h3 class="anchored" data-anchor-id="installation">Installation</h3>
+<p>You can easily install the SSEparser package from CRAN using the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">install.packages</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"SSEparser"</span>)</span></code></pre></div>
+</div>
+<p>For those who prefer to live on the bleeding edge, the development version can be installed with the pak package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">pak<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pak</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"calderonsamuel/SSEparser"</span>)</span></code></pre></div>
+</div>
+</section>
+<section id="example-usage" class="level3">
+<h3 class="anchored" data-anchor-id="example-usage">Example Usage</h3>
+<p>Let’s delve into a simple example to showcase the power of the SSEparser package. The <code>parse_sse()</code> function takes a string containing a server-sent event and converts it into an R list. Check out the example below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(SSEparser)</span>
+<span id="cb4-2"></span>
+<span id="cb4-3">event <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data: test</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">event: message</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">id: 123</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span></span>
+<span id="cb4-4"></span>
+<span id="cb4-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">parse_sse</span>(event)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; [[1]]
+#&gt; [[1]]$data
+#&gt; [1] "test"
+#&gt; 
+#&gt; [[1]]$event
+#&gt; [1] "message"
+#&gt; 
+#&gt; [[1]]$id
+#&gt; [1] "123"</code></pre>
+</div>
+</div>
+<p>The package also handles comments in the event stream gracefully, ensuring they are not parsed.</p>
+</section>
+<section id="use-in-http-requests" class="level3">
+<h3 class="anchored" data-anchor-id="use-in-http-requests">Use in HTTP Requests</h3>
+<p>SSEparser goes beyond simple event parsing; it seamlessly integrates with HTTP requests for real-time streaming data. The code snippet below demonstrates handling an HTTP request with MIME type “text/event-stream”:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">parser <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> SSEparser<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">new</span>()</span>
+<span id="cb6-2"></span>
+<span id="cb6-3">response <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> httr2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">request</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://postman-echo.com/server-events/3"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb6-4">    httr2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">req_body_json</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb6-5">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">event =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"message"</span>,</span>
+<span id="cb6-6">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">request =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"POST"</span></span>
+<span id="cb6-7">    )) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb6-8">    httr2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">req_perform_stream</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">callback =</span> \(x) {</span>
+<span id="cb6-9">        event <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rawToChar</span>(x)</span>
+<span id="cb6-10">        parser<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">parse_sse</span>(event)</span>
+<span id="cb6-11">        <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span></span>
+<span id="cb6-12">    })</span>
+<span id="cb6-13"></span>
+<span id="cb6-14"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str</span>(parser<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>events)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; List of 3
+#&gt;  $ :List of 3
+#&gt;   ..$ event: chr "info"
+#&gt;   ..$ data : chr "{\"event\":\"message\",\"request\":\"POST\"}"
+#&gt;   ..$ id   : chr "1"
+#&gt;  $ :List of 3
+#&gt;   ..$ event: chr "ping"
+#&gt;   ..$ data : chr "{\"event\":\"message\",\"request\":\"POST\"}"
+#&gt;   ..$ id   : chr "2"
+#&gt;  $ :List of 3
+#&gt;   ..$ event: chr "notification"
+#&gt;   ..$ data : chr "{\"event\":\"message\",\"request\":\"POST\"}"
+#&gt;   ..$ id   : chr "3"</code></pre>
+</div>
+</div>
+<p>This example illustrates parsing multiple events from a streaming data source.</p>
+</section>
+<section id="extending-sseparser" class="level3">
+<h3 class="anchored" data-anchor-id="extending-sseparser">Extending SSEparser</h3>
+<p>One of the strengths of SSEparser is its extensibility. Suppose you want to parse the content of every data field into an R list instead of a JSON string. In that case, you can easily create a custom parser by inheriting from the SSEparser class. Here’s an example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">CustomParser <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> R6<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">R6Class</span>(</span>
+<span id="cb8-2">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">classname =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"CustomParser"</span>,</span>
+<span id="cb8-3">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">inherit =</span> SSEparser,</span>
+<span id="cb8-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">public =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb8-5">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">initialize =</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>() {</span>
+<span id="cb8-6">            super<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">initialize</span>()</span>
+<span id="cb8-7">        },</span>
+<span id="cb8-8">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">append_parsed_sse =</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">function</span>(parsed_event) {</span>
+<span id="cb8-9">            parsed_event<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>data <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> jsonlite<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fromJSON</span>(parsed_event<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>data)</span>
+<span id="cb8-10">            self<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>events <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(self<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>events, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(parsed_event))</span>
+<span id="cb8-11">            <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">invisible</span>(self)</span>
+<span id="cb8-12">        }</span>
+<span id="cb8-13">    )</span>
+<span id="cb8-14">)</span></code></pre></div>
+</div>
+<p>Now you can use your custom parser for streaming data with the same ease:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">parser <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> CustomParser<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">new</span>()</span>
+<span id="cb9-2"></span>
+<span id="cb9-3">response <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> httr2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">request</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://postman-echo.com/server-events/3"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb9-4">    httr2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">req_body_json</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb9-5">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">event =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"message"</span>,</span>
+<span id="cb9-6">        <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">request =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"POST"</span></span>
+<span id="cb9-7">    )) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb9-8">    httr2<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">req_perform_stream</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">callback =</span> \(x) {</span>
+<span id="cb9-9">        event <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rawToChar</span>(x)</span>
+<span id="cb9-10">        parser<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">parse_sse</span>(event)</span>
+<span id="cb9-11">        <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span></span>
+<span id="cb9-12">    })</span>
+<span id="cb9-13"></span>
+<span id="cb9-14"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">str</span>(parser<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>events)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre class="text-muted"><code>#&gt; List of 3
+#&gt;  $ :List of 3
+#&gt;   ..$ event: chr "info"
+#&gt;   ..$ data :List of 2
+#&gt;   .. ..$ event  : chr "message"
+#&gt;   .. ..$ request: chr "POST"
+#&gt;   ..$ id   : chr "1"
+#&gt;  $ :List of 3
+#&gt;   ..$ event: chr "message"
+#&gt;   ..$ data :List of 2
+#&gt;   .. ..$ event  : chr "message"
+#&gt;   .. ..$ request: chr "POST"
+#&gt;   ..$ id   : chr "2"
+#&gt;  $ :List of 3
+#&gt;   ..$ event: chr "message"
+#&gt;   ..$ data :List of 2
+#&gt;   .. ..$ event  : chr "message"
+#&gt;   .. ..$ request: chr "POST"
+#&gt;   ..$ id   : chr "3"</code></pre>
+</div>
+</div>
+<p>With SSEparser v0.1.0, you have a powerful tool at your disposal for handling and parsing Server-Sent Events efficiently. Feel free to explore its features and enhance your real-time streaming data workflows.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <guid>https://calderonsamuel.github.io/web/posts/2023-12-14-launching-SSEparser/index.html</guid>
+  <pubDate>Thu, 14 Dec 2023 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Strengthen your no-code apps with R code: appsheet 0.1.0</title>
   <dc:creator>Samuel Calderon</dc:creator>

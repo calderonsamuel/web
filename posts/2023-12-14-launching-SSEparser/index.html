@@ -164,7 +164,7 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
    
   <ul>
   <li><a href="#llms-for-the-r-developers-workflow" id="toc-llms-for-the-r-developers-workflow" class="nav-link active" data-scroll-target="#llms-for-the-r-developers-workflow">LLMs for the R developer’s workflow</a></li>
-  <li><a href="#sseparser-at-the-rescue" id="toc-sseparser-at-the-rescue" class="nav-link" data-scroll-target="#sseparser-at-the-rescue">SSEparser at the rescue</a>
+  <li><a href="#addressing-a-small-but-common-pain" id="toc-addressing-a-small-but-common-pain" class="nav-link" data-scroll-target="#addressing-a-small-but-common-pain">Addressing a small, but common pain</a>
   <ul class="collapse">
   <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
   <li><a href="#example-usage" id="toc-example-usage" class="nav-link" data-scroll-target="#example-usage">Example Usage</a></li>
@@ -206,6 +206,7 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 
 </header>
 
+<p>This post has two objectives: present some projects that use “ChatGPT” technology to help R developers, and to present a package that can help all of them.</p>
 <p>One year ago, with the launch of <a href="https://chat.openai.com/chat">ChatGPT</a>, the world found itself astonished by the profound impact this conversational AI model had made across various domains. The tech community was particularly surprised by the model’s versatility, successfully powering chatbots, virtual assistants, and aiding developers in diverse applications. How did the R community take advantage of this?</p>
 <section id="llms-for-the-r-developers-workflow" class="level2">
 <h2 class="anchored" data-anchor-id="llms-for-the-r-developers-workflow">LLMs for the R developer’s workflow</h2>
@@ -221,36 +222,53 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <li>You can change the chat settings per session, or save a default configuration. All without leaving the chat UI.</li>
 <li>You can add R help pages as chat context for every package you have installed locally. This is very useful to receive assistance in the latest trends in the R ecosystem instead of having to wait for AI giants to update the cutoff date of their models. Use a “package:object” string anywhere in your prompt to accomplish this (e.g.&nbsp;“Help me with dplyr::join_by”).</li>
 <li>The UI has support for internationalization. We currently support English, Spanish and German. We are open to receive more translations.</li>
+<li>We support <em>streaming</em> messages, meaning you can start reading a response before it has fully arrived (just like in ChatGPT).</li>
+<li>The chat UI inherits your RStudio IDE theme, to give a more “built-in” look. You can start the chat as an RStudio addin (even set up a custom keyboard shortcut).</li>
 <li>You can choose your model. While the default option is to use the OpenAI’s “gpt-3.5-turbo” model, you can choose any of the current OpenAI models, such as “gpt-4” or “gpt-3.5-turbo-16k”.</li>
 <li>You can choose your service. While OpenAI offers many good models, we also support using “Huggingface”, “Anthropic”, “Azure OpenAI” and “Palm”, each one of them provides many models.</li>
 </ul>
 <p>We are also working on supporting self hosted services/models, such as <a href="https://github.com/calderonsamuel/ollama"><code>{ollama}</code></a>. For all these services, we use R’s functional OOP system, which I’m <a href="https://github.com/calderonsamuel/skellm">currently reworking</a> to use the more explicit <a href="https://github.com/RConsortium/S7">S7 system</a>.</p>
-<p>Talk about lots of efforts …</p>
-<p>Talk about the common pain…</p>
+<p>Each one of these features has meant great effort on our side, so we hope they help your workflow. We also hope you can let us know if you find any issue or bug.</p>
 </section>
-<section id="sseparser-at-the-rescue" class="level2">
-<h2 class="anchored" data-anchor-id="sseparser-at-the-rescue">SSEparser at the rescue</h2>
-<p>I’m excited to announce the release of version 0.1.0 of the SSEparser R package, designed to provide robust functionality for parsing Server-Sent Events (SSE) and building upon them. This package is a valuable tool for data analysts and software engineers working with real-time streaming data, especially in scenarios like HTTP requests with MIME type “text/event-stream.”</p>
+<section id="addressing-a-small-but-common-pain" class="level2">
+<h2 class="anchored" data-anchor-id="addressing-a-small-but-common-pain">Addressing a small, but common pain</h2>
+<p>Using APIs means that you have to use HTTP requests. Expecting to receive streaming data adds complexity to this, as you need to do something with the incoming data before it fully arrives. OpenAI uses Server-Sent Events communication (SSE) for streaming responses, enabling a unidirectional communication channel based on a single, long-lived HTTP connection that allows the server to send periodic updates to the connected clients.</p>
+<p>Server-Sent Events come in <em>chunks</em>, here you have an example:</p>
+<pre><code>data: This is the first chunk, it has one line
+
+data: This is the second chunk
+extra: It has two lines
+
+data: This is the third chunk, it has an id field. This is common.
+id: 123
+
+: Lines that start with a colon are comments, they don't hold data
+data: This is the forth chunk, it has a comment
+
+data: This is the fifth chunk. Normally you will receive a data field
+custom: But the server can send custom field names.</code></pre>
+<p>You can imagine that in order to use the incoming data, we need to parse the text received. While this might seem trivial, until now each package that streams data from OpenAI has implemeted its own way of parsing the incoming chunks. There should be a standard way. In fact, Server-Sent Events date back to at least 2006, and there is a <a href="https://html.spec.whatwg.org/multipage/server-sent-events.html#parsing-an-event-stream">HTML specification</a> that provides instructions for browsers and other clients on how to parse them.</p>
+<p>After taking into account those instructions, I’m excited to announce the release of version 0.1.0 of the SSEparser R package, designed to provide robust functionality for parsing Server-Sent Events (SSE) and building upon them. This package is a valuable tool for data analysts and software engineers working with real-time streaming data.</p>
 <section id="installation" class="level3">
 <h3 class="anchored" data-anchor-id="installation">Installation</h3>
 <p>You can easily install the SSEparser package from CRAN using the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"SSEparser"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"SSEparser"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For those who prefer to live on the bleeding edge, the development version can be installed with the pak package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"calderonsamuel/SSEparser"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"calderonsamuel/SSEparser"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="example-usage" class="level3">
 <h3 class="anchored" data-anchor-id="example-usage">Example Usage</h3>
 <p>Let’s delve into a simple example to showcase the power of the SSEparser package. The <code>parse_sse()</code> function takes a string containing a server-sent event and converts it into an R list. Check out the example below:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SSEparser)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>event <span class="ot">&lt;-</span> <span class="st">"data: test</span><span class="sc">\n</span><span class="st">event: message</span><span class="sc">\n</span><span class="st">id: 123</span><span class="sc">\n\n</span><span class="st">"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_sse</span>(event)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SSEparser)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>event <span class="ot">&lt;-</span> <span class="st">"data: test</span><span class="sc">\n</span><span class="st">event: message</span><span class="sc">\n</span><span class="st">id: 123</span><span class="sc">\n\n</span><span class="st">"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_sse</span>(event)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; [[1]]
 #&gt; [[1]]$data
@@ -269,28 +287,28 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <h3 class="anchored" data-anchor-id="use-in-http-requests">Use in HTTP Requests</h3>
 <p>SSEparser goes beyond simple event parsing; it seamlessly integrates with HTTP requests for real-time streaming data. The code snippet below demonstrates handling an HTTP request with MIME type “text/event-stream”:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>parser <span class="ot">&lt;-</span> SSEparser<span class="sc">$</span><span class="fu">new</span>()</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> httr2<span class="sc">::</span><span class="fu">request</span>(<span class="st">"https://postman-echo.com/server-events/3"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">req_body_json</span>(<span class="at">data =</span> <span class="fu">list</span>(</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">event =</span> <span class="st">"message"</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">request =</span> <span class="st">"POST"</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">req_perform_stream</span>(<span class="at">callback =</span> \(x) {</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        event <span class="ot">&lt;-</span> <span class="fu">rawToChar</span>(x)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        parser<span class="sc">$</span><span class="fu">parse_sse</span>(event)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(parser<span class="sc">$</span>events)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>parser <span class="ot">&lt;-</span> SSEparser<span class="sc">$</span><span class="fu">new</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> httr2<span class="sc">::</span><span class="fu">request</span>(<span class="st">"https://postman-echo.com/server-events/3"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">req_body_json</span>(<span class="at">data =</span> <span class="fu">list</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">event =</span> <span class="st">"message"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">request =</span> <span class="st">"POST"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">req_perform_stream</span>(<span class="at">callback =</span> \(x) {</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        event <span class="ot">&lt;-</span> <span class="fu">rawToChar</span>(x)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        parser<span class="sc">$</span><span class="fu">parse_sse</span>(event)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(parser<span class="sc">$</span>events)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; List of 3
 #&gt;  $ :List of 3
-#&gt;   ..$ event: chr "notification"
+#&gt;   ..$ event: chr "info"
 #&gt;   ..$ data : chr "{\"event\":\"message\",\"request\":\"POST\"}"
 #&gt;   ..$ id   : chr "1"
 #&gt;  $ :List of 3
-#&gt;   ..$ event: chr "info"
+#&gt;   ..$ event: chr "ping"
 #&gt;   ..$ data : chr "{\"event\":\"message\",\"request\":\"POST\"}"
 #&gt;   ..$ id   : chr "2"
 #&gt;  $ :List of 3
@@ -305,53 +323,53 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <h3 class="anchored" data-anchor-id="extending-sseparser">Extending SSEparser</h3>
 <p>One of the strengths of SSEparser is its extensibility. Suppose you want to parse the content of every data field into an R list instead of a JSON string. In that case, you can easily create a custom parser by inheriting from the SSEparser class. Here’s an example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>CustomParser <span class="ot">&lt;-</span> R6<span class="sc">::</span><span class="fu">R6Class</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">classname =</span> <span class="st">"CustomParser"</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit =</span> SSEparser,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">public =</span> <span class="fu">list</span>(</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">initialize =</span> <span class="cf">function</span>() {</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            super<span class="sc">$</span><span class="fu">initialize</span>()</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        },</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">append_parsed_sse =</span> <span class="cf">function</span>(parsed_event) {</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            parsed_event<span class="sc">$</span>data <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(parsed_event<span class="sc">$</span>data)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            self<span class="sc">$</span>events <span class="ot">=</span> <span class="fu">c</span>(self<span class="sc">$</span>events, <span class="fu">list</span>(parsed_event))</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">invisible</span>(self)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>CustomParser <span class="ot">&lt;-</span> R6<span class="sc">::</span><span class="fu">R6Class</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">classname =</span> <span class="st">"CustomParser"</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit =</span> SSEparser,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">public =</span> <span class="fu">list</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">initialize =</span> <span class="cf">function</span>() {</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            super<span class="sc">$</span><span class="fu">initialize</span>()</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">append_parsed_sse =</span> <span class="cf">function</span>(parsed_event) {</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            parsed_event<span class="sc">$</span>data <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(parsed_event<span class="sc">$</span>data)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            self<span class="sc">$</span>events <span class="ot">=</span> <span class="fu">c</span>(self<span class="sc">$</span>events, <span class="fu">list</span>(parsed_event))</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">invisible</span>(self)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now you can use your custom parser for streaming data with the same ease:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>parser <span class="ot">&lt;-</span> CustomParser<span class="sc">$</span><span class="fu">new</span>()</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> httr2<span class="sc">::</span><span class="fu">request</span>(<span class="st">"https://postman-echo.com/server-events/3"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">req_body_json</span>(<span class="at">data =</span> <span class="fu">list</span>(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">event =</span> <span class="st">"message"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">request =</span> <span class="st">"POST"</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">req_perform_stream</span>(<span class="at">callback =</span> \(x) {</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        event <span class="ot">&lt;-</span> <span class="fu">rawToChar</span>(x)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        parser<span class="sc">$</span><span class="fu">parse_sse</span>(event)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(parser<span class="sc">$</span>events)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>parser <span class="ot">&lt;-</span> CustomParser<span class="sc">$</span><span class="fu">new</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> httr2<span class="sc">::</span><span class="fu">request</span>(<span class="st">"https://postman-echo.com/server-events/3"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">req_body_json</span>(<span class="at">data =</span> <span class="fu">list</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">event =</span> <span class="st">"message"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">request =</span> <span class="st">"POST"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">req_perform_stream</span>(<span class="at">callback =</span> \(x) {</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        event <span class="ot">&lt;-</span> <span class="fu">rawToChar</span>(x)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        parser<span class="sc">$</span><span class="fu">parse_sse</span>(event)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(parser<span class="sc">$</span>events)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; List of 3
 #&gt;  $ :List of 3
-#&gt;   ..$ event: chr "message"
+#&gt;   ..$ event: chr "info"
 #&gt;   ..$ data :List of 2
 #&gt;   .. ..$ event  : chr "message"
 #&gt;   .. ..$ request: chr "POST"
 #&gt;   ..$ id   : chr "1"
 #&gt;  $ :List of 3
-#&gt;   ..$ event: chr "ping"
+#&gt;   ..$ event: chr "message"
 #&gt;   ..$ data :List of 2
 #&gt;   .. ..$ event  : chr "message"
 #&gt;   .. ..$ request: chr "POST"
 #&gt;   ..$ id   : chr "2"
 #&gt;  $ :List of 3
-#&gt;   ..$ event: chr "notification"
+#&gt;   ..$ event: chr "message"
 #&gt;   ..$ data :List of 2
 #&gt;   .. ..$ event  : chr "message"
 #&gt;   .. ..$ request: chr "POST"
