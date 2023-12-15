@@ -2,13 +2,14 @@
 title: "Patience is overrated – embrace the thrill of parsing streaming data as it arrives!"
 author: Samuel Calderon
 date: "2023-12-14"
-draft: true
 knitr:
   opts_chunk:
     comment: "#>"
     class-output: "text-muted"
     class-error: "text-danger"
 ---
+
+This post has two objectives: present some projects that use "ChatGPT" technology to help R developers, and to present a package that can help all of them.
 
 One year ago, with the launch of [ChatGPT](https://chat.openai.com/chat), the world found itself astonished by the profound impact this conversational AI model had made across various domains. The tech community was particularly surprised by the model's versatility, successfully powering chatbots, virtual assistants, and aiding developers in diverse applications. How did the R community take advantage of this?
 
@@ -31,18 +32,40 @@ While we work on overcoming this challenge, we provide the following features:
 - You can change the chat settings per session, or save a default configuration. All without leaving the chat UI.
 - You can add R help pages as chat context for every package you have installed locally. This is very useful to receive assistance in the latest trends in the R ecosystem instead of having to wait for AI giants to update the cutoff date of their models. Use a "package:object" string anywhere in your prompt to accomplish this (e.g. "Help me with dplyr::join_by").
 - The UI has support for internationalization. We currently support English, Spanish and German. We are open to receive more translations.
+- We support *streaming* messages, meaning you can start reading a response before it has fully arrived (just like in ChatGPT).
+- The chat UI inherits your RStudio IDE theme, to give a more "built-in" look. You can start the chat as an RStudio addin (even set up a custom keyboard shortcut).
 - You can choose your model. While the default option is to use the OpenAI's "gpt-3.5-turbo" model, you can choose any of the current OpenAI models, such as "gpt-4" or "gpt-3.5-turbo-16k".
 - You can choose your service. While OpenAI offers many good models, we also support using "Huggingface", "Anthropic", "Azure OpenAI" and "Palm", each one of them provides many models. 
 
 We are also working on supporting self hosted services/models, such as [`{ollama}`](https://github.com/calderonsamuel/ollama). For all these services, we use R's functional OOP system, which I'm [currently reworking](https://github.com/calderonsamuel/skellm) to use the more explicit [S7 system](https://github.com/RConsortium/S7).
 
-Talk about lots of efforts ...
+Each one of these features has meant great effort on our side, so we hope they help your workflow. We also hope you can let us know if you find any issue or bug.
 
-Talk about the common pain...
+## Addressing a small, but common pain
 
-## SSEparser at the rescue
+Using APIs means that you have to use HTTP requests. Expecting to receive streaming data adds complexity to this, as you need to do something with the incoming data before it fully arrives. OpenAI uses Server-Sent Events communication (SSE) for streaming responses, enabling a unidirectional communication channel based on a single, long-lived HTTP connection that allows the server to send periodic updates to the connected clients. 
 
-I'm excited to announce the release of version 0.1.0 of the SSEparser R package, designed to provide robust functionality for parsing Server-Sent Events (SSE) and building upon them. This package is a valuable tool for data analysts and software engineers working with real-time streaming data, especially in scenarios like HTTP requests with MIME type "text/event-stream."
+Server-Sent Events come in *chunks*, here you have an example:
+
+```
+data: This is the first chunk, it has one line
+
+data: This is the second chunk
+extra: It has two lines
+
+data: This is the third chunk, it has an id field. This is common.
+id: 123
+
+: Lines that start with a colon are comments, they don't hold data
+data: This is the forth chunk, it has a comment
+
+data: This is the fifth chunk. Normally you will receive a data field
+custom: But the server can send custom field names.
+```
+
+You can imagine that in order to use the incoming data, we need to parse the text received. While this might seem trivial, until now each package that streams data from OpenAI has implemeted its own way of parsing the incoming chunks. There should be a standard way. In fact, Server-Sent Events date back to at least 2006, and there is a [HTML specification](https://html.spec.whatwg.org/multipage/server-sent-events.html#parsing-an-event-stream) that provides instructions for browsers and other clients on how to parse them.
+
+After taking into account those instructions, I'm excited to announce the release of version 0.1.0 of the SSEparser R package, designed to provide robust functionality for parsing Server-Sent Events (SSE) and building upon them. This package is a valuable tool for data analysts and software engineers working with real-time streaming data.
 
 ### Installation
 
