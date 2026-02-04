@@ -1,18 +1,41 @@
 ---
 experience:
+  - title: R shiny developer
+    company: Appsilon
+    company_url: 'https://www.appsilon.com/'
+    company_logo: 'logos/appsilon-svg.svg'
+    location: Lima
+    date_start: '2024-03-01'
+    date_end: '2026-03-31'
+    description: |2-
+        Responsabilidades:
+
+        * Desarrollo de soluciones en R Shiny, PostgreSQL, Snowflake, Posit Connect, etc, para empresas Fortune 500
+  - title: Analista de gestión de la información
+    company: Ministerio del Interior del Perú
+    company_url: 'https://www.gob.pe/mininter'
+    company_logo: 'logos/logo-mininter.png'
+    location: Lima
+    date_start: '2022-06-01'
+    date_end: '2023-12-31'
+    description: |2-
+        Responsabilidades:
+
+        * Recopilación, análisis y sistematización de información sobre tráfico ilícito de drogas
+        * Investigación y elaboración de informes sobre el fenómeno delictivo
   - title: Integrante del Equipo Técnico Normativo de la Dirección de Licenciamiento
     company: Superintendencia Nacional de Educación Universitaria
     company_url: 'https://www.gob.pe/sunedu'
     company_logo: 'logos/sunedu-svg.svg'
     location: Lima
     date_start: '2020-08-21'
-    date_end: ''
+    date_end: '2022-05-31'
     description: |2-
         Responsabilidades:
-        
+
         * Recopilación, análisis y sistematización de información sobre la educación superior a nivel nacional e internacional
         * Modelo de Renovación de Licencia Institucional (Modelo 2.0)
-        
+
   - title: Seguimiento al Plan Sectorial de Lucha contra la Corrupción
     company: Ministerio de Vivienda, Construcción y Saneamiento
     company_url: 'https://www.gob.pe/vivienda'
