@@ -1,12 +1,5 @@
 [
   {
-    "listing": "/projects/index.html",
-    "items": [
-      "/projects/packages/index.html",
-      "/projects/calculadora-renacyt/index.html"
-    ]
-  },
-  {
     "listing": "/posts/index.html",
     "items": [
       "/posts/2023-12-14-launching-SSEparser/index.html",
@@ -28,8 +21,15 @@
   {
     "listing": "/projects/packages/index.html",
     "items": [
-      "/projects/packages/perutranspaeconomica/index.html",
-      "/projects/packages/perumapas/index.html"
+      "/projects/packages/perumapas/index.html",
+      "/projects/packages/perutranspaeconomica/index.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/packages/index.html",
+      "/projects/calculadora-renacyt/index.html"
     ]
   }
 ]

@@ -6,16 +6,17 @@
       version="2.0">
 <channel>
 <title>Samuel Calderon</title>
-<link>https://calderonsamuel.github.io/web/posts/index.html</link>
+<link>https://calderonsamuel.github.io/web/posts/</link>
 <atom:link href="https://calderonsamuel.github.io/web/posts/index.xml" rel="self" type="application/rss+xml"/>
 <description>Web de Samuel Calderon</description>
-<generator>quarto-1.3.450</generator>
+<generator>quarto-1.8.27</generator>
 <lastBuildDate>Thu, 14 Dec 2023 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Patience is overrated – embrace the thrill of parsing streaming data as it arrives!</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2023-12-14-launching-SSEparser/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2023-12-14-launching-SSEparser/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -66,28 +67,28 @@ custom: But the server can send custom field names.</code></pre>
 <h3 class="anchored" data-anchor-id="installation">Installation</h3>
 <p>You can easily install the SSEparser package from CRAN using the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">install.packages</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"SSEparser"</span>)</span></code></pre></div>
+font-style: inherit;">"SSEparser"</span>)</span></code></pre></div></div>
 </div>
 <p>For those who prefer to live on the bleeding edge, the development version can be installed with the pak package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">pak<span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">pak<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">pak</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"calderonsamuel/SSEparser"</span>)</span></code></pre></div>
+font-style: inherit;">"calderonsamuel/SSEparser"</span>)</span></code></pre></div></div>
 </div>
 </section>
 <section id="example-usage" class="level3">
 <h3 class="anchored" data-anchor-id="example-usage">Example Usage</h3>
 <p>Let’s delve into a simple example to showcase the power of the SSEparser package. The <code>parse_sse()</code> function takes a string containing a server-sent event and converts it into an R list. Check out the example below:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(SSEparser)</span>
 <span id="cb4-2"></span>
@@ -111,7 +112,7 @@ font-style: inherit;">"</span></span>
 <span id="cb4-4"></span>
 <span id="cb4-5"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">parse_sse</span>(event)</span></code></pre></div>
+font-style: inherit;">parse_sse</span>(event)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; [[1]]
 #&gt; [[1]]$data
@@ -130,7 +131,7 @@ font-style: inherit;">parse_sse</span>(event)</span></code></pre></div>
 <h3 class="anchored" data-anchor-id="use-in-http-requests">Use in HTTP Requests</h3>
 <p>SSEparser goes beyond simple event parsing; it seamlessly integrates with HTTP requests for real-time streaming data. The code snippet below demonstrates creating an HTTP request for the stream, it will have a MIME type “text/event-stream”. We ask for 3 events from the dummy API of <a href="https://www.postman.com/postman/workspace/published-postman-templates/documentation/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65?ctx=documentation">postman</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(httr2)</span>
 <span id="cb6-2"></span>
@@ -160,11 +161,11 @@ background-color: null;
 font-style: inherit;">request =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"POST"</span></span>
-<span id="cb6-7">    ))</span></code></pre></div>
+<span id="cb6-7">    ))</span></code></pre></div></div>
 </div>
 <p>Now, we can use <code>SSEparser</code> inside the callback function of the stream. This example illustrates parsing multiple events from a streaming data source.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">parser <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">parser <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> SSEparser<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -201,7 +202,7 @@ font-style: inherit;">TRUE</span></span>
 background-color: null;
 font-style: inherit;">str</span>(parser<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">$</span>events)</span></code></pre></div>
+font-style: inherit;">$</span>events)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; List of 3
 #&gt;  $ :List of 3
@@ -224,7 +225,7 @@ font-style: inherit;">$</span>events)</span></code></pre></div>
 <h3 class="anchored" data-anchor-id="extending-sseparser">Extending SSEparser</h3>
 <p>One of the strengths of SSEparser is its extensibility. Suppose you want to parse the content of every data field into an R list instead of a JSON string. In that case, you can easily create a custom parser by inheriting from the SSEparser class. Here’s an example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">CustomParser <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">CustomParser <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> R6<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -248,6 +249,7 @@ font-style: inherit;">list</span>(</span>
 background-color: null;
 font-style: inherit;">initialize =</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>() {</span>
 <span id="cb9-6">            super<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -259,6 +261,7 @@ font-style: inherit;">initialize</span>()</span>
 background-color: null;
 font-style: inherit;">append_parsed_sse =</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(parsed_event) {</span>
 <span id="cb9-9">            parsed_event<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -287,11 +290,11 @@ background-color: null;
 font-style: inherit;">invisible</span>(self)</span>
 <span id="cb9-12">        }</span>
 <span id="cb9-13">    )</span>
-<span id="cb9-14">)</span></code></pre></div>
+<span id="cb9-14">)</span></code></pre></div></div>
 </div>
 <p>Now you can use your custom parser for streaming data with the same ease. We re-use the same request that we used before.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">parser <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">parser <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> CustomParser<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -330,7 +333,7 @@ font-style: inherit;">TRUE</span></span>
 background-color: null;
 font-style: inherit;">str</span>(parser<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">$</span>events)</span></code></pre></div>
+font-style: inherit;">$</span>events)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; List of 3
 #&gt;  $ :List of 3
@@ -359,7 +362,7 @@ font-style: inherit;">$</span>events)</span></code></pre></div>
 <h3 class="anchored" data-anchor-id="extending-for-openai-chat-completions">Extending for OpenAI chat completions</h3>
 <p>For OpenAI, the parser can’t just convert every data field to an R list, because the last chunk is not a valid JSON string. So we need to slightly modify how we parse the data fields. We can also add a buffer to save just the actual content of the chat response, as this comes deeply nested inside every chunk.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">ChatParser <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">ChatParser <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> R6<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -390,6 +393,7 @@ font-style: inherit;"># this will be our buffer</span></span>
 background-color: null;
 font-style: inherit;">initialize =</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>() {</span>
 <span id="cb12-7">      self<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -408,12 +412,14 @@ font-style: inherit;">initialize</span>()</span>
 background-color: null;
 font-style: inherit;">append_parsed_sse =</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(parsed_event) {</span>
 <span id="cb12-11">      <span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># ----- here you can do whatever you want with the event data -----</span></span>
 <span id="cb12-12">      <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (parsed_event<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>data <span class="sc" style="color: #5E5E5E;
@@ -483,11 +489,11 @@ background-color: null;
 font-style: inherit;">invisible</span>(self)</span>
 <span id="cb12-21">    }</span>
 <span id="cb12-22">  )</span>
-<span id="cb12-23">)</span></code></pre></div>
+<span id="cb12-23">)</span></code></pre></div></div>
 </div>
 <p>The next code chunk defines the request. We are just asking “What is 2 + 2”, and specifying that we cant a streaming response.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">openai_chat_request <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">openai_chat_request <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -550,11 +556,11 @@ background-color: null;
 font-style: inherit;">stream =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">TRUE</span></span>
-<span id="cb13-10">  ))</span></code></pre></div>
+<span id="cb13-10">  ))</span></code></pre></div></div>
 </div>
 <p>Now we can request the stream, just as we did before. In this case, we can access the chat response.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">parser <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">parser <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> ChatParser<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -591,7 +597,7 @@ font-style: inherit;">TRUE</span></span>
 <span id="cb14-9"></span>
 <span id="cb14-10">parser<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">$</span>chat_response</span></code></pre></div>
+font-style: inherit;">$</span>chat_response</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; [1] "2 + 2 equals 4."</code></pre>
 </div>
@@ -611,14 +617,15 @@ font-style: inherit;">$</span>chat_response</span></code></pre></div>
 </section>
 
  ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2023-12-14-launching-SSEparser/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2023-12-14-launching-SSEparser/</guid>
   <pubDate>Thu, 14 Dec 2023 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Strengthen your no-code apps with R code: appsheet 0.1.0</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2023-09-11-launching-appsheet/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2023-09-11-launching-appsheet/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -633,7 +640,7 @@ font-style: inherit;">$</span>chat_response</span></code></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://calderonsamuel.github.io/web/posts/2023-09-11-launching-appsheet/iq.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Sometimes, easier is easier</figcaption>
+<figcaption>Sometimes, easier is easier</figcaption>
 </figure>
 </div>
 <p>Appsheet allows you to build apps pretty fast based on data you already have. You can feed it a Google Sheet (and other data storage formats) and it will generate Views and Forms for your app users to interact with. With some knowledge of relational databases, you can get a pretty decent looking app for desktop and mobile devices that you can customize in just a few hours of work.</p>
@@ -644,7 +651,7 @@ font-style: inherit;">$</span>chat_response</span></code></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://calderonsamuel.github.io/web/posts/2023-09-11-launching-appsheet/hover.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">In this plot you can only see the value of the “Devuelto” column</figcaption>
+<figcaption>In this plot you can only see the value of the “Devuelto” column</figcaption>
 </figure>
 </div>
 <p>What if instead of a plot you want a table that shows the same information (count based on a column)? You can’t have it. I mean, you can have it if you implement <a href="https://www.googlecloudcommunity.com/gc/AppSheet-Q-A/Creating-a-summary-table/m-p/234056#M16542">some ultra complicated automation workflow</a>, but at that point, why don’t you just use R?</p>
@@ -660,19 +667,19 @@ font-style: inherit;">$</span>chat_response</span></code></pre></div>
 <p>The <code>appsheet()</code> function looks for both environmental variables by default.</p>
 <p>The API only exposes really basic operations: read, add, edit and remove table records. It all starts with loading the package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">library</span>(appsheet)</span></code></pre></div>
+font-style: inherit;">library</span>(appsheet)</span></code></pre></div></div>
 </div>
 <section id="read-a-table" class="level2">
 <h2 class="anchored" data-anchor-id="read-a-table">Read a table</h2>
 <p>The first argument of <code>appsheet()</code> is a table name. By default, <code>appsheet()</code> will use the “Find” action, which reads all the rows. The following code is the equivalent of using <code>appsheet(tableName = "Driver", Action = "Find")</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">appsheet</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Driver"</span>)</span></code></pre></div>
+font-style: inherit;">"Driver"</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; # A tibble: 7 × 7
 #&gt;   `_RowNumber` Key      `Driver Name` Photo           Email `Phone Number` Jobs 
@@ -688,7 +695,7 @@ font-style: inherit;">"Driver"</span>)</span></code></pre></div>
 </div>
 <p>When the action is “Find”, you can take advantage of the <code>Selector</code> argument of <code>ash_properties()</code>, which can use some AppSheet internal functions to narrow the output.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">appsheet</span>(</span>
 <span id="cb4-2">    <span class="at" style="color: #657422;
@@ -705,7 +712,7 @@ background-color: null;
 font-style: inherit;">Selector =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'Filter(Driver, [Key] = "70608c66")'</span>)</span>
-<span id="cb4-4">)</span></code></pre></div>
+<span id="cb4-4">)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; # A tibble: 1 × 7
 #&gt;   `_RowNumber` Key      `Driver Name` Photo           Email `Phone Number` Jobs 
@@ -720,7 +727,7 @@ font-style: inherit;">'Filter(Driver, [Key] = "70608c66")'</span>)</span>
 <p>The “Add” action allows to add one or multiple records to a table. You must provide <code>Rows</code>, which can be a dataframe with the same column names as the specified table. You don’t need to provide all the columns to be successful, but can’t exclude the ones <em>required</em> by your app. Also, don’t try to add the <code>_RowNumber</code>(or <code>Row ID</code> when using an AppsSheet database), as it is generated internally.</p>
 <p>An “Add” action returns a data.frame with the added rows when successful.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">row_key <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">row_key <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -775,7 +782,7 @@ font-style: inherit;">"driverXX@company.com"</span> <span class="co" style="colo
 background-color: null;
 font-style: inherit;"># required in app logic</span></span>
 <span id="cb6-9">    ) </span>
-<span id="cb6-10">)</span></code></pre></div>
+<span id="cb6-10">)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; # A tibble: 1 × 7
 #&gt;   `_RowNumber` Key      `Driver Name` Photo Email           `Phone Number` Jobs 
@@ -789,7 +796,7 @@ font-style: inherit;"># required in app logic</span></span>
 <p>The “Edit” action allow to update values from one or multiple records from a table, it also can target multiple columns. This one also requires the <code>Rows</code> argument. Again, you can’t use the <code>_RowNumber</code> column (but in this one you can use the <code>Row ID</code> generated by an Appsheet database).</p>
 <p>An “Edit” action returns a data.frame with the whole content of the updated rows when successful.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">appsheet</span>(</span>
 <span id="cb8-2">    <span class="at" style="color: #657422;
@@ -829,7 +836,7 @@ font-style: inherit;">Photo =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"some/path.jpg"</span></span>
 <span id="cb8-8">    ) </span>
-<span id="cb8-9">)</span></code></pre></div>
+<span id="cb8-9">)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; # A tibble: 1 × 7
 #&gt;   `_RowNumber` Key      `Driver Name` Photo         Email   `Phone Number` Jobs 
@@ -843,7 +850,7 @@ font-style: inherit;">"some/path.jpg"</span></span>
 <p>The “Delete” action allows to delete one or multiple records from a table. This one also requires the <code>Rows</code> argument. Again, you can’t use the <code>_RowNumber</code> column (but in this one you can use the <code>Row ID</code> generated by an Appsheet database).</p>
 <p>A “Delete” action returns a data.frame with the deleted rows when successful.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">appsheet</span>(</span>
 <span id="cb10-2">    <span class="at" style="color: #657422;
@@ -867,7 +874,7 @@ font-style: inherit;">tibble</span>(</span>
 background-color: null;
 font-style: inherit;">Key =</span> row_key</span>
 <span id="cb10-6">    ) </span>
-<span id="cb10-7">)</span></code></pre></div>
+<span id="cb10-7">)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; # A tibble: 1 × 7
 #&gt;   `_RowNumber` Key      `Driver Name` Photo         Email   `Phone Number` Jobs 
@@ -884,10 +891,11 @@ font-style: inherit;">Key =</span> row_key</span>
 <p>Next, you need a quarto document with the contents of your report to be rendered. Inside this report is where you should use <code>{appsheet}</code> and your favorite data processing and visualization packages.</p>
 <p>At the same directory level, you can have an R script where you render the report (<code>quarto::render()</code> ftw) and send it via email with <code>{blastula}</code>. For that, be sure to check the article on <a href="https://pkgs.rstudio.com/blastula/articles/sending_using_smtp.html">Sending Email Using SMTP</a>.</p>
 <p>Finally, you should set up a workflow YAML file in the <code>.github/workflows/</code> directory in your repository. Here you have a simplified example when your script is called <code>script.R</code>:</p>
-<div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">on</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> workflow_dispatch</span></span>
@@ -895,6 +903,7 @@ font-style: inherit;"> workflow_dispatch</span></span>
 background-color: null;
 font-style: inherit;">name</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> Generate and send report</span></span>
@@ -903,6 +912,7 @@ font-style: inherit;"> Generate and send report</span></span>
 background-color: null;
 font-style: inherit;">jobs</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb12-5"><span class="at" style="color: #657422;
 background-color: null;
@@ -913,6 +923,7 @@ font-style: inherit;">  </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">reporting</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb12-7"><span class="at" style="color: #657422;
 background-color: null;
@@ -923,6 +934,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">runs-on</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> ubuntu-latest</span></span>
@@ -935,6 +947,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">env</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb12-11"><span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -945,6 +958,7 @@ font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">GITHUB_PAT</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> ${{ secrets.GITHUB_TOKEN }}</span></span>
@@ -954,6 +968,7 @@ font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">APPSHEET_APP_ID</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> ${{ secrets.APPSHEET_APP_ID }}</span></span>
@@ -963,6 +978,7 @@ font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">APPSHEET_APP_ACCESS_KEY</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> ${{ secrets.APPSHEET_APP_ACCESS_KEY }}</span></span>
@@ -972,6 +988,7 @@ font-style: inherit;">      </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">BLASTULA_EMAIL_CREDS</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> ${{ secrets.BLASTULA_EMAIL_CREDS }}</span></span>
@@ -984,6 +1001,7 @@ font-style: inherit;">    </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">steps</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span></span>
 <span id="cb12-18"><span class="at" style="color: #657422;
 background-color: null;
@@ -995,12 +1013,14 @@ font-style: inherit;">      # Checkout the git repo</span></span>
 background-color: null;
 font-style: inherit;">      </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">uses</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> actions/checkout@v3</span></span>
@@ -1014,12 +1034,14 @@ font-style: inherit;">      # Set up pandoc - I just keep it to be safe</span></
 background-color: null;
 font-style: inherit;">      </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">uses</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> r-lib/actions/setup-pandoc@v2</span></span>
@@ -1033,12 +1055,14 @@ font-style: inherit;">      # Install R</span></span>
 background-color: null;
 font-style: inherit;">      </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">uses</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> r-lib/actions/setup-r@v2</span></span>
@@ -1052,12 +1076,14 @@ font-style: inherit;">      # Install quarto    </span></span>
 background-color: null;
 font-style: inherit;">      </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">uses</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> quarto-dev/quarto-actions/setup@v2</span></span>
@@ -1071,12 +1097,14 @@ font-style: inherit;">      # Install the necessary packages with renv</span></s
 background-color: null;
 font-style: inherit;">      </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">uses</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> r-lib/actions/setup-renv@v2</span></span>
@@ -1087,12 +1115,14 @@ font-style: inherit;">      </span></span>
 background-color: null;
 font-style: inherit;">      </span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">-</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> </span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">name</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">:</span><span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;"> Run rendering script</span></span>
@@ -1100,10 +1130,11 @@ font-style: inherit;"> Run rendering script</span></span>
 background-color: null;
 font-style: inherit;">        run</span><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">: </span><span class="ch" style="color: #20794D;
 background-color: null;
 font-style: inherit;">|</span></span>
-<span id="cb12-36">          Rscript script.R</span></code></pre></div>
+<span id="cb12-36">          Rscript script.R</span></code></pre></div></div>
 <p>Of course, there are ways of optimizing your workflow file and to strengthen the security of your script. Another thing to consider is that you have a limit of 2000 minutes a month of compute time for private repos in the free version (no limit on public repos).</p>
 <p>Here you have a repo where I set up an automatic reporting schedule with all the steps described before: <a href="https://github.com/ddc-research/auto-pronabi" class="uri">https://github.com/ddc-research/auto-pronabi</a>. It takes around 2 minutes for the job to complete and it’s totally free and safe.</p>
 
@@ -1114,14 +1145,15 @@ font-style: inherit;">|</span></span>
   <category>package</category>
   <category>no-code</category>
   <category>appsheet</category>
-  <guid>https://calderonsamuel.github.io/web/posts/2023-09-11-launching-appsheet/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2023-09-11-launching-appsheet/</guid>
   <pubDate>Mon, 02 Oct 2023 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>On updating a chat assistant app for the RStudio IDE</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -1159,7 +1191,7 @@ font-style: inherit;">|</span></span>
 <p>As I said before, I really wanted to have a button to easily add any code chunk text to the user’s system clipboard. At the time, I was unsure about doing it in R or in JS. I’ll explain why.</p>
 <p>When you send a prompt to ChatGPT, it will, by default, respond in markdown. You can easily convert that to HTML with <code>shiny::markdown()</code> and render it dynamically. A minimal shiny app to do that would look like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="lst-minimal-app" data-caption="Minimal shiny app" style="background: #f1f3f5;"><pre class="sourceCode r lst code-with-copy"><code class="sourceCode r"><span id="lst-minimal-app-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="lst-minimal-app" data-caption="Minimal shiny app" style="background: #f1f3f5;"><pre class="sourceCode r lst code-with-copy"><code class="sourceCode r"><span id="lst-minimal-app-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(shiny)</span>
 <span id="lst-minimal-app-2"></span>
@@ -1167,6 +1199,7 @@ font-style: inherit;">library</span>(shiny)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(prompt) {</span>
 <span id="lst-minimal-app-4">  <span class="co" style="color: #5E5E5E;
 background-color: null;
@@ -1203,6 +1236,7 @@ font-style: inherit;">"response"</span>)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(input, output, session) {</span>
 <span id="lst-minimal-app-14">  output<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1237,23 +1271,27 @@ font-style: inherit;">$</span>send)</span>
 <span id="lst-minimal-app-22"></span>
 <span id="lst-minimal-app-23"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">shinyApp</span>(ui, server)</span></code></pre></div>
+font-style: inherit;">shinyApp</span>(ui, server)</span></code></pre></div></div>
 </div>
 <p>A flowchart representing this app would look like this:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-process-minimal" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/process-minimal.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Flowchart of a minimal chat app</figcaption>
+<div id="fig-process-minimal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-process-minimal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/process-minimal.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-process-minimal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Flowchart of a minimal chat app
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>This receives a response, converts it to HTML, and sends it to the browser to be displayed. Every code chunk present would be wrapped inside a <code>&lt;pre&gt;</code> HTML tag, and because we aim to prepend a copy button to them, this tag should be the <em>selector</em> for any future manipulation.</p>
 <p>Now, we need to decide whether to do it in R or in JS. My first instinct was to do it via JS once the full answer was rendered. I would need a listener for a render event on any <code>&lt;pre&gt;</code> tag. This was my first attempt:</p>
-<div id="lst-js-first-attempt" class="cell" data-caption="First attempt in JS" data-eval="false">
-<div class="sourceCode cell-code" id="cb1" data-startfrom="104" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 103;"><span id="cb1-104"><span class="fu" style="color: #4758AB;
+<div class="cell" data-eval="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-startfrom="104" data-source-offset="0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 103;"><span id="cb1-104"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">$</span>(<span class="st" style="color: #20794D;
 background-color: null;
@@ -1263,20 +1301,24 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">each</span>(<span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>() {</span>
 <span id="cb1-105">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> $codeChunk <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">$</span>(<span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">this</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-106">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> $copyButton <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
@@ -1310,9 +1352,11 @@ font-style: inherit;">'click'</span><span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">,</span> <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>() {</span>
 <span id="cb1-110">    <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">const</span> codeText <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> $codeChunk<span class="op" style="color: #5E5E5E;
@@ -1340,17 +1384,26 @@ background-color: null;
 font-style: inherit;">;</span></span>
 <span id="cb1-113">})<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">;</span></span></code></pre></div>
+font-style: inherit;">;</span></span></code></pre></div></div>
+<div id="lst-js-first-attempt" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-eval="false">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-js-first-attempt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;1: First attempt in JS
+</figcaption>
+<div aria-describedby="lst-js-first-attempt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="expression">
 
 </div>
 </div>
 </div>
+</figure>
+</div>
+</div>
 <p>This can prepend a “Copy” button to a code chunk, but it doesn’t do it automatically after rendering. In fact, there is nothing in that code to handle the render event. I searched a lot for methods to achieve that, but unfortunately, I wasn’t able to find or understand the necessary code to implement it (remember that all this began because I wasn’t well-versed in JS). So, in the end, I would have to do it from R.</p>
 <p>So, what is the best way to manipulate HTML tags in R? From my point of view, it is by using <code>htmltools::tagQuery()</code> and its corresponding methods. However, that function requires a <code>tag()</code>, <code>tagList()</code>, or a <code>list()</code> of tags. I didn’t have that. Compare these outputs:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="lst-comparison" data-caption="Comparison" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-comparison-1">htmltools<span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="lst-comparison" data-caption="Comparison" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-comparison-1">htmltools<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1360,11 +1413,11 @@ font-style: inherit;">"Title 1"</span>) <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">class</span>()</span></code></pre></div>
+font-style: inherit;">class</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; [1] "shiny.tag"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="lst-comparison" data-caption="Comparison" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-comparison-1">shiny<span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="lst-comparison" data-caption="Comparison" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-comparison-1">shiny<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1374,14 +1427,14 @@ font-style: inherit;">"# Title 1"</span>) <span class="sc" style="color: #5E5E5E
 background-color: null;
 font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">class</span>()</span></code></pre></div>
+font-style: inherit;">class</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; [1] "html"      "character"</code></pre>
 </div>
 </div>
 <p>Well then, can’t we just add the “shiny.tag” class to the rendered markdown to be able to use <code>tagQuery()</code>? Well…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="lst-tagquery-error" data-caption="tagQuery error" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-tagquery-error-1">tag_example <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="lst-tagquery-error" data-caption="tagQuery error" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-tagquery-error-1">tag_example <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> shiny<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1406,7 +1459,7 @@ font-style: inherit;">"shiny.tag"</span>)</span>
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">tagQuery</span>(tag_example)</span></code></pre></div>
+font-style: inherit;">tagQuery</span>(tag_example)</span></code></pre></div></div>
 <div class="cell-output cell-output-error">
 <pre class="text-danger"><code>#&gt; Error in list2env(xList, new.env(parent = emptyenv())): first argument must be a named list</code></pre>
 </div>
@@ -1414,9 +1467,9 @@ font-style: inherit;">tagQuery</span>(tag_example)</span></code></pre></div>
 <p>I invite you to try to understand that error message. I, however, decided not to try. What should we do now? Is there a way to convert an <code>"html"</code> character to an object that <code>tagQuery()</code> can handle? Not that I knew of. But, after a not-so-quick Google search, I came across <a href="https://github.com/alandipert/html2r">this Github repo</a> where Alan Dipert had shared a shiny app to handle that conversion. His code covered almost every tag conversion, but it didn’t work for all my tests and used the <code>{XML}</code> package, which was totally unfamiliar to me.</p>
 <p>I decided to implement a new version of the code with <code>{xml2}</code>, <code>{glue}</code>, and <code>{purrr}</code> at its core, which I managed to get working after several tries. You can see the code in <a href="https://github.com/calderonsamuel/gptstudio/blob/d5cd13c673eda1e70880f576972ce8fa355dcb58/R/html_to_taglist.R">this snapshot</a>.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(magrittr)</span>
 <span id="cb5-2"></span>
@@ -1454,6 +1507,7 @@ font-style: inherit;">#' @export</span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(html) {</span>
 <span id="cb5-14">  html <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1507,6 +1561,7 @@ font-style: inherit;">#' @export</span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(html) {</span>
 <span id="cb5-31">  html <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1568,6 +1623,7 @@ font-style: inherit;">#' @return A nodeset representing the parsed HTML</span></
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(str) {</span>
 <span id="cb5-46">  str <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1593,6 +1649,7 @@ font-style: inherit;">"./body/*"</span>)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(node) xml2<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
@@ -1607,6 +1664,7 @@ font-style: inherit;">"text"</span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(node) xml2<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
@@ -1625,6 +1683,7 @@ font-style: inherit;">""</span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(node) <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"xml_nodeset"</span> <span class="sc" style="color: #5E5E5E;
@@ -1639,6 +1698,7 @@ font-style: inherit;">$</span>contents)</span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(node) <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">length</span>(node<span class="sc" style="color: #5E5E5E;
@@ -1671,6 +1731,7 @@ font-style: inherit;">#' @return A character vector containing the contents of e
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(nodeset) {</span>
 <span id="cb5-67">  nodeset <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1724,9 +1785,11 @@ font-style: inherit;">#'</span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(node) {</span>
 <span id="cb5-82">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">node_is_text</span>(node)) {</span>
@@ -1755,6 +1818,7 @@ font-style: inherit;">xml_text</span>(node)</span>
 <span id="cb5-87">    )</span>
 <span id="cb5-88">  } <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span> {</span>
 <span id="cb5-89">    node_with_params <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -1783,6 +1847,7 @@ font-style: inherit;">get_nodeset_tag_contents</span>(node)</span>
 <span id="cb5-93">    )</span>
 <span id="cb5-94">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">node_content_is_nodeset</span>(node_with_params) <span class="sc" style="color: #5E5E5E;
@@ -1837,9 +1902,11 @@ font-style: inherit;">#' @return A character string that can be used as a parame
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(attrs) {</span>
 <span id="cb5-111">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">length</span>(attrs) <span class="sc" style="color: #5E5E5E;
@@ -1919,9 +1986,11 @@ font-style: inherit;">#'</span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(node_params) {</span>
 <span id="cb5-129">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (node_params<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">$</span>name <span class="sc" style="color: #5E5E5E;
@@ -1953,6 +2022,7 @@ background-color: null;
 font-style: inherit;">"'{safe_text}'"</span>)</span>
 <span id="cb5-132">  } <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span> {</span>
 <span id="cb5-133">    tag_name <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -1977,6 +2047,7 @@ background-color: null;
 font-style: inherit;">$</span>contents</span>
 <span id="cb5-136">    <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span> (<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">length</span>(contents) <span class="sc" style="color: #5E5E5E;
@@ -2010,6 +2081,7 @@ background-color: null;
 font-style: inherit;"># contents &lt;- paste0(", ", contents)</span></span>
 <span id="cb5-141">    } <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span> {</span>
 <span id="cb5-142">      contents <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -2074,6 +2146,7 @@ font-style: inherit;">#' @return A character string that, when evaluated, will p
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(tags_str) {</span>
 <span id="cb5-160">  glue<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2082,12 +2155,12 @@ background-color: null;
 font-style: inherit;">glue</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"htmltools::tagList({tags_str})"</span>)</span>
-<span id="cb5-161">}</span></code></pre></div>
+<span id="cb5-161">}</span></code></pre></div></div>
 </details>
 </div>
 <p>After that, I was able to run the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">md_example <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">md_example <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
 background-color: null;
@@ -2129,7 +2202,7 @@ font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">tagQuery</span>(md_translated)</span>
 <span id="cb6-6"></span>
-<span id="cb6-7">tq_example</span></code></pre></div>
+<span id="cb6-7">tq_example</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; `$allTags()`:
 #&gt; &lt;h1&gt;Title&lt;/h1&gt;
@@ -2146,25 +2219,29 @@ font-style: inherit;">tagQuery</span>(md_translated)</span>
 <p>At this point, the flowchart of the app would look like this:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-process-html-to-r" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/process-html-to-r.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Flowchart including translation to shiny.tag</figcaption>
+<div id="fig-process-html-to-r" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-process-html-to-r-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/process-html-to-r.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-process-html-to-r-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Flowchart including translation to shiny.tag
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Now, let’s take a look at what happens when we compare the character contents of <code>md_rendered</code> and <code>md_translated</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">as.character</span>(md_rendered)</span></code></pre></div>
+font-style: inherit;">as.character</span>(md_rendered)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; [1] "&lt;h1&gt;Title&lt;/h1&gt;\n&lt;p&gt;Some paragraph content.&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;# some code content\n&lt;/code&gt;&lt;/pre&gt;\n"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">as.character</span>(md_translated)</span></code></pre></div>
+font-style: inherit;">as.character</span>(md_translated)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; [1] "&lt;h1&gt;Title&lt;/h1&gt;\n&lt;p&gt;Some paragraph content.&lt;/p&gt;\n&lt;pre&gt;\n  &lt;code&gt;# some code content\n&lt;/code&gt;\n&lt;/pre&gt;"</code></pre>
 </div>
@@ -2174,10 +2251,14 @@ font-style: inherit;">as.character</span>(md_translated)</span></code></pre></di
 <p>With this, the app could be represented with the following flowchart:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-process-copy-btn-in-js" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/process-copy-btn-in-js.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Flowchart including JS process</figcaption>
+<div id="fig-process-copy-btn-in-js" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-process-copy-btn-in-js-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/process-copy-btn-in-js.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-process-copy-btn-in-js-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Flowchart including JS process
+</figcaption>
 </figure>
 </div>
 </div>
@@ -2213,7 +2294,7 @@ Warning
 <p>As I mentioned before, we were using <code>{httr2}</code> for every API interaction. This package provides a <a href="https://httr2.r-lib.org/reference/req_stream.html"><code>req_stream()</code></a> function that aims to facilitate streaming and sounded really promising. But a problem arised quickly: the format of the streaming response was hard to process.</p>
 <p>To illustrate the problem, let’s consider prompting “Count from 1 to 5” and receiving a chat completion response without streaming. After after assigning it to the <code>resp_example</code> object, it would look like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">resp_example</span></code></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">resp_example</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; {
 #&gt;   "metadata": "some-metadata",
@@ -2343,10 +2424,14 @@ Warning
 <p>As you can see, every chunk is the same, except for the <code>content</code> field. From this, is just a matter of reading each chunk as JSON and doing whatever we want with the content from the callback passed to <code>curl_fetch_stream()</code>. We can wrap that functionality in a <code>stream_chatgpt()</code> function to slightly modify the current flow of the app.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-process-stream" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/process-basic-stream.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Flowchart including stream</figcaption>
+<div id="fig-process-stream" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-process-stream-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/process-basic-stream.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-process-stream-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Flowchart including stream
+</figcaption>
 </figure>
 </div>
 </div>
@@ -2362,10 +2447,14 @@ Warning
 <p>I hope you can understand that tongue-twister better with the following figure:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-process-stream-wrapper" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/process-stream-wrapper.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: Flowchart with communication concurrent to stream</figcaption>
+<div id="fig-process-stream-wrapper" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-process-stream-wrapper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/process-stream-wrapper.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-process-stream-wrapper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Flowchart with communication concurrent to stream
+</figcaption>
 </figure>
 </div>
 </div>
@@ -2382,11 +2471,11 @@ Warning
 <p>On the other hand, don’t be afraid of forking an open-source project and trying to make changes to it. At the very least, you can put into practice the knowledge you already have by attempting to fix some of its issues, and in the best-case scenario, you will also learn a lot of new things while challenging yourself to extend the project’s features. While not everything you try will necessarily end up being used for the project, the practice and learning will remain with you for your future projects.</p>
 <p>Feel free to give it a try with:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">install.packages</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"gptstudio"</span>)</span></code></pre></div>
+font-style: inherit;">"gptstudio"</span>)</span></code></pre></div></div>
 </div>
 <p>Any feedback on the <a href="https://github.com/MichelNivard/gptstudio">Github repo</a> will be greatly appreciated.</p>
 
@@ -2395,15 +2484,16 @@ font-style: inherit;">"gptstudio"</span>)</span></code></pre></div>
 
  ]]></description>
   <category>rweekly</category>
-  <guid>https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/</guid>
   <pubDate>Fri, 02 Jun 2023 00:00:00 GMT</pubDate>
   <media:content url="https://calderonsamuel.github.io/web/posts/2023-06-02-updating-gptstudio/chat-example.png" medium="image" type="image/png" height="148" width="144"/>
 </item>
 <item>
   <title>Monitorear ejecución presupuestal desde R</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2022-08-09-monitorear-ejecuci-n-presupuestal-desde-r/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2022-08-09-monitorear-ejecuci-n-presupuestal-desde-r/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -2411,16 +2501,16 @@ font-style: inherit;">"gptstudio"</span>)</span></code></pre></div>
 <p>El paquete es mejor aprovechable para las personas que estén familiarizadas con el <a href="https://apps5.mineco.gob.pe/transparencia/Navegador/default.aspx">Portal de seguimiento a la ejecución de gasto presupuestal</a> del Ministerio de Economía y Finanzas. Hasta el momento, sirve para hacer consultas a partir del 2012. Con el paso del tiempo (y con algo de apoyo de la comunidad) puede ampliarse para abarcar años anteriores.</p>
 <p>Como ejemplo, podemos ver cuánto se presupuesto y gastó en el año 2021 en todo el país. Comenzamos por cargar el paquete y la colección <code>tidyverse</code> para facilidad de tratamiento de los datos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(perutranspaeconomica)</span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">library</span>(tidyverse)</span></code></pre></div>
+font-style: inherit;">library</span>(tidyverse)</span></code></pre></div></div>
 </div>
 <p>Para hacer la consulta, podemos usar la función <code>gasto()</code>. Con esto obtenemos una tabla muy similar a la de la plataforma del MEF. Para apreciar mejor la información, la convierto en un objeto JSON.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">gasto</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -2437,11 +2527,11 @@ font-style: inherit;">toJSON</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">pretty =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
-font-style: inherit;">TRUE</span>)</span></code></pre></div>
+font-style: inherit;">TRUE</span>)</span></code></pre></div></div>
 </div>
 <p>Para ver una evolución en el tiempo, podemos usar una consulta iterativa. Así aprovechamos mejor las oportunidades del paquete.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">consulta <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">consulta <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="dv" style="color: #AD0000;
 background-color: null;
@@ -2462,11 +2552,11 @@ font-style: inherit;">gasto</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">year =</span> .x))</span>
 <span id="cb3-3"></span>
-<span id="cb3-4">consulta</span></code></pre></div>
+<span id="cb3-4">consulta</span></code></pre></div></div>
 </div>
 <p>Por último, podemos graficar los datos obtenidos. En este caso, para conocer la evolución en la ejecución presupuestal del Estado peruano desde el 2012 al 2021.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">consulta <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">consulta <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
 <span id="cb4-2">    <span class="fu" style="color: #4758AB;
@@ -2487,7 +2577,7 @@ font-style: inherit;">geom_label</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">label =</span> avance_percent))</span></code></pre></div>
+font-style: inherit;">label =</span> avance_percent))</span></code></pre></div></div>
 </div>
 <p>Como se puede ver, la ejecución presupuestal ha sido superior al 80% en los últimos años, pero nunca alcanzó el 90% de lo presupuestado.</p>
 <p>Sin usar el paquete habría sido necesario:</p>
@@ -2502,14 +2592,15 @@ font-style: inherit;">label =</span> avance_percent))</span></code></pre></div>
 
 
  ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2022-08-09-monitorear-ejecuci-n-presupuestal-desde-r/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2022-08-09-monitorear-ejecuci-n-presupuestal-desde-r/</guid>
   <pubDate>Tue, 09 Aug 2022 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Bug arreglado en Calculadora Renacyt</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2022-07-23-bug-arreglado-en-calculadora-renacyt/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2022-07-23-bug-arreglado-en-calculadora-renacyt/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -2523,14 +2614,15 @@ font-style: inherit;">label =</span> avance_percent))</span></code></pre></div>
 
 
  ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2022-07-23-bug-arreglado-en-calculadora-renacyt/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2022-07-23-bug-arreglado-en-calculadora-renacyt/</guid>
   <pubDate>Sat, 23 Jul 2022 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Dos paquetes para mapas peruanos</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -2539,7 +2631,7 @@ font-style: inherit;">label =</span> avance_percent))</span></code></pre></div>
 <p>Con <code>{perumapas}</code> se puede obtener las geometrías necesarias para dibujar los mapas y con <code>{perupobreza2018}</code> se puede usar las cifras del mapa de pobreza, incluyendo una columna calculada de cifra de pobreza monetaria.</p>
 <p>A continuación, un ejemplo para ver cómo trabajan en conjunto.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(perupobreza2018)</span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
@@ -2554,11 +2646,11 @@ font-style: inherit;"># obligatorio para perumapas</span></span>
 background-color: null;
 font-style: inherit;">library</span>(tidyverse) <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;"># para transformación y gráficos</span></span></code></pre></div>
+font-style: inherit;"># para transformación y gráficos</span></span></code></pre></div></div>
 </div>
 <p>Con <code>{perumapas}</code> es sencillo realizar mapas a nivel regional, provincial y distrital. Por ejemplo, el mapa de las regiones del Perú.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">mapa_regional <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">mapa_regional <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb2-2">    <span class="fu" style="color: #4758AB;
@@ -2568,14 +2660,18 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb2-3">    <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">geom_sf</span>()</span></code></pre></div>
+font-style: inherit;">geom_sf</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>El mapa de los distritos de la provincia de Lima:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">mapa_distrital <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">mapa_distrital <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb3-2">    <span class="fu" style="color: #4758AB;
@@ -2598,14 +2694,18 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb3-4">    <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">geom_sf</span>()</span></code></pre></div>
+font-style: inherit;">geom_sf</span>()</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Con <code>{perupobreza2018}</code> podemos añadirle una capa de información a cualquier mapa distrital. Para ello, primero se hace un join/merge entre los datos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">pobreza_lima <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">pobreza_lima <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> mapa_distrital <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -2629,11 +2729,11 @@ font-style: inherit;">left_join</span>(pobreza2018, <span class="at" style="colo
 background-color: null;
 font-style: inherit;">by =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"ubigeo"</span>)</span></code></pre></div>
+font-style: inherit;">"ubigeo"</span>)</span></code></pre></div></div>
 </div>
 <p>Con este cruce, podemos colorear cada distrito según su cifra de pobreza monetaria.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">pobreza_lima <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">pobreza_lima <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb5-2">    <span class="fu" style="color: #4758AB;
@@ -2647,9 +2747,13 @@ font-style: inherit;">geom_sf</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">fill =</span> pobreza_monetaria))</span></code></pre></div>
+font-style: inherit;">fill =</span> pobreza_monetaria))</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Evidentemente, también es posible usar los paquetes de manera independiente. El nivel de personalización de los mapas generados dependerá del conocimiento en R y el paquete <code>{ggplot2}</code> .</p>
@@ -2657,14 +2761,15 @@ font-style: inherit;">fill =</span> pobreza_monetaria))</span></code></pre></div
 
 
  ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2021-10-12-dos-paquetes-para-mapas-peruanos/</guid>
   <pubDate>Tue, 12 Oct 2021 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Código noob de JS</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2020-04-25-codigo-noob-de-js/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2020-04-25-codigo-noob-de-js/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -2675,8 +2780,9 @@ font-style: inherit;">fill =</span> pobreza_monetaria))</span></code></pre></div
 <p>For example, [“hello”, “Hello”], should return true because all of the letters in the second string are present in the first, ignoring case.</p>
 <p>The arguments [“hello”, “hey”] should return false because the string “hello” does not contain a “y”.</p>
 <p>Lastly, [“Alien”, “line”], should return true because all of the letters in “line” are present in “Alien”.</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><span class="kw" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">mutation</span>(arr) {</span>
@@ -2685,6 +2791,7 @@ background-color: null;
 font-style: inherit;">// a minusculas las dos palabras</span></span>
 <span id="cb1-3">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> arr2 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> arr<span class="op" style="color: #5E5E5E;
@@ -2693,6 +2800,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(el <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> el<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
@@ -2705,6 +2813,7 @@ background-color: null;
 font-style: inherit;">// segunda palabra a array</span></span>
 <span id="cb1-5">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> word2 <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> arr2[<span class="dv" style="color: #AD0000;
@@ -2723,6 +2832,7 @@ background-color: null;
 font-style: inherit;">// indice de aparicion de letra de palabra 2 en palabra 1</span></span>
 <span id="cb1-7">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> indices <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> word2<span class="op" style="color: #5E5E5E;
@@ -2731,6 +2841,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(el <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> arr2[<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>]<span class="op" style="color: #5E5E5E;
@@ -2745,6 +2856,7 @@ background-color: null;
 font-style: inherit;">// test logico para ver si existe un '-1' en indices</span></span>
 <span id="cb1-9">  <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> bool <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> indices<span class="op" style="color: #5E5E5E;
@@ -2753,6 +2865,7 @@ font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">map</span>(el <span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">=&gt;</span> el <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
@@ -2768,6 +2881,7 @@ background-color: null;
 font-style: inherit;">// si hay 'false' siempre estará delante</span></span>
 <span id="cb1-12">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">return</span> bool<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
@@ -2781,6 +2895,7 @@ font-style: inherit;">;</span></span>
 <span id="cb1-14"></span>
 <span id="cb1-15"><span class="kw" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">let</span> res <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
@@ -2812,20 +2927,22 @@ font-style: inherit;">;</span></span>
 background-color: null;
 font-style: inherit;">&gt;</span><span class="kw" style="color: #003B4F;
 background-color: null;
-font-style: inherit;">false</span></span></code></pre></div>
+font-weight: bold;
+font-style: inherit;">false</span></span></code></pre></div></div>
 
 
 </section>
 
  ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2020-04-25-codigo-noob-de-js/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2020-04-25-codigo-noob-de-js/</guid>
   <pubDate>Sat, 25 Apr 2020 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Propuesta para elegir preguntas en conferencia de prensa</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2020-04-18-propuesta-para-elegir-preguntas-en-conferencia-de-prensa/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2020-04-18-propuesta-para-elegir-preguntas-en-conferencia-de-prensa/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -2862,9 +2979,8 @@ Cargando…
 <iframe width="100%" height="350px" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQkF8DydOAYAGXVHuUi8oLBUZX1nBqKUBb9JUbVAT4EnZ9GVmhYEINYZNQ8pNC1Gax2ZXZCcd01kS7W/pubhtml?gid=1524799486&amp;single=true&amp;widget=true&amp;headers=false">
 </iframe>
 <p>Para trabajar el ejemplo, tomaré las cuatro (4) observaciones que yo ingresé. Con un cambio en los encabezados y un nuevo formato la tabla se ve así.</p>
-<div class="cell">
+<div class="cell" data-tbl-cap="Ejemplo">
 <div class="cell-output-display">
-
 <div class="tabwid"><style>.cl-02e24bda{}.cl-02db8944{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-02de5638{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-02de67c2{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67cc{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67cd{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67ce{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d6{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d7{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d8{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67d9{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67e0{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67ea{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67eb{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02de67f4{width:13.543in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-02e24bda"><caption><p>Ejemplo</p></caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-02de67c2"><p class="cl-02de5638"><span class="cl-02db8944">Hora</span></p></th><th class="cl-02de67cc"><p class="cl-02de5638"><span class="cl-02db8944">Contraseña</span></p></th><th class="cl-02de67cd"><p class="cl-02de5638"><span class="cl-02db8944">Pregunta</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-02de67ce"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:34:32.967</span></p></td><td class="cl-02de67d6"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67d7"><p class="cl-02de5638"><span class="cl-02db8944">En vista de las observaciones emitidas por los especialistas Fulano, Mengana y Sotana acerca de la medida X, ¿cuál será la nueva estrategia del gobierno?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67d8"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:38:38.994</span></p></td><td class="cl-02de67d9"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67e0"><p class="cl-02de5638"><span class="cl-02db8944">Las periodistas Fulana y Mengana denunciaron los hechos 1 y 2 ocurridos en las regiones X y Z. ¿Qué medidas está tomando el ministerio A para prevenir que vuelvan a ocurrir?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67ce"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:40:27.624</span></p></td><td class="cl-02de67d6"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67d7"><p class="cl-02de5638"><span class="cl-02db8944">Los médicos de la provincia A de la región X denunciaron la falta de material en el hospital regional. ¿Desde cuándo se tenía conocimiento de este hecho y por qué no se logró enfrentar a tiempo?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02de67ea"><p class="cl-02de5638"><span class="cl-02db8944">2020-04-17 22:42:12.543</span></p></td><td class="cl-02de67eb"><p class="cl-02de5638"><span class="cl-02db8944">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02de67f4"><p class="cl-02de5638"><span class="cl-02db8944">El funcionario Fulano ha declarado X en el medio A. ¿Es esta la postura oficial del gobierno?</span></p></td></tr></tbody></table></div>
 </div>
 </div>
@@ -2874,7 +2990,7 @@ Cargando…
 <h3 class="anchored" data-anchor-id="paso-2-sortear-las-preguntas">Paso 2: Sortear las preguntas</h3>
 <p>Una vez obtenida la tabla de preguntas se debe realizar el sorteo y aquí viene el aporte principal de este artículo: el sorteo debe ser aleatorio y reproducible. Esto se puede lograr usando un valor <em>semilla</em> al momento de realizar el muestreo. En el siguiente bloque de código de R uso como valor semilla la fecha de hoy para obtener una muestra de dos observaciones de mi tabla de <code>preguntas</code><sup>1</sup>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
 background-color: null;
@@ -2892,11 +3008,10 @@ background-color: null;
 font-style: inherit;">2</span>)</span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">print</span>(muestra)</span></code></pre></div>
+font-style: inherit;">print</span>(muestra)</span></code></pre></div></div>
 </div>
-<div class="cell">
+<div class="cell" data-tbl-cap="Preguntas">
 <div class="cell-output-display">
-
 <div class="tabwid"><style>.cl-03027216{}.cl-02fccbc2{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-02ff140e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-02ff205c{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2066{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2067{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2068{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2070{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2071{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2072{width:2.001in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff2073{width:1.737in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-02ff207a{width:12.353in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-03027216"><caption><p>Preguntas</p></caption><thead><tr style="overflow-wrap:break-word;"><th class="cl-02ff205c"><p class="cl-02ff140e"><span class="cl-02fccbc2">Hora</span></p></th><th class="cl-02ff2066"><p class="cl-02ff140e"><span class="cl-02fccbc2">Contraseña</span></p></th><th class="cl-02ff2067"><p class="cl-02ff140e"><span class="cl-02fccbc2">Pregunta</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-02ff2068"><p class="cl-02ff140e"><span class="cl-02fccbc2">2020-04-17 22:42:12.543</span></p></td><td class="cl-02ff2070"><p class="cl-02ff140e"><span class="cl-02fccbc2">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02ff2071"><p class="cl-02ff140e"><span class="cl-02fccbc2">El funcionario Fulano ha declarado X en el medio A. ¿Es esta la postura oficial del gobierno?</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-02ff2072"><p class="cl-02ff140e"><span class="cl-02fccbc2">2020-04-17 22:38:38.994</span></p></td><td class="cl-02ff2073"><p class="cl-02ff140e"><span class="cl-02fccbc2">sEcVwNCLpKqf8oH3</span></p></td><td class="cl-02ff207a"><p class="cl-02ff140e"><span class="cl-02fccbc2">Las periodistas Fulana y Mengana denunciaron los hechos 1 y 2 ocurridos en las regiones X y Z. ¿Qué medidas está tomando el ministerio A para prevenir que vuelvan a ocurrir?</span></p></td></tr></tbody></table></div>
 </div>
 </div>
@@ -2916,7 +3031,7 @@ font-style: inherit;">print</span>(muestra)</span></code></pre></div>
 <p>Para crear el formulario en Google Forms demoré menos de diez minutos. El proceso de muestreo de la tabla con valor semilla fue practicamente instantáneo.</p>
 <p>En el siguiente bloque uso código R para demostrar que se tarda mucho menos de un segundo crear una gran cantidad de contraseñas para medios de comunicación.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Creando conjunto de caracteres alfanumericos con</span></span>
 <span id="cb2-2"><span class="co" style="color: #5E5E5E;
@@ -2944,6 +3059,7 @@ font-style: inherit;"># creación de contraseña</span></span>
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(conjunto, numero) {</span>
 <span id="cb2-8">  </span>
 <span id="cb2-9">  <span class="fu" style="color: #4758AB;
@@ -3018,7 +3134,7 @@ background-color: null;
 font-style: inherit;">=</span> {crear_contraseñas(alfanumericos, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1000</span>)}</span>
-<span id="cb2-23">    )</span></code></pre></div>
+<span id="cb2-23">    )</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
  expr      min       lq     mean   median       uq       max neval
@@ -3040,14 +3156,15 @@ font-style: inherit;">1000</span>)}</span>
 <li id="fn1"><p>Utilizo en un bloque oculto <code>flextable::flextable()</code> para imprimir la tabla con el formato adecuado.↩︎</p></li>
 </ol>
 </section></div> ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2020-04-18-propuesta-para-elegir-preguntas-en-conferencia-de-prensa/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2020-04-18-propuesta-para-elegir-preguntas-en-conferencia-de-prensa/</guid>
   <pubDate>Sat, 18 Apr 2020 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>¿Por qué debo dejar que usen mi trabajo?</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2020-03-10-por-que-debo-dejar-que-usen-mi-trabajo/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2020-03-10-por-que-debo-dejar-que-usen-mi-trabajo/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -3091,20 +3208,21 @@ font-style: inherit;">1000</span>)}</span>
 <li id="fn3"><p>Traducción propia de Peng, R. (2019) <em>Report writing for Data Science in R</em>. pg. 1. LeanPub.↩︎</p></li>
 </ol>
 </section></div> ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2020-03-10-por-que-debo-dejar-que-usen-mi-trabajo/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2020-03-10-por-que-debo-dejar-que-usen-mi-trabajo/</guid>
   <pubDate>Tue, 10 Mar 2020 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>¿Cómo hacer un gráfico de parlamento en R?</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2021-08-15-grafico-de-parlamento/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2021-08-15-grafico-de-parlamento/</link>
   <description><![CDATA[ 
+
 
 
 
 <p>Para esta tarea vamos a hacer de uso dos paquetes principalmente: el viejo conocido <code>tidyverse</code> y también de <code>ggpol</code>, una extensión de ggplot2 desarrollada especialmente para este tipo de gráficos. <code>ggforce</code> nos servirá al final sólo para una mejora estética.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidyverse)</span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
@@ -3112,21 +3230,21 @@ background-color: null;
 font-style: inherit;">library</span>(ggpol)</span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">library</span>(ggforce)</span></code></pre></div>
+font-style: inherit;">library</span>(ggforce)</span></code></pre></div></div>
 </div>
 <p>Como en todo gráfico que se realiza con ggplot2, necesitamos primero contar con un <em>data.frame</em> o <em>tibble</em> que contenga la información necesaria para construirlo. La fuente primaria de estos datos es la web de la <a href="https://resultados.eleccionescongresales2020.pe/PRECE2020/">ONPE</a>, de donde se puede obtener el detalle de la votación por varios niveles de desagregación. Debido a que no es propósito de este post mostrar cómo hacer el <em>scrapping</em> de la información, ni el cálculo de las curules, voy a preferir un resumen que ya ha trabajado otra persona para graficar en base a ello.</p>
 <p>En la web de <a href="http://www.joseincio.com/post/resultados-congreso-extraordinario-2020/">José Incio</a> podemos encontrar un cuadro de la distribución de escaños del nuevo congreso peruano. Debido a que esa información aún está actualizándose según el conteo de los votos que ONPE sigue realizando, quiero hacer uso de <code>Sys.time()</code> para mostrar la hora en que estoy escribiendo este post.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">Sys.time</span>()</span></code></pre></div>
+font-style: inherit;">Sys.time</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2023-05-19 11:41:38 -05"</code></pre>
 </div>
 </div>
 <p>Haciendo uso del add-in <em>Paste as tribble</em> que el paquete <code>datapasta</code> incluye en RStudio, puedo obtenr el <em>tibble</em> <code>congreso</code>, que no es más que un copy/paste de la tabla elaborada por José Incio disponible a esta hora.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">votos <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">votos <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> tibble<span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3140,36 +3258,54 @@ background-color: null;
 font-style: inherit;">~</span>Escaños,</span>
 <span id="cb4-3">                                  <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"ACCION POPULAR"</span>,      25L,</span>
+font-style: inherit;">"ACCION POPULAR"</span>,      <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">25</span>L,</span>
 <span id="cb4-4">                        <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"ALIANZA PARA EL PROGRESO"</span>,      22L,</span>
+font-style: inherit;">"ALIANZA PARA EL PROGRESO"</span>,      <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">22</span>L,</span>
 <span id="cb4-5">   <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"FRENTE POPULAR AGRICOLA FIA DEL PERU - FREPAP"</span>,      15L,</span>
+font-style: inherit;">"FRENTE POPULAR AGRICOLA FIA DEL PERU - FREPAP"</span>,      <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>L,</span>
 <span id="cb4-6">                                  <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"FUERZA POPULAR"</span>,      15L,</span>
+font-style: inherit;">"FUERZA POPULAR"</span>,      <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">15</span>L,</span>
 <span id="cb4-7">                               <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"UNION POR EL PERU"</span>,      13L,</span>
+font-style: inherit;">"UNION POR EL PERU"</span>,      <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">13</span>L,</span>
 <span id="cb4-8">                  <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"PARTIDO DEMOCRATICO SOMOS PERU"</span>,      11L,</span>
+font-style: inherit;">"PARTIDO DEMOCRATICO SOMOS PERU"</span>,      <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11</span>L,</span>
 <span id="cb4-9">                                    <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"PODEMOS PERU"</span>,      11L,</span>
+font-style: inherit;">"PODEMOS PERU"</span>,      <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11</span>L,</span>
 <span id="cb4-10">  <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"EL FRENTE AMPLIO POR JUSTICIA, VIDA Y LIBERTAD"</span>,       9L,</span>
+font-style: inherit;">"EL FRENTE AMPLIO POR JUSTICIA, VIDA Y LIBERTAD"</span>,       <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>L,</span>
 <span id="cb4-11">                                  <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"PARTIDO MORADO"</span>,       9L</span>
-<span id="cb4-12">  )</span></code></pre></div>
+font-style: inherit;">"PARTIDO MORADO"</span>,       <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>L</span>
+<span id="cb4-12">  )</span></code></pre></div></div>
 </div>
 <p>El siguiente paso es mejorar el <em>tibble</em> de tal modo que nos permita realizar el gráfico deseado. Empezamos por agregarle un color a cada uno de los partidos presentes en el gráfico. Podemos guiarnos de una <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">hoja de referencia</a> para escoger los colores, tomando en cuenta los colores partidarios. Podemos unir los colores a los partidos haciendo uso de <code>bind_cols()</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">congreso <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">congreso <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3211,7 +3347,7 @@ background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb5-13">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">bind_cols</span>(votos)</span></code></pre></div>
+font-style: inherit;">bind_cols</span>(votos)</span></code></pre></div></div>
 </div>
 <p>Ahora que contamos con los datos, simplemente realizamos el gráfico. Hacemos uso de <code>geom_parliament()</code> del paquete <code>ggpol</code>. Tan sólo necesitamos mapear dos argumentos:</p>
 <ol type="1">
@@ -3220,7 +3356,7 @@ font-style: inherit;">bind_cols</span>(votos)</span></code></pre></div>
 </ol>
 <p>Además de eso, usaremos <code>scale_fill_manual()</code> para utilizar nuestros colores personalizados y el nombre de los partidos en la leyenda del gráfico. Luego, <code>coord_fixed()</code> nos ayuda a preservar el ratio de aspecto del gráfico.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">grafico <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">grafico <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3267,7 +3403,7 @@ font-style: inherit;">coord_fixed</span>()</span>
 <span id="cb6-11"></span>
 <span id="cb6-12"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">print</span>(grafico)</span></code></pre></div>
+font-style: inherit;">print</span>(grafico)</span></code></pre></div></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Using the `size` aesthetic in this geom was deprecated in ggplot2 3.4.0.
 ℹ Please use `linewidth` in the `default_aes` field and elsewhere instead.</code></pre>
@@ -3275,14 +3411,14 @@ font-style: inherit;">print</span>(grafico)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://calderonsamuel.github.io/web/posts/2021-08-15-grafico-de-parlamento/index_files/figure-html/grafico-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="https://calderonsamuel.github.io/web/posts/2021-08-15-grafico-de-parlamento/index_files/figure-html/grafico-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Vemos que hemos obtenido el gráfico y los partidos aparecen pintados con los colores que hemos asignado. Sin embargo, aún es posible hacerle unas mejoras estéticas. Usamos <code>theme_no_axes()</code> del paquete <code>ggforce</code> para eliminar las líneas guía de nuestro plano cartesiano y quedarnos sólo con un marco negro. También usamos <code>labs()</code> para agregarle un título a nuestro gráfico y <code>theme()</code> para cambiar el tamaño de los elementos de nuestra leyenda.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">grafico <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">grafico <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb8-2">  <span class="fu" style="color: #4758AB;
@@ -3327,11 +3463,11 @@ font-style: inherit;">3</span>, </span>
 background-color: null;
 font-style: inherit;">units =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"mm"</span>))</span></code></pre></div>
+font-style: inherit;">"mm"</span>))</span></code></pre></div></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://calderonsamuel.github.io/web/posts/2021-08-15-grafico-de-parlamento/index_files/figure-html/final-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="https://calderonsamuel.github.io/web/posts/2021-08-15-grafico-de-parlamento/index_files/figure-html/final-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -3341,29 +3477,30 @@ font-style: inherit;">"mm"</span>))</span></code></pre></div>
 
 
  ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2021-08-15-grafico-de-parlamento/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2021-08-15-grafico-de-parlamento/</guid>
   <pubDate>Wed, 29 Jan 2020 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Cédula Elecciones 2020 usando ggplot2 (parte 3)</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/</link>
   <description><![CDATA[ 
+
 
 
 
 <p>En el <a href="../../blog/cedula-2020-ggplot2-parte-2/">post anterior</a> logramos agregarle texto al esqueleto de nuestra cédula. Ahora debemos aprender a agregarle imágenes. Iniciamos, como siempre, haciendo uso de nuestros paquetes predilectos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">library</span>(tidyverse)</span></code></pre></div>
+font-style: inherit;">library</span>(tidyverse)</span></code></pre></div></div>
 </div>
 <section id="lo-básico" class="level3">
 <h3 class="anchored" data-anchor-id="lo-básico">Lo básico</h3>
 <p>Para poder entender cómo se logra insertar los logos de los partidos políticos hace falta primero entender cómo insertar imágenes a un gráfico de ggplot2. Hasta la fecha, la forma más conveniente que he encontrado es haciendo uso de <code>annotation_custom()</code>. Esta función toma como primer argumento un <code>grob</code>, un objeto que sirve como bloque básico de construcción de todos los gráficos de ggplot2. Para lo que buscamos hacer, colocar los logos de los partidos dentro del gráfico, necesitamos convertir nuestras imágenes en <code>grob</code>s.</p>
 <p>Para que R interprete nuestras imágenes, hacemos uso de la función <code>load.image()</code> del paquete <code>imager</code>. Con el objeto obtenido hacemos uso de la función <code>rasterGrob()</code> del paquete <code>grid</code>, para obtener el <code>grob</code> necesario. Finalmente, <code>annotation_custom()</code> nos permite colocar el <code>grob</code> usando una sintaxis muy similar a la que hemos usado anteriormente con <code>geom_rect()</code>. Con el siguiente ejemplo, que usa el logo de esta página, debería quedar más claro.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-1_b98d297ec927679c8b285a3a9d57b541">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">url_ejemplo <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">url_ejemplo <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
 background-color: null;
@@ -3432,9 +3569,13 @@ font-style: inherit;">0</span>, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">ymax =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">10</span>)</span></code></pre></div>
+font-style: inherit;">10</span>)</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="288"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -3443,7 +3584,7 @@ font-style: inherit;">10</span>)</span></code></pre></div>
 <p>Ahora que hemos entendido cómo funciona el procedimiento de agregar las imágenes, estamos listos para agregar los logos a nuestra cédula. Podríamos repetir el procedimiento anterior por cada partido en contienda, sin embargo, aprovechemos las ventajas de usar R para hacerlo más rápido (no necesariamente más sencillo).</p>
 <p>Lo primero será tener los enlaces a todos los logos de los partidos. Esto es posible debido a que el portal <a href="https://votoinformado.jne.gob.pe/voto">Voto Informado</a> cuenta con todos ellos. El vector <code>logo_url</code> fue creado manualmente para contener todos los logos, a excepción del de <strong>Todos por el Perú</strong> debido a que fue eliminado de la contienda por el JNE. En nuestro vector aparece como un <code>NA</code>.</p>
 <div class="cell" data-hash="index_cache/html/logos_75dc7259f3ee6d7b35b80d96dfe3517e">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">logo_url <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">logo_url <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3514,17 +3655,19 @@ font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logo
 <span id="cb3-23">  <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"https://votoinformado.jne.gob.pe/voto/Resources/imgs/logoop/15.JPG"</span></span>
-<span id="cb3-24">)</span></code></pre></div>
+<span id="cb3-24">)</span></code></pre></div></div>
 </div>
 <p>Ahora que contamos con los enlaces, creamos una función que nos permita repetir el proceso de crear los <code>grob</code>s, de tal modo que podamos usarla sistemáticamente. La función que estamos creando, <code>grob_url()</code>, devuelve los valores <code>NA</code>. El argumento <code>interpolate = TRUE</code> dentro de <code>grid::rasterGrob()</code> ayuda a mejorar la calidad de la imagen.</p>
 <div class="cell" data-hash="index_cache/html/grob_url_caaa6ada68786a5c6cbec55caf2e2854">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">grob_url <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">grob_url <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(fileurl){</span>
 <span id="cb4-2">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span>(<span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">is.na</span>(fileurl)) <span class="fu" style="color: #4758AB;
@@ -3554,11 +3697,11 @@ background-color: null;
 font-style: inherit;">TRUE</span>)</span>
 <span id="cb4-7">  </span>
 <span id="cb4-8">  grob</span>
-<span id="cb4-9">}</span></code></pre></div>
+<span id="cb4-9">}</span></code></pre></div></div>
 </div>
 <p>Ahora que contamos con una función que cumple nuestros objetivos, la aplicamos a todos los enlaces contenidos en <code>logo_url</code>. Para ello hacemos uso de la función <code>map()</code> del paquete <code>purrr</code>. Debido a que <code>map()</code> siempre nos devuelve una lista, usamos la función <code>tibble()</code> para crear un objeto <em>tibble</em> con una sola columna (grob), que contiene cada uno de nuestros <code>grob</code>s. Es el mismo nombre que el primer argumento de <code>annotation_custom()</code>, y tiene un motivo que descubriremos más adelante. El objeto <code>grob</code> ahora es una tabla que contiene listas en su única columna, pero nos permite trabajar con ella como si fuera cualquier <em>data.frame</em> normal.</p>
 <div class="cell" data-hash="index_cache/html/grob_9230994d9fc61ca2f7cf0b6008dc0520">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">grob <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">grob <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3573,7 +3716,7 @@ font-style: inherit;">grob =</span> .)</span>
 <span id="cb5-3"></span>
 <span id="cb5-4"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">head</span>(grob)</span></code></pre></div>
+font-style: inherit;">head</span>(grob)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 1
   grob      
@@ -3596,9 +3739,9 @@ font-style: inherit;">head</span>(grob)</span></code></pre></div>
 </ol>
 <p>Ya tenemos nuestros <em>grobs</em> mapeados en el tibble <code>grob</code>, ahora necesitamos los otros cuatro argumentos. Sin embargo, estos ya los teníamos desde hace muchísimo antes. Están contenidos en el tibble <code>preferencial</code> que creamos en la <a href="../../blog/cedula-2020-ggplot2-parte-2/">primera parte</a> cuando usamos <code>geom_rect()</code> para dibujar los cuadros para voto preferencial.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-2_615749b95adf95b950e44da489b51407">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">head</span>(preferencial)</span></code></pre></div>
+font-style: inherit;">head</span>(preferencial)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
    xmin  xmax  ymin  ymax
@@ -3613,7 +3756,7 @@ font-style: inherit;">head</span>(preferencial)</span></code></pre></div>
 </div>
 <p>Entonces, lo que necesitamos hacer ahora es unir ambos tibbles con <code>bind_cols()</code> del paquete <code>dplyr()</code>. Luego usamos <code>filter()</code> para librarnos del valor <code>NA</code> porque ya no es útil (de hecho, si lo dejamos ocasionaremos un bug que me costó más tiempo del debido identificar). Finalmente, utilizamos <code>pmap()</code> del paquete <code>purrr</code> para usar cada fila de nuestri tibble como lista de argumentos de <code>annotation_custom()</code>. Con esto, hemos conseguido la lista <code>annotations</code> con la que podemos graficar todos los logos.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-3_0d127a189700cdf80683704df41f527a">
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">annotations <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">annotations <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> grob <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3634,14 +3777,15 @@ background-color: null;
 font-style: inherit;">%&gt;%</span> </span>
 <span id="cb9-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">pmap</span>(annotation_custom)</span></code></pre></div>
+font-style: inherit;">pmap</span>(annotation_custom)</span></code></pre></div></div>
 </div>
 <p>Sin embargo, unir todos los <em>annotations</em> no es tan sencillo como hacer <code>cedula + annotations</code> debido a que <code>annotation_custom()</code> no se comporta como un <code>geom_*</code>. Será necesario crear una función que nos permita hacer una suma recursiva de todos los elementos: <code>rec_ggadd()</code> toma un objeto de <code>ggplot2</code> y una lista para añadir recursivamente sus elementos al objeto. El tercer argumento es un iterador que permite la recursividad, y no necesita ser identificado por quien use la función.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-4_9ce4a45e0bcc3c66943483f7799a1349">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">rec_ggadd <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">rec_ggadd <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">function</span>(ggobj, lista, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">i =</span> <span class="fu" style="color: #4758AB;
@@ -3649,6 +3793,7 @@ background-color: null;
 font-style: inherit;">length</span>(lista)){</span>
 <span id="cb10-2">  <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">if</span>(i <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
@@ -3659,6 +3804,7 @@ background-color: null;
 font-style: inherit;">+</span> lista[[i]]</span>
 <span id="cb10-4">  } <span class="cf" style="color: #003B4F;
 background-color: null;
+font-weight: bold;
 font-style: inherit;">else</span> {</span>
 <span id="cb10-5">    ggobj <span class="ot" style="color: #003B4F;
 background-color: null;
@@ -3673,26 +3819,26 @@ font-style: inherit;">i =</span> i<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">-1</span>)</span>
 <span id="cb10-7">  }</span>
-<span id="cb10-8">}</span></code></pre></div>
+<span id="cb10-8">}</span></code></pre></div></div>
 </div>
 <p>Ahora sí, sólo queda aplicar la función a nuestra <code>cedula</code> y habremos conseguido lo que tanto deseábamos.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-5_cb092057206bba5857ce522d096b382e">
-<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">cedula <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">cedula <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">rec_ggadd</span>(cedula, annotations)</span></code></pre></div>
+font-style: inherit;">rec_ggadd</span>(cedula, annotations)</span></code></pre></div></div>
 </div>
 <p>Imprimimos <code>cedula</code> para ver que todo salió bien.</p>
 <div class="cell" data-hash="index_cache/html/print_bd3bd24e73a6f2a08200c7e8317aa6c4">
-<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">cedula</span></code></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">cedula</span></code></pre></div></div>
 </div>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-6_62a99048d1c68be5099d1dfee8e1b23b">
-<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggsave</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"cedula-parte-3.png"</span>, cedula)</span></code></pre></div>
+font-style: inherit;">"cedula-parte-3.png"</span>, cedula)</span></code></pre></div></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Saving 3 x 6.4 in image</code></pre>
 </div>
@@ -3703,29 +3849,30 @@ font-style: inherit;">"cedula-parte-3.png"</span>, cedula)</span></code></pre></
 </section>
 
  ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/</guid>
   <pubDate>Fri, 24 Jan 2020 00:00:00 GMT</pubDate>
   <media:content url="https://calderonsamuel.github.io/web/posts/2021-01-24-cedula-2020-ggplot2-parte-3/cedula-parte-3.png" medium="image" type="image/png" height="307" width="144"/>
 </item>
 <item>
   <title>Cédula Elecciones 2020 usando ggplot2 (parte 2)</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/</link>
   <description><![CDATA[ 
+
 
 
 
 <p>En el <a href="../../post/2020-01-15-cedula-2020-ggplot2-parte-1">post anterior</a> mostramos cómo crear el “esqueleto” de la cédula. En este, en cambio, incluiremos el texto y los logos de los partidos. Primero lo primero, habilitamos los paquetes del tidyverse.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">library</span>(tidyverse)</span></code></pre></div>
+font-style: inherit;">library</span>(tidyverse)</span></code></pre></div></div>
 </div>
 <p>Nos aseguramos de contar con los objetos creados en el paso anterior. Especialmente el objeto <code>cedula</code>, que contiene las instrucciones de nuestro “esqueleto”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">ls</span>()</span></code></pre></div>
+font-style: inherit;">ls</span>()</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "cedula"          "has_annotations" "instrucciones"   "preferencial"   
 [5] "rectangulos"    </code></pre>
@@ -3733,7 +3880,7 @@ font-style: inherit;">ls</span>()</span></code></pre></div>
 </div>
 <p>Comenzaremos por crear un vector que contenga los nombres de los partidos políticos en contienda, basados en el orden que obtuvieron en el <a href="https://www.onpe.gob.pe/sala-prensa/notas-prensa/elecciones-congresales-2020-onpe-sorteo-ubicacion-de-organizaciones-politicas-en-cedulas-sufragio/">sorteo</a> realizado por la ONPE para determinar la posición en la cédula. Lo llamamos <code>partidos</code>. .</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">partidos <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">partidos <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3803,11 +3950,11 @@ background-color: null;
 font-style: inherit;">"SOLIDARIDAD NACIONAL"</span>,</span>
 <span id="cb4-23">  <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"PARTIDO POPULAR CRISTIANO - PPC"</span>)</span></code></pre></div>
+font-style: inherit;">"PARTIDO POPULAR CRISTIANO - PPC"</span>)</span></code></pre></div></div>
 </div>
 <p>Del mismo modo que utilizamos una secuencia para generar el objeto <code>preferencial</code> en la primera parte, generamos una secuencia para la ubicación de los nombres de los partidos. Esta vez, la generamos directamente dentro de <code>geom_text()</code>, la función que nos permite colocar texto en un gráfico de <code>ggplot</code>. Tengamos en cuenta que el argumento <code>size</code> cambiará según el tamaño en pixeles que le hayamos asignado al gráfico<sup>1</sup>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">cedula <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">cedula <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3862,14 +4009,18 @@ background-color: null;
 font-style: inherit;">hjust =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>)</span>
-<span id="cb5-12">cedula</span></code></pre></div>
+<span id="cb5-12">cedula</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="288"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Lo siguiente es incluir el título de la cédula. Para esto utilizamos nuevamente <code>geom_text()</code>. Esta vez será necesario utilizar un <em>linebreak</em> (<code>\n</code>) para tener el texto en dos líneas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">cedula <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">cedula <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -3913,14 +4064,18 @@ background-color: null;
 font-style: inherit;">lineheight =</span> <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.8</span>)</span>
-<span id="cb6-9">cedula</span></code></pre></div>
+<span id="cb6-9">cedula</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="288"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Incluyamos ahora las instrucciones que indican cómo votar. Nuevamente, <code>geom_text()</code> nos servirá para lograrlo. En esta ocasión incluiremos más de un <em>linebreak</em> en algunos casos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">cedula <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">cedula <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -4072,9 +4227,13 @@ font-style: inherit;">lineheight =</span> <span class="fl" style="color: #AD0000
 background-color: null;
 font-style: inherit;">0.9</span>)</span>
 <span id="cb7-26"></span>
-<span id="cb7-27">cedula</span></code></pre></div>
+<span id="cb7-27">cedula</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="288"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>¡Cada vez estamos más cerca! El siguiente paso es incluir los logos de las agrupaciones políticas.</p>
@@ -4088,28 +4247,29 @@ font-style: inherit;">0.9</span>)</span>
 <li id="fn1"><p>En esta ocasión, el tamaño del gráfico es de 3 x 6.4 pulgadas, manteniendo la proporción del tamaño oficial.↩︎</p></li>
 </ol>
 </section></div> ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/</guid>
   <pubDate>Sat, 18 Jan 2020 00:00:00 GMT</pubDate>
   <media:content url="https://calderonsamuel.github.io/web/posts/2020-01-18-cedula-2020-ggplot2-parte-2/cedula-parte-2.png" medium="image" type="image/png" height="307" width="144"/>
 </item>
 <item>
   <title>Cédula Elecciones 2020 usando ggplot2 (parte 1)</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/</link>
   <description><![CDATA[ 
+
 
 
 
 <p>No tengo conocimiento sobre el software que ha utilizado ONPE para diseñar la cédula que se utilizará en nuestras elecciones congresales, pero es posible intentar replicarla en R, usando funciones de la colección de paquetes del <code>tidyverse</code>.</p>
 <p>Para ello, primero cargamos los paquetes. Omitiré aquí los mensajes y warnings que aparecerán en una sesión normal. Además, en general utilizaré una línea por cada parámetro en las funciones que utilice, de modo que sea fácil de visualizar el código en teléfonos móviles.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">library</span>(tidyverse)</span></code></pre></div>
+font-style: inherit;">library</span>(tidyverse)</span></code></pre></div></div>
 </div>
 <p>El siguiente paso será crear una superficie en la que irá el gráfico. Usaremos las funciones de <code>ggplot2</code> para esto y para todas las futuras personalizaciones. Utilizaremos un ancho de 15 unidades (eje x) y un alto de 32 unidades (eje y) para mantener las proporciones definidas por la ONPE en la <a href="https://busquedas.elperuano.pe/normaslegales/aprueban-modelos-definitivos-de-cedulas-de-sufragio-para-vot-resolucion-jefatural-n-000263-2019-jnonpe-1835783-1/">RESOLUCIÓN JEFATURAL Nº 000263-2019-JN/ONPE</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">cedula <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">cedula <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4140,14 +4300,18 @@ font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">32</span>))</span>
 <span id="cb2-5"></span>
-<span id="cb2-6">cedula</span></code></pre></div>
+<span id="cb2-6">cedula</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index_files/figure-html/limites-1.png" class="img-fluid" width="288"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index_files/figure-html/limites-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Debido a que las líneas divisorias y el fondo no nos ayudan para nuestros propósitos, nos vamos a deshacer de ellos usando <code>theme_void()</code>. Para mantener la referencia de los límites del gráfico, crearemos un marco con borde negro utilizando <code>geom_rect()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">cedula <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">cedula <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> cedula <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -4195,14 +4359,18 @@ font-style: inherit;">alpha =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>)</span>
 <span id="cb3-10"></span>
-<span id="cb3-11">cedula</span></code></pre></div>
+<span id="cb3-11">cedula</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index_files/figure-html/marco-1.png" class="img-fluid" width="288"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index_files/figure-html/marco-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Lo siguiente es establecer el espacio que ocuparán los elementos de la cédula. En este caso, podemos llamar <code>instrucciones</code> a los marcos de texto que contienen las instrucciones de cómo votar. Los nombres de las columnas del <em>tibble</em> <code>instrucciones</code> nos permitirán identificarlos con los parámetros de <code>geom_rect()</code> cuando lo agreguemos al gráfico.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">instrucciones <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">instrucciones <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4267,14 +4435,18 @@ background-color: null;
 font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.25</span>)</span>
-<span id="cb4-14">cedula</span></code></pre></div>
+<span id="cb4-14">cedula</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index_files/figure-html/instrucciones-1.png" class="img-fluid" width="288"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index_files/figure-html/instrucciones-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Llamaremos<code>rectangulos</code> a los marcos en los que van contenidos los nombres de las agrupaciones políticas. Debido a que son varios contenedores y la distancia entre ellos es uniforme, crearemos los valores del eje Y usando un generador de secuencias. Los valores del eje X, en cambio, son constantes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">rectangulos <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">rectangulos <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4351,14 +4523,18 @@ font-style: inherit;">alpha =</span> <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.15</span>)</span>
 <span id="cb5-17"></span>
-<span id="cb5-18">cedula</span></code></pre></div>
+<span id="cb5-18">cedula</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index_files/figure-html/rectangulos-1.png" class="img-fluid" width="288"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index_files/figure-html/rectangulos-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>El <em>tibble</em> <code>preferencial</code> contiene los cuadrados en los que el votante puede marcar el logo de la agrupación política de su preferencia. Modificando un poco su ubicación el eje X en dos ocasiones, permitirá tener también los cuadrados de voto preferencial.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">preferencial <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">preferencial <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -4525,9 +4701,13 @@ font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"white"</span>)</span>
 <span id="cb6-35"></span>
-<span id="cb6-36">cedula</span></code></pre></div>
+<span id="cb6-36">cedula</span></code></pre></div></div>
 <div class="cell-output-display">
-<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index_files/figure-html/preferencial-1.png" class="img-fluid" width="288"></p>
+<div>
+<figure class="figure">
+<p><img src="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index_files/figure-html/preferencial-1.png" class="img-fluid figure-img" width="288"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En la segunda parte del post explicaré cómo agregar el texto, tanto de los nombres de los partidos políticos como de las instrucciones para votar.</p>
@@ -4535,15 +4715,16 @@ font-style: inherit;">"white"</span>)</span>
 
 
  ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/</guid>
   <pubDate>Wed, 15 Jan 2020 00:00:00 GMT</pubDate>
   <media:content url="https://calderonsamuel.github.io/web/posts/2020-01-15-cedula-2020-ggplot2-parte-1/cedula-parte-1.png" medium="image" type="image/png" height="307" width="144"/>
 </item>
 <item>
   <title>Inicios</title>
   <dc:creator>Samuel Calderon</dc:creator>
-  <link>https://calderonsamuel.github.io/web/posts/2020-01-13-inicios/index.html</link>
+  <link>https://calderonsamuel.github.io/web/posts/2020-01-13-inicios/</link>
   <description><![CDATA[ 
+
 
 
 
@@ -4577,7 +4758,7 @@ font-style: inherit;">"white"</span>)</span>
 </section>
 
  ]]></description>
-  <guid>https://calderonsamuel.github.io/web/posts/2020-01-13-inicios/index.html</guid>
+  <guid>https://calderonsamuel.github.io/web/posts/2020-01-13-inicios/</guid>
   <pubDate>Mon, 13 Jan 2020 00:00:00 GMT</pubDate>
 </item>
 </channel>

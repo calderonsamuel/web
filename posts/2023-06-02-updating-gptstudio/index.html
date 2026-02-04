@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Samuel Calderon">
 <meta name="dcterms.date" content="2023-06-02">
 
-<title>Samuel Calderon - On updating a chat assistant app for the RStudio IDE</title>
+<title>On updating a chat assistant app for the RStudio IDE – Samuel Calderon</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,6 +23,7 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -66,15 +67,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ed9a8c30cfcf7339e481a73771f94081.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
 <link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -83,7 +86,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -92,6 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -112,49 +122,49 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Samuel Calderon</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Acerca de mí</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Acerca de mí</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../projects/index.html" rel="" target="">
- <span class="menu-text">Proyectos</span></a>
+    <a class="nav-link" href="../../projects/index.html"> 
+<span class="menu-text">Proyectos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../posts/index.html" rel="" target="">
- <span class="menu-text">Blog</span></a>
+    <a class="nav-link" href="../../posts/index.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/samucalse" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/samucalse"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/calderonsamuel" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/calderonsamuel"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -214,7 +224,9 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
   </div>
   
 
+
 </header>
+
 
 <p>This post summarizes the challenges overcomed while trying to improve three areas of the ChatGPT addin (shiny app) from <code>{gptstudio}</code>.</p>
 <p>The whole journey began quite unexpectedly for me. I was developing a shiny app for my work and decided to venture into writing JavaScript code. However, I felt that the autocomplete feature in the RStudio IDE wasn’t the best available. So, I decided to give VSCode a shot.</p>
@@ -250,7 +262,7 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <p>As I said before, I really wanted to have a button to easily add any code chunk text to the user’s system clipboard. At the time, I was unsure about doing it in R or in JS. I’ll explain why.</p>
 <p>When you send a prompt to ChatGPT, it will, by default, respond in markdown. You can easily convert that to HTML with <code>shiny::markdown()</code> and render it dynamically. A minimal shiny app to do that would look like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="lst-minimal-app" data-caption="Minimal shiny app"><pre class="sourceCode r lst code-with-copy"><code class="sourceCode r"><span id="lst-minimal-app-1"><a href="#lst-minimal-app-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="lst-minimal-app" data-caption="Minimal shiny app"><pre class="sourceCode r lst code-with-copy"><code class="sourceCode r"><span id="lst-minimal-app-1"><a href="#lst-minimal-app-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
 <span id="lst-minimal-app-2"><a href="#lst-minimal-app-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="lst-minimal-app-3"><a href="#lst-minimal-app-3" aria-hidden="true" tabindex="-1"></a>ask_chatgpt <span class="ot">&lt;-</span> <span class="cf">function</span>(prompt) {</span>
 <span id="lst-minimal-app-4"><a href="#lst-minimal-app-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># code to make the request</span></span>
@@ -272,23 +284,27 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <span id="lst-minimal-app-20"><a href="#lst-minimal-app-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bindEvent</span>(input<span class="sc">$</span>send)</span>
 <span id="lst-minimal-app-21"><a href="#lst-minimal-app-21" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="lst-minimal-app-22"><a href="#lst-minimal-app-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="lst-minimal-app-23"><a href="#lst-minimal-app-23" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="lst-minimal-app-23"><a href="#lst-minimal-app-23" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>A flowchart representing this app would look like this:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-process-minimal" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="process-minimal.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Flowchart of a minimal chat app</figcaption>
+<div id="fig-process-minimal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-process-minimal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="process-minimal.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-process-minimal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Flowchart of a minimal chat app
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>This receives a response, converts it to HTML, and sends it to the browser to be displayed. Every code chunk present would be wrapped inside a <code>&lt;pre&gt;</code> HTML tag, and because we aim to prepend a copy button to them, this tag should be the <em>selector</em> for any future manipulation.</p>
 <p>Now, we need to decide whether to do it in R or in JS. My first instinct was to do it via JS once the full answer was rendered. I would need a listener for a render event on any <code>&lt;pre&gt;</code> tag. This was my first attempt:</p>
-<div id="lst-js-first-attempt" class="cell" data-caption="First attempt in JS" data-eval="false">
-<div class="sourceCode cell-code" id="cb1" data-startfrom="104" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 103;"><span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="fu">$</span>(<span class="st">'pre'</span>)<span class="op">.</span><span class="fu">each</span>(<span class="kw">function</span>() {</span>
+<div class="cell" data-eval="false">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-startfrom="104" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 103;"><span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="fu">$</span>(<span class="st">'pre'</span>)<span class="op">.</span><span class="fu">each</span>(<span class="kw">function</span>() {</span>
 <span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> $codeChunk <span class="op">=</span> <span class="fu">$</span>(<span class="kw">this</span>)<span class="op">;</span></span>
 <span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> $copyButton <span class="op">=</span> <span class="fu">$</span>(<span class="st">'&lt;button&gt;'</span>)<span class="op">.</span><span class="fu">text</span>(<span class="st">'Copy'</span>)<span class="op">;</span></span>
 <span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>  $codeChunk<span class="op">.</span><span class="fu">prepend</span>($copyButton)<span class="op">;</span></span>
@@ -297,31 +313,40 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> codeText <span class="op">=</span> $codeChunk<span class="op">.</span><span class="fu">text</span>()<span class="op">;</span></span>
 <span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>    <span class="bu">navigator</span><span class="op">.</span><span class="at">clipboard</span><span class="op">.</span><span class="fu">writeText</span>(codeText)<span class="op">;</span></span>
 <span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="lst-js-first-attempt" class="cell listing quarto-float quarto-figure quarto-figure-left anchored" data-eval="false">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-js-first-attempt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;1: First attempt in JS
+</figcaption>
+<div aria-describedby="lst-js-first-attempt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="expression">
 
 </div>
 </div>
 </div>
+</figure>
+</div>
+</div>
 <p>This can prepend a “Copy” button to a code chunk, but it doesn’t do it automatically after rendering. In fact, there is nothing in that code to handle the render event. I searched a lot for methods to achieve that, but unfortunately, I wasn’t able to find or understand the necessary code to implement it (remember that all this began because I wasn’t well-versed in JS). So, in the end, I would have to do it from R.</p>
 <p>So, what is the best way to manipulate HTML tags in R? From my point of view, it is by using <code>htmltools::tagQuery()</code> and its corresponding methods. However, that function requires a <code>tag()</code>, <code>tagList()</code>, or a <code>list()</code> of tags. I didn’t have that. Compare these outputs:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="lst-comparison" data-caption="Comparison"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-comparison-1"><a href="#lst-comparison-1" aria-hidden="true" tabindex="-1"></a>htmltools<span class="sc">::</span><span class="fu">h1</span>(<span class="st">"Title 1"</span>) <span class="sc">|&gt;</span> <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="lst-comparison" data-caption="Comparison"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-comparison-1"><a href="#lst-comparison-1" aria-hidden="true" tabindex="-1"></a>htmltools<span class="sc">::</span><span class="fu">h1</span>(<span class="st">"Title 1"</span>) <span class="sc">|&gt;</span> <span class="fu">class</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; [1] "shiny.tag"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="lst-comparison" data-caption="Comparison"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-comparison-1"><a href="#lst-comparison-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">markdown</span>(<span class="st">"# Title 1"</span>) <span class="sc">|&gt;</span> <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="lst-comparison" data-caption="Comparison"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-comparison-1"><a href="#lst-comparison-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">markdown</span>(<span class="st">"# Title 1"</span>) <span class="sc">|&gt;</span> <span class="fu">class</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; [1] "html"      "character"</code></pre>
 </div>
 </div>
 <p>Well then, can’t we just add the “shiny.tag” class to the rendered markdown to be able to use <code>tagQuery()</code>? Well…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="lst-tagquery-error" data-caption="tagQuery error"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-tagquery-error-1"><a href="#lst-tagquery-error-1" aria-hidden="true" tabindex="-1"></a>tag_example <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">markdown</span>(<span class="st">"# Title 1"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="lst-tagquery-error" data-caption="tagQuery error"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="lst-tagquery-error-1"><a href="#lst-tagquery-error-1" aria-hidden="true" tabindex="-1"></a>tag_example <span class="ot">&lt;-</span> shiny<span class="sc">::</span><span class="fu">markdown</span>(<span class="st">"# Title 1"</span>)</span>
 <span id="lst-tagquery-error-2"><a href="#lst-tagquery-error-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(tag_example) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">class</span>(tag_example), <span class="st">"shiny.tag"</span>)</span>
 <span id="lst-tagquery-error-3"><a href="#lst-tagquery-error-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="lst-tagquery-error-4"><a href="#lst-tagquery-error-4" aria-hidden="true" tabindex="-1"></a>htmltools<span class="sc">::</span><span class="fu">tagQuery</span>(tag_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="lst-tagquery-error-4"><a href="#lst-tagquery-error-4" aria-hidden="true" tabindex="-1"></a>htmltools<span class="sc">::</span><span class="fu">tagQuery</span>(tag_example)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <pre class="text-danger"><code>#&gt; Error in list2env(xList, new.env(parent = emptyenv())): first argument must be a named list</code></pre>
 </div>
@@ -329,9 +354,9 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <p>I invite you to try to understand that error message. I, however, decided not to try. What should we do now? Is there a way to convert an <code>"html"</code> character to an object that <code>tagQuery()</code> can handle? Not that I knew of. But, after a not-so-quick Google search, I came across <a href="https://github.com/alandipert/html2r">this Github repo</a> where Alan Dipert had shared a shiny app to handle that conversion. His code covered almost every tag conversion, but it didn’t work for all my tests and used the <code>{XML}</code> package, which was totally unfamiliar to me.</p>
 <p>I decided to implement a new version of the code with <code>{xml2}</code>, <code>{glue}</code>, and <code>{purrr}</code> at its core, which I managed to get working after several tries. You can see the code in <a href="https://github.com/calderonsamuel/gptstudio/blob/d5cd13c673eda1e70880f576972ce8fa355dcb58/R/html_to_taglist.R">this snapshot</a>.</p>
 <div class="cell">
-<details>
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Convert HTML to a Tag List</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
@@ -491,18 +516,18 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return A character string that, when evaluated, will produce a tagList object containing the given tags</span></span>
 <span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>into_taglist <span class="ot">&lt;-</span> <span class="cf">function</span>(tags_str) {</span>
 <span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a>  glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"htmltools::tagList({tags_str})"</span>)</span>
-<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>After that, I was able to run the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>md_example <span class="ot">&lt;-</span> <span class="st">"# Title</span><span class="sc">\n\n</span><span class="st">Some paragraph content.</span><span class="sc">\n\n</span><span class="st">```</span><span class="sc">\n</span><span class="st"># some code content</span><span class="sc">\n</span><span class="st">```"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>md_example <span class="ot">&lt;-</span> <span class="st">"# Title</span><span class="sc">\n\n</span><span class="st">Some paragraph content.</span><span class="sc">\n\n</span><span class="st">```</span><span class="sc">\n</span><span class="st"># some code content</span><span class="sc">\n</span><span class="st">```"</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>md_rendered <span class="ot">&lt;-</span>shiny<span class="sc">::</span><span class="fu">markdown</span>(md_example)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>md_translated <span class="ot">&lt;-</span> <span class="fu">html_to_taglist</span>(md_rendered)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>tq_example <span class="ot">&lt;-</span> htmltools<span class="sc">::</span><span class="fu">tagQuery</span>(md_translated)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>tq_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>tq_example</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; `$allTags()`:
 #&gt; &lt;h1&gt;Title&lt;/h1&gt;
@@ -519,21 +544,25 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <p>At this point, the flowchart of the app would look like this:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-process-html-to-r" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="process-html-to-r.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Flowchart including translation to shiny.tag</figcaption>
+<div id="fig-process-html-to-r" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-process-html-to-r-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="process-html-to-r.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-process-html-to-r-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Flowchart including translation to shiny.tag
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>Now, let’s take a look at what happens when we compare the character contents of <code>md_rendered</code> and <code>md_translated</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(md_rendered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(md_rendered)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; [1] "&lt;h1&gt;Title&lt;/h1&gt;\n&lt;p&gt;Some paragraph content.&lt;/p&gt;\n&lt;pre&gt;&lt;code&gt;# some code content\n&lt;/code&gt;&lt;/pre&gt;\n"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(md_translated)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(md_translated)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; [1] "&lt;h1&gt;Title&lt;/h1&gt;\n&lt;p&gt;Some paragraph content.&lt;/p&gt;\n&lt;pre&gt;\n  &lt;code&gt;# some code content\n&lt;/code&gt;\n&lt;/pre&gt;"</code></pre>
 </div>
@@ -543,10 +572,14 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 <p>With this, the app could be represented with the following flowchart:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-process-copy-btn-in-js" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="process-copy-btn-in-js.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3: Flowchart including JS process</figcaption>
+<div id="fig-process-copy-btn-in-js" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-process-copy-btn-in-js-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="process-copy-btn-in-js.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-process-copy-btn-in-js-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Flowchart including JS process
+</figcaption>
 </figure>
 </div>
 </div>
@@ -556,10 +589,10 @@ gtag('config', 'G-1YGT1Y5480', { 'anonymize_ip': true});
 </section>
 <section id="receiving-a-response-shouldnt-take-too-long" class="level2">
 <h2 class="anchored" data-anchor-id="receiving-a-response-shouldnt-take-too-long">Receiving a response shouldn’t take too long</h2>
-<p>At this point we had a better looking app with friendlier input controls. But rendering a response was s-l-o-w. The app had to wait for the whole answer before rendering it. If you look carefully at <a href="#fig-process-copy-btn-in-js">Figure&nbsp;3</a> you’ll see that it represents a sequential flow. We need to wait for <code>ask_chatgpt()</code> to complete before doing anything with the response. But this is not the experience people have while using the original ChatGPT.</p>
+<p>At this point we had a better looking app with friendlier input controls. But rendering a response was s-l-o-w. The app had to wait for the whole answer before rendering it. If you look carefully at <a href="#fig-process-copy-btn-in-js" class="quarto-xref">Figure&nbsp;3</a> you’ll see that it represents a sequential flow. We need to wait for <code>ask_chatgpt()</code> to complete before doing anything with the response. But this is not the experience people have while using the original ChatGPT.</p>
 <p>In the web, you can see the response being generated in real time almost word by word with a typewriter-like <em>effect</em>. In fact, my first assumption was that the ChatGPT web app received its full response much faster than I did with my API requests because of my slow (Peruvian) connection, and that once it had the full response, it rendered it with a typewriter-like animation to ease the user’s reading process.</p>
 <p>Well, I was totally wrong. It turns out that the API offers the option to <em>stream</em> the response. This means that you can get the response while it is being generated, chunk by chunk. So, the typewriter-like effect doesn’t actually exist, the response is being constantly rendered while the chunks arrive.</p>
-<p>So, to get the same thing in <code>{gptstudio}</code> we should just activate the stream option right? Well, yes, but the flow described in <a href="#fig-process-copy-btn-in-js">Figure&nbsp;3</a> can’t render the response while it is being streamed. This requires a two step solution that I’ll describe now.</p>
+<p>So, to get the same thing in <code>{gptstudio}</code> we should just activate the stream option right? Well, yes, but the flow described in <a href="#fig-process-copy-btn-in-js" class="quarto-xref">Figure&nbsp;3</a> can’t render the response while it is being streamed. This requires a two step solution that I’ll describe now.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -582,7 +615,7 @@ Warning
 <p>As I mentioned before, we were using <code>{httr2}</code> for every API interaction. This package provides a <a href="https://httr2.r-lib.org/reference/req_stream.html"><code>req_stream()</code></a> function that aims to facilitate streaming and sounded really promising. But a problem arised quickly: the format of the streaming response was hard to process.</p>
 <p>To illustrate the problem, let’s consider prompting “Count from 1 to 5” and receiving a chat completion response without streaming. After after assigning it to the <code>resp_example</code> object, it would look like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>resp_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>resp_example</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre class="text-muted"><code>#&gt; {
 #&gt;   "metadata": "some-metadata",
@@ -598,7 +631,7 @@ Warning
 #&gt; }</code></pre>
 </div>
 </div>
-<p>The real content of the response is located inside <code>resp_example$choices[[1]]$message$content</code> (markdown). The length of this string is directly proportional to the time it takes to receive the response. This operation is located in the <code>ask_chatgpt()</code> process in <a href="#fig-process-copy-btn-in-js">Figure&nbsp;3</a>.</p>
+<p>The real content of the response is located inside <code>resp_example$choices[[1]]$message$content</code> (markdown). The length of this string is directly proportional to the time it takes to receive the response. This operation is located in the <code>ask_chatgpt()</code> process in <a href="#fig-process-copy-btn-in-js" class="quarto-xref">Figure&nbsp;3</a>.</p>
 <p>When we use <code>httr2::req_stream()</code> we receive the full <strong>response</strong> in chunks while they stream. If we provide the print function as a callback (to be applied at every chunk while it arrives) it would look like the following:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -712,10 +745,14 @@ Warning
 <p>As you can see, every chunk is the same, except for the <code>content</code> field. From this, is just a matter of reading each chunk as JSON and doing whatever we want with the content from the callback passed to <code>curl_fetch_stream()</code>. We can wrap that functionality in a <code>stream_chatgpt()</code> function to slightly modify the current flow of the app.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-process-stream" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="process-basic-stream.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Flowchart including stream</figcaption>
+<div id="fig-process-stream" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-process-stream-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="process-basic-stream.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-process-stream-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Flowchart including stream
+</figcaption>
 </figure>
 </div>
 </div>
@@ -725,16 +762,20 @@ Warning
 <section id="render-the-stream-without-reactivity" class="level3">
 <h3 class="anchored" data-anchor-id="render-the-stream-without-reactivity">Render the stream without reactivity</h3>
 <p>Now that we can receive the response as a stream, we need to talk about reactivity. There is no better explanation about this topic that the one Hadley Wickham provides in <a href="https://mastering-shiny.org/index.html">Mastering Shiny</a>. The chapter about <a href="https://mastering-shiny.org/reactive-graph.html">the reactive graph</a> made me feel like I was unlocking a superpower, and I encourage everyone to give it a try.</p>
-<p>In short, it explains how your inputs, reactive expressions and outputs are part of a big and clever reactive process (represented in the reactive graph) that dinamycally updates the data used in your app whenever a change is observed. However, we must have in mind that this process executes <strong>sequentially</strong>, meaning that R needs to complete one task before starting to work in a new one, as it happens in the flow represented by <a href="#fig-process-stream">Figure&nbsp;4</a>.</p>
+<p>In short, it explains how your inputs, reactive expressions and outputs are part of a big and clever reactive process (represented in the reactive graph) that dinamycally updates the data used in your app whenever a change is observed. However, we must have in mind that this process executes <strong>sequentially</strong>, meaning that R needs to complete one task before starting to work in a new one, as it happens in the flow represented by <a href="#fig-process-stream" class="quarto-xref">Figure&nbsp;4</a>.</p>
 <p>So we need to render the chunks as they arrive while the reactive process is blocked by the unfinished stream. Having the R process blocked means that we can’t rely on reactives or observers to handle changes in the data present in our app or render the content of the streaming chunks.</p>
 <p>Luckily, the <code>session</code> object present in every server of a shiny app provides the <code>sendCustomMessage()</code> method to communicate with the browser. This means that we need to use that method inside of the callback provided to <code>curl_fetch_stream()</code> running inside <code>stream_chatgpt()</code>, and send to the browser the accumulated <strong>content</strong> that keeps arriving as individual chunks.</p>
 <p>I hope you can understand that tongue-twister better with the following figure:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-process-stream-wrapper" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="process-stream-wrapper.svg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;5: Flowchart with communication concurrent to stream</figcaption>
+<div id="fig-process-stream-wrapper" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-process-stream-wrapper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="process-stream-wrapper.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-process-stream-wrapper-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Flowchart with communication concurrent to stream
+</figcaption>
 </figure>
 </div>
 </div>
@@ -751,7 +792,7 @@ Warning
 <p>On the other hand, don’t be afraid of forking an open-source project and trying to make changes to it. At the very least, you can put into practice the knowledge you already have by attempting to fix some of its issues, and in the best-case scenario, you will also learn a lot of new things while challenging yourself to extend the project’s features. While not everything you try will necessarily end up being used for the project, the practice and learning will remain with you for your future projects.</p>
 <p>Feel free to give it a try with:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gptstudio"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"gptstudio"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Any feedback on the <a href="https://github.com/MichelNivard/gptstudio">Github repo</a> will be greatly appreciated.</p>
 
@@ -760,7 +801,7 @@ Warning
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[]}
+eyJjb250ZW50cyI6W119
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -771,43 +812,58 @@ window._ojs.selfContained = false;
 window._ojs.runtime.interpretFromScriptTags();
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
@@ -815,196 +871,349 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
       return codeEl.innerText;
     }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
-    };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/calderonsamuel\.github\.io\/web");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <script>videojs(video_shortcode_videojs_video1);</script>
+
 
 
 
