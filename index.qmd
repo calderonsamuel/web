@@ -10,19 +10,19 @@ about:
   links:
     - icon: twitter
       text: Twitter
-      href: https://twitter.com
+      href: https://x.com/samucalse
     - icon: github
       text: Github
       href: https://github.com/calderonsamuel
     - icon: linkedin
       text: Linkedin
       href: https://www.linkedin.com/in/samuelcalderon/
-      
-format: 
+
+format:
   html:
     page-layout: full
-    
-execute: 
+
+execute:
   echo: false
   warning: false
 ---
@@ -69,8 +69,8 @@ Descarga mi [CV](about/SamuelCalderonCV.pdf){target="_blank"}.
 library(htmltools)
 
 experience_card <- function(
-  title = "Card title", 
-  company = "Card subtitle", 
+  title = "Card title",
+  company = "Card subtitle",
   company_url = "https://www.gob.pe/sunedu",
   company_logo = "about/logos/sunedu-svg.svg",
   description = "body text",
@@ -78,10 +78,10 @@ experience_card <- function(
   date_end = "Actualidad",
   location = "Lima"
   ) {
-  
+
   date_start <- date_start |> as.Date() |> format("%b %Y")
   date_end <- if (date_end == "") "Actualidad" else date_end |> as.Date() |> format("%b %Y")
-    
+
   div(
     class = "card",
     # header
@@ -114,7 +114,7 @@ experience_card <- function(
         p(class="text-muted mb-0", glue::glue("{date_start} - {date_end}. {location}"))
       )
     ),
-    
+
     # body
     div(
       class = "card-body pt-0",
@@ -140,11 +140,11 @@ experience_row <- function(...) {
 
 
 ```{r}
-experiences <- yaml::read_yaml("about/experience.yaml")[[1]] |> 
+experiences <- yaml::read_yaml("about/experience.yaml")[[1]] |>
   purrr::map(as.data.frame) |>
   purrr::list_rbind()
 
-experiences |> 
-  purrr::pmap(experience_row) |> 
+experiences |>
+  purrr::pmap(experience_row) |>
   tagList()
 ```
